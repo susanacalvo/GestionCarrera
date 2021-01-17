@@ -34,6 +34,8 @@ public class DialogoLogin extends JDialog {
      */
     private DialogoLogin(){
         resourceBundle = ResourceBundle.getBundle("idiomaResourcebundle");
+        setTitle("Gesti\u00F3n de Atletismo 2020");
+        setIconImage(new ImageIcon(getClass().getResource("/corriendo.png")).getImage());
         cargarUsuarios();
         setContentPane(contentPane);
         setModal(true);

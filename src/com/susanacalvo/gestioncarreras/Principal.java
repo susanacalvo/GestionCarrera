@@ -1,6 +1,7 @@
 package com.susanacalvo.gestioncarreras;
 
 import com.susanacalvo.gestioncarreras.dialogos.DialogoLogin;
+import com.susanacalvo.gestioncarreras.mvc.gui.Vista;
 import com.susanacalvo.gestioncarreras.util.Util;
 import java.util.Locale;
 
@@ -21,6 +22,7 @@ public class Principal {
         Util.crearSiNoExisteDirectorioDatos();
         //Control de tipo de usuario logueado
         int tipoUsuario = DialogoLogin.mostrarDialogoLogin();
-        
+
+        Vista vista=new Vista(tipoUsuario);
     }
 }
