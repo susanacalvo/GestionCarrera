@@ -26,7 +26,7 @@ public class Util {
      * Método que muestra un mensaje de error
      * @param mensaje
      */
-    public static void mensajeError(String mensaje){
+    public static void mostrarDialogoError(String mensaje){
         JOptionPane.showMessageDialog(null, mensaje, "Error", JOptionPane.ERROR_MESSAGE);
     }
 
@@ -37,6 +37,14 @@ public class Util {
      */
     public static int mensajeConfirmacion(String mensaje){
         return JOptionPane.showConfirmDialog(null, mensaje, "Confirmacion", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+    }
+
+    /**
+     * Método que muestra un cuadro de diálogo de información
+     * @param mensaje
+     */
+    public static void mostrarDialogoInformacion(String mensaje) {
+        JOptionPane.showMessageDialog(null,mensaje, "Infromación", JOptionPane.INFORMATION_MESSAGE);
     }
 
     /**

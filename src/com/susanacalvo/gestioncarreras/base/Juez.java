@@ -1,7 +1,6 @@
 package com.susanacalvo.gestioncarreras.base;
 
 import java.io.Serializable;
-import java.util.LinkedList;
 
 /**
  * Clase Juez

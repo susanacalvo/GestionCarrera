@@ -3,6 +3,8 @@ package com.susanacalvo.gestioncarreras.mvc.modelo;
 import com.susanacalvo.gestioncarreras.base.Carrera;
 import com.susanacalvo.gestioncarreras.base.Competidor;
 import com.susanacalvo.gestioncarreras.base.Juez;
+import com.susanacalvo.gestioncarreras.util.Util;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -30,13 +32,23 @@ public class Modelo {
      * Método que añade un nuevo competidor al sistema
      * @param competidor
      */
-    public void nuevoCompetidor(Competidor competidor){ listaCompetidores.add(competidor); }
+    public void nuevoCompetidor(Competidor competidor){
+        listaCompetidores.add(competidor);
+        if(competidor.getCarrera()!=null){
+            competidor.getCarrera().getCompetidoresCarrera().add(competidor);
+        }
+    }
 
     /**
      * Método que elimina un competidor del sistema
      * @param competidor
      */
-    public void eliminarCompetidor(Competidor competidor){ listaCompetidores.remove(competidor); }
+    public void eliminarCompetidor(Competidor competidor){
+        if(competidor.getCarrera()!=null){
+            competidor.getCarrera().getCompetidoresCarrera().remove(competidor);
+        }
+        listaCompetidores.remove(competidor);
+    }
 
     /**
      * Método que devuelve una lista de los competidores
@@ -79,4 +91,98 @@ public class Modelo {
      * @return
      */
     public LinkedList<Carrera>getCarreras(){return listaCarreras;}
+
+    /**
+     * Método que comprueba que el Competidor ya existe
+     * @param dni
+     * @return false/true
+     */
+    public boolean existeDniCompetidor(String dni){
+        for(Competidor c:listaCompetidores){
+            if(c.getDni().equals(dni)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Método que comprueba que el Juez ya existe
+     * @param codigo
+     * @return false/true
+     */
+    public boolean existeCodigoJuez(String codigo){
+        for(Juez j:listaJueces){
+            if (j.getNumJuez().equals(codigo)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Método que comprueba que no haya la misma carrera en la misma fecha
+     * @return
+     */
+    public boolean existeCarrera(Carrera carrera){
+        for (Carrera c:listaCarreras){
+            if (c.getFecha().equals(carrera.getFecha())){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Método para leer los datos de un fichero binario
+     * @param fichero
+     */
+    @SuppressWarnings("unchecked")
+    public void cargarDatos(File fichero) {
+        try {
+            FileInputStream flujoEntrada = new FileInputStream (fichero);
+            ObjectInputStream deserializador = new ObjectInputStream(flujoEntrada);
+            listaCompetidores = (HashSet<Competidor>) deserializador.readObject();
+            listaJueces=(ArrayList<Juez>)deserializador.readObject();
+            listaCarreras = (LinkedList<Carrera>)deserializador.readObject();
+            deserializador.close();
+
+        }catch(FileNotFoundException e){
+            e.printStackTrace();
+            System.err.println("Error: El fichero no existe. ");
+            Util.mostrarDialogoError("El fichero no existe ");
+        }catch (IOException e) {
+            e.printStackTrace();
+            System.err.println("Error: Fallo en la lectura del fichero. ");
+            Util.mostrarDialogoError("Error, fallo en la lectura del fichero ");
+        }catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            System.out.println("No se pudo acceder a la clase adecuada para revertir la Serializacion al leer del fichero.");
+            Util.mostrarDialogoError("Error, no se pudo acceder a la clase ");
+        }
+    }
+
+    /**
+     * Método para guardar los datos en un fichero binario
+     * @param fichero
+     */
+    public void guardarDatos(File fichero) {
+        try {
+            FileOutputStream flujoSalida = new FileOutputStream (fichero);
+            ObjectOutputStream serializador = new ObjectOutputStream(flujoSalida);
+            serializador.writeObject(listaCompetidores);
+            serializador.writeObject(listaJueces);
+            serializador.writeObject(listaCarreras);
+            serializador.close();
+            Util.mostrarDialogoInformacion("¡Guardado Correctamente!");
+        }catch (FileNotFoundException e) {
+            e.printStackTrace();
+            System.out.println("El fichero no existe. ");
+            Util.mostrarDialogoError("El fichero no existe.");
+        }catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Fallo en la escritura en el fichero. ");
+            Util.mostrarDialogoError("Error en la escritura del fichero");
+        }
+    }
 }

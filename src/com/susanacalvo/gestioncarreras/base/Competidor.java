@@ -2,8 +2,6 @@ package com.susanacalvo.gestioncarreras.base;
 
 import javax.swing.*;
 import java.io.Serializable;
-import java.util.LinkedList;
-
 
 /**
  * Clase Competidor
@@ -20,6 +18,7 @@ public class Competidor implements Serializable {
     private int edad;
     private double altura;
     private Icon foto;
+    private Carrera carrera;
 
     /**
      * Constructor de la clase Competidor
@@ -30,7 +29,7 @@ public class Competidor implements Serializable {
      * @param altura
      * @param foto
      */
-    public Competidor(String dni, String nombre, String apellidos, int edad, double altura, Icon foto) {
+    public Competidor(String dni, String nombre, String apellidos, int edad, double altura, Icon foto,Carrera carrera) {
         super();
         this.dni = dni;
         this.nombre = nombre;
@@ -38,6 +37,7 @@ public class Competidor implements Serializable {
         this.edad = edad;
         this.altura = altura;
         this.foto=foto;
+        this.carrera=carrera;
     }
 
     /**
@@ -113,6 +113,18 @@ public class Competidor implements Serializable {
      * @param foto
      */
     public void setFoto(Icon foto) { this.foto = foto; }
+
+    /**
+     * Método que devuelve la carrera del Competidorr
+     * @return carrera
+     */
+    public Carrera getCarrera() { return carrera; }
+
+    /**
+     * Método que establece una carrera al Competidor
+     * @param carrera
+     */
+    public void setCarrera(Carrera carrera) { this.carrera = carrera; }
 
     /**
      * Método que devuelve una cadena de información de la clase Competidor
