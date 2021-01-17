@@ -12,7 +12,6 @@ import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-
 /**
  * Clase DialogoLogin
  * @author Susana
@@ -31,7 +30,7 @@ public class DialogoLogin extends JDialog {
     private ResourceBundle resourceBundle;
 
     /**
-     * Constructor de la clase
+     * Constructor privado de la clase
      */
     private DialogoLogin(){
         resourceBundle = ResourceBundle.getBundle("idiomaResourcebundle");
@@ -46,11 +45,18 @@ public class DialogoLogin extends JDialog {
         setVisible(true);
     }
 
+    /**
+     * Método para poder crear un DialogoLogin
+     * @return estado del rol
+     */
     public static int mostrarDialogoLogin(){
         DialogoLogin login = new DialogoLogin();
         return login.estado;
     }
 
+    /**
+     * Método que inicializa los manejadores de eventos
+     */
     private void initHandlers() {
         btnAcceder.addActionListener(new ActionListener() {
             @Override
@@ -58,6 +64,9 @@ public class DialogoLogin extends JDialog {
         });
     }
 
+    /**
+     * Método que comprueba el usuario, ADMIN, JUEZ, COMPETIDOR y le asigna un estado 0 ,2 ,1
+     */
     private void comprobarUsuarios() {
         if(txtUsuario.getText().equals(USUARIO_ADMIN)
                 && String.valueOf(txtPassword.getPassword()).equals(USUARIO_ADMIN_PASSWORD)){
@@ -87,6 +96,9 @@ public class DialogoLogin extends JDialog {
         }
     }
 
+    /**
+     * Método que carga los usuarios existentes en un ArrayList
+     */
     private void cargarUsuarios() {
         FileInputStream fis = null;
         ObjectInputStream deserializador = null;
@@ -112,6 +124,12 @@ public class DialogoLogin extends JDialog {
         }
     }
 
+    /**
+     * Método que comprueba recorre los usuarios creados y si es todo correcto le asigna el estado
+     * @param login
+     * @param password
+     * @return false/true
+     */
     private boolean comprobarUsuarioRegistrados(String login, char[] password) {
         for(Usuario usuario : usuarios){
             if(usuario.getLogin().equals(login) && usuario.getPassword().equals(String.valueOf(password))){
