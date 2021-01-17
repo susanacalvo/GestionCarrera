@@ -12,6 +12,8 @@ import java.util.Properties;
  * @author Susana
  */
 public class Util {
+    public static final int ACEPTAR = JOptionPane.OK_OPTION;
+    public static final int CANCELAR = JOptionPane.CANCEL_OPTION;
     /**
      * Método que crea un directorio para guardar todo tipo de configuracio si no existe
      */
