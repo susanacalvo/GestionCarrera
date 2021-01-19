@@ -20,8 +20,8 @@ public class Principal {
 
         Util.crearSiNoExisteDirectorioDatos();
         //Control de tipo de usuario logueado
-        int tipoUsuario = DialogoLogin.mostrarDialogoLogin();
+        //int tipoUsuario = DialogoLogin.mostrarDialogoLogin();
 
-        Vista vista=new Vista(tipoUsuario);
+        Vista vista=new Vista();
     }
 }

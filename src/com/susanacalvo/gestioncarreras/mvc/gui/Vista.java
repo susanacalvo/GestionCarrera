@@ -6,23 +6,36 @@ import java.util.ResourceBundle;
 public class Vista {
     JFrame frame;
     JPanel contentPane;
-    private JTabbedPane tabbedPane1;
-    private JButton btnNuevoJuez;
-    private JButton btnEliminarJuez;
-    private JButton btnModificarJuez;
-    private JLabel lblCopyRight;
-    private JTextField txtCodJuez;
-    private JTextField txtNombreJuez;
-    private JTextField txtApellidosJuez;
-    private JList listJueces;
-    private JButton btnNuevoCompetidor;
-    private JButton btnEliminarCompetidor;
-    private JButton btnModificarCompetidor;
-    private JTextField txtDniCompetidor;
-    private JTextField txtNombreCompetidor;
-    private JTextField txtApellidoCompetidor;
-    private JTextField txtEdadCompetidor;
-    private JTextField txtAlturaCompetidor;
+     JTabbedPane tabbedPane1;
+     JButton btnNuevoJuez;
+     JButton btnEliminarJuez;
+     JButton btnModificarJuez;
+     JLabel lblCopyRight;
+     JTextField txtCodJuez;
+     JTextField txtNombreJuez;
+     JTextField txtApellidosJuez;
+     JList listaJueces;
+     JLabel lblCodJuez;
+     JLabel lblNombreJuez;
+     JLabel lblApeJuez;
+     JButton btnNuevoCompetidor;
+     JButton btnEliminarCompetidor;
+     JButton btnModificarCompetidor;
+     JTextField txtDni;
+     JTextField txtNombreCompetidor;
+     JTextField txtEdad;
+     JTextField txtAltura;
+     JLabel lblDni;
+     JLabel lblNombreCompetidor;
+     JLabel lblApeCompetidor;
+     JTextField txtApeCompetidor;
+     JLabel lblEdad;
+     JLabel lblAltura;
+     JButton btnEliminarImagen;
+     JButton btnNuevaImagen;
+     JLabel lblFoto;
+     JLabel lblImagen;
+     JList listCompetidores;
     ResourceBundle resourceBundle;
     JMenuItem itemSalir;
     JMenuItem itemGuardar;
@@ -32,10 +45,10 @@ public class Vista {
 
     /**
      * Constructor de la clase, recibe el tipo de usuario que se ha logueado
-     * @param tipoUsuario
+     *
      */
-    public Vista(int tipoUsuario) {
-        frame = new JFrame("Gesti\u00F3n de Atletismo 2020");
+    public Vista() {
+        frame = new JFrame("Gestión de Atletismo 2020");
         frame.setIconImage(new ImageIcon(getClass().getResource("/corriendo.png")).getImage());
         frame.setContentPane(contentPane);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
