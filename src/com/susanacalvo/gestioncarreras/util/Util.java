@@ -1,6 +1,7 @@
 package com.susanacalvo.gestioncarreras.util;
 
 import javax.swing.*;
+import java.awt.*;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
@@ -56,7 +57,6 @@ public class Util {
     public static Locale obtenerLocale() {
 
         Locale locale = null;
-
         Properties properties = new Properties();
         try {
             properties.load(new FileReader("data/preferencias.conf"));
@@ -77,5 +77,21 @@ public class Util {
         }
 
         return locale;
+    }
+
+    /**
+     * Método para redimensionar las imágenes
+     * @param icon
+     * @param alto
+     * @param ancho
+     * @return icon
+     */
+    public static Icon escalarImagen(ImageIcon icon, int alto, int ancho){
+        Image imagen = icon.getImage();
+
+        Image imagenEscalada = imagen.getScaledInstance(ancho, alto, Image.SCALE_SMOOTH);
+
+        icon = new ImageIcon(imagenEscalada);
+        return icon;
     }
 }

@@ -3,7 +3,6 @@ package com.susanacalvo.gestioncarreras;
 import com.susanacalvo.gestioncarreras.dialogos.DialogoLogin;
 import com.susanacalvo.gestioncarreras.mvc.gui.Vista;
 import com.susanacalvo.gestioncarreras.util.Util;
-import java.util.Locale;
 
 /**
  * Clase Principal, encargada de lanzar la aplicación
@@ -16,8 +15,8 @@ public class Principal {
      */
     public static void main(String args[]){
         //Obtenemos la localizacion por defecto de donde se encuentre el usuario
-        Locale locale = Util.obtenerLocale();
-        Locale.setDefault(locale);
+        //Locale locale = Util.obtenerLocale();
+        //Locale.setDefault(locale);
 
         Util.crearSiNoExisteDirectorioDatos();
         //Control de tipo de usuario logueado

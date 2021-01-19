@@ -42,6 +42,7 @@ public class Vista {
         frame.pack();
         frame.setVisible(true);
         frame.setLocationRelativeTo(null);
+        crearMenu();
     }
 
     private void crearMenu(){
@@ -51,7 +52,7 @@ public class Vista {
         frame.setJMenuBar(barra);
 
         //Menu Archivo
-        JMenu menuArchivo = new JMenu(resourceBundle.getString("menu.archivo"));
+        JMenu menuArchivo = new JMenu("menu.archivo");
         barra.add(menuArchivo);
 
         itemSalir = new JMenuItem(resourceBundle.getString("menu.salir"));
