@@ -1,5 +1,7 @@
 package com.susanacalvo.gestioncarreras.util;
 
+import com.sun.deploy.nativesandbox.NativeSandboxBroker;
+
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
@@ -7,6 +9,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Locale;
 import java.util.Properties;
+import java.util.ResourceBundle;
 
 /**
  * Clase Util
@@ -15,6 +18,7 @@ import java.util.Properties;
 public class Util {
     public static final int ACEPTAR = JOptionPane.OK_OPTION;
     public static final int CANCELAR = JOptionPane.CANCEL_OPTION;
+    public static ResourceBundle resourceBundle =ResourceBundle.getBundle("idiomaResourceBundle");
     /**
      * Método que crea un directorio para guardar todo tipo de configuracio si no existe
      */
@@ -30,7 +34,7 @@ public class Util {
      * @param mensaje
      */
     public static void mostrarDialogoError(String mensaje){
-        JOptionPane.showMessageDialog(null, mensaje, "Error", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(null, mensaje, resourceBundle.getString("error"), JOptionPane.ERROR_MESSAGE);
     }
 
     /**
@@ -39,7 +43,7 @@ public class Util {
      * @return 0 1
      */
     public static int mensajeConfirmacion(String mensaje){
-        return JOptionPane.showConfirmDialog(null, mensaje, "Confirmacion", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        return JOptionPane.showConfirmDialog(null, mensaje, resourceBundle.getString("confirmacion"), JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
     }
 
     /**
@@ -47,7 +51,7 @@ public class Util {
      * @param mensaje
      */
     public static void mostrarDialogoInformacion(String mensaje) {
-        JOptionPane.showMessageDialog(null,mensaje, "Infromación", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null,mensaje, resourceBundle.getString(resourceBundle.getString("informacion")), JOptionPane.INFORMATION_MESSAGE);
     }
 
     /**

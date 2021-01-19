@@ -28,8 +28,8 @@ public class DialogoLogin extends JDialog {
      * Constructor privado de la clase
      */
     private DialogoLogin() {
-        //resourceBundle = ResourceBundle.getBundle("idiomaResourcebundle");
-        setTitle("Gestión de Atletismo 2020");
+        resourceBundle = ResourceBundle.getBundle("idiomaResourceBundle");
+        setTitle(resourceBundle.getString("gestion.de.atletismo.2020"));
         setIconImage(new ImageIcon(getClass().getResource("/corriendo.png")).getImage());
         //cargarUsuarios();
         setContentPane(contentPane);
@@ -98,7 +98,7 @@ public class DialogoLogin extends JDialog {
                 dispose();
 
             } else {
-                Util.mostrarDialogoError(resourceBundle.getString("Login Incorecto"));
+                Util.mostrarDialogoError(resourceBundle.getString("mensaje.login.incorrecto"));
                 txtUsuario.setText("");
                 txtPassword.setText("");
                 txtUsuario.requestFocus();

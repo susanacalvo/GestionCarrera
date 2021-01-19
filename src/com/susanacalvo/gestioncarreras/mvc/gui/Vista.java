@@ -49,6 +49,7 @@ public class Vista {
      */
     public Vista() {
         frame = new JFrame("Gestión de Atletismo 2020");
+        resourceBundle=ResourceBundle.getBundle("idiomaResourceBundle");
         frame.setIconImage(new ImageIcon(getClass().getResource("/corriendo.png")).getImage());
         frame.setContentPane(contentPane);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -65,7 +66,7 @@ public class Vista {
         frame.setJMenuBar(barra);
 
         //Menu Archivo
-        JMenu menuArchivo = new JMenu("menu.archivo");
+        JMenu menuArchivo = new JMenu(resourceBundle.getString("menu.archivo"));
         barra.add(menuArchivo);
 
         itemSalir = new JMenuItem(resourceBundle.getString("menu.salir"));
