@@ -1,63 +1,148 @@
 package com.susanacalvo.gestioncarreras.dialogos;
 
-import javax.swing.*;
-import java.awt.event.*;
+import com.susanacalvo.gestioncarreras.util.Util;
 
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Properties;
+import java.util.ResourceBundle;
+
+/**
+ * Clase DialogoConfiguración, permite al usuario configurar su aplicacion a su gusto
+ */
 public class DialogoConfiguracion extends JDialog {
+    /**
+     * Atributos de la clase
+     */
     private JPanel contentPane;
     private JButton buttonOK;
     private JButton buttonCancel;
     private JRadioButton rbEspanol;
     private JRadioButton rbIngles;
     private JComboBox cbTamanoFuente;
+    private DefaultComboBoxModel<Integer>dcbm;
+    private ResourceBundle resourceBundle;
 
+    /**
+     * Constructor publico de la clase
+     */
     public DialogoConfiguracion() {
+        resourceBundle = ResourceBundle.getBundle("idiomaResourcebundle");
+        dcbm=new DefaultComboBoxModel<>();
+        cbTamanoFuente.setModel(dcbm);
+        initDialog();
+        cargarConfiguracion();
+        pack();
+        setVisible(true);
+        setLocationRelativeTo(null);
+    }
+
+    /**
+     * Método que inicializa los componenente y los manejadores de eventos
+     */
+    private void initDialog() {
         setContentPane(contentPane);
+        setTitle(resourceBundle.getString("vista.menuitem.preferencias"));
+        setIconImage(new ImageIcon(getClass().getResource("/corriendo.png")).getImage());
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
 
         buttonOK.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                onOK();
-            }
+            public void actionPerformed(ActionEvent e) { onOK(); }
         });
 
         buttonCancel.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                onCancel();
-            }
+            public void actionPerformed(ActionEvent e) { onCancel(); }
         });
 
         // call onCancel() when cross is clicked
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         addWindowListener(new WindowAdapter() {
-            public void windowClosing(WindowEvent e) {
-                onCancel();
-            }
+            public void windowClosing(WindowEvent e) { onCancel(); }
         });
 
         // call onCancel() on ESCAPE
         contentPane.registerKeyboardAction(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                onCancel();
-            }
+            public void actionPerformed(ActionEvent e) { onCancel(); }
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
     }
 
+    /**
+     * Método que reacciona ante el botón Aceptar
+     */
     private void onOK() {
-        // add your code here
+        guardarConfiguracion();
+        int opt = Util.mensajeConfirmacion(resourceBundle.getString("dialogo.preferencias.mensaje.reinicio"));
+
+        if(opt == JOptionPane.YES_OPTION){
+            System.exit(2);
+        }
         dispose();
     }
 
+    /**
+     * Método que reacciona ante el botón Cancelar
+     */
     private void onCancel() {
         // add your code here if necessary
         dispose();
     }
 
+    /**
+     * Método que guarda la configuración
+     */
+    private void guardarConfiguracion(){
+        Properties propiedades = new Properties();
+        String idioma;
+        String pais;
+        if(rbEspanol.isSelected()){
+            idioma = "es";
+            pais = "ES";
+        } else {
+            idioma = "en";
+            pais = "UK";
+        }
+        propiedades.setProperty("idioma", idioma);
+        propiedades.setProperty("pais", pais);
+
+
+        try {
+            propiedades.store(new FileWriter("data/preferencias.conf"), "Fichero de preferencias");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Método que carga la configuración
+     */
+    public void cargarConfiguracion() {
+        Properties properties = new Properties();
+        try {
+            properties.load(new FileReader("data/preferencias.conf"));
+
+            String pais = properties.getProperty("pais");
+
+            if(pais.equals("ES")){
+                rbEspanol.setSelected(true);
+            }else {
+                rbIngles.setSelected(true);
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void main(String[] args) {
-        DialogoConfiguracion dialog = new DialogoConfiguracion();
-        dialog.pack();
-        dialog.setVisible(true);
-        System.exit(0);
+        JFrame frame = new JFrame("DialogoConfiguracion");
+        frame.setContentPane(new DialogoConfiguracion().contentPane);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
     }
 }

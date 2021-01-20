@@ -19,7 +19,7 @@
         <properties/>
         <border type="none"/>
         <children>
-          <grid id="964be" layout-manager="GridLayoutManager" row-count="3" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+          <grid id="964be" binding="panelJueces" layout-manager="GridLayoutManager" row-count="3" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
             <margin top="0" left="0" bottom="0" right="0"/>
             <constraints>
               <tabbedpane title-resource-bundle="idiomaResourceBundle" title-key="nombre.juez"/>
@@ -273,7 +273,7 @@
               </grid>
             </children>
           </grid>
-          <grid id="3239" layout-manager="GridLayoutManager" row-count="2" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+          <grid id="3239" binding="panelCompetidores" layout-manager="GridLayoutManager" row-count="2" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
             <margin top="0" left="0" bottom="0" right="0"/>
             <constraints>
               <tabbedpane title-resource-bundle="idiomaResourceBundle" title-key="nombre.competidor"/>
@@ -585,7 +585,7 @@
               </grid>
             </children>
           </grid>
-          <grid id="f8571" layout-manager="GridLayoutManager" row-count="2" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+          <grid id="f8571" binding="panelCarreras" layout-manager="GridLayoutManager" row-count="2" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
             <margin top="0" left="0" bottom="0" right="0"/>
             <constraints>
               <tabbedpane title-resource-bundle="idiomaResourceBundle" title-key="nombre.carrera"/>
@@ -921,7 +921,7 @@
               </grid>
             </children>
           </grid>
-          <grid id="de8d5" layout-manager="GridLayoutManager" row-count="1" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+          <grid id="de8d5" binding="panelRelacion" layout-manager="GridLayoutManager" row-count="1" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
             <margin top="0" left="0" bottom="0" right="0"/>
             <constraints>
               <tabbedpane title-resource-bundle="idiomaResourceBundle" title-key="nombre.relacion"/>

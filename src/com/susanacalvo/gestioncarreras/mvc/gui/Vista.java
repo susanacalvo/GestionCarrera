@@ -66,6 +66,10 @@ public class Vista {
      JLabel lblRealizado;
      JLabel lblJuezCarrera;
      JLabel lblCompetidoresCarrera;
+     JPanel panelJueces;
+     JPanel panelCompetidores;
+     JPanel panelCarreras;
+     JPanel panelRelacion;
     DatePicker carreraDatePicker;
     private ResourceBundle resourceBundle;
     private int tipoUsuario;
@@ -106,13 +110,14 @@ public class Vista {
     private void controlarTipoUsuario() {
         if(tipoUsuario== Usuario.USUSARIO_JUEZ){
             itemGestionUsuarios.setEnabled(false);
-            btnEliminarJuez.setEnabled(false);
-            btnNuevoJuez.setEnabled(false);
-            btnModificarJuez.setEnabled(false);
+
         }else if(tipoUsuario==Usuario.USUARIO_COMPETIDOR){
-
-        }else{
-
+            panelJueces.setEnabled(false);
+            panelCarreras.setEnabled(false);
+            panelCompetidores.setEnabled(false);
+            itemGestionUsuarios.setEnabled(false);
+            itemGuardar.setEnabled(false);
+            itemCargar.setEnabled(false);
         }
     }
 
