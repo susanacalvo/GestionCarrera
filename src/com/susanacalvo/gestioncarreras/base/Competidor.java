@@ -29,7 +29,7 @@ public class Competidor implements Serializable {
      * @param altura
      * @param foto
      */
-    public Competidor(String dni, String nombre, String apellidos, int edad, double altura, Icon foto,Carrera carrera) {
+    public Competidor(String dni, String nombre, String apellidos, int edad, double altura, Icon foto) {
         super();
         this.dni = dni;
         this.nombre = nombre;
@@ -37,7 +37,7 @@ public class Competidor implements Serializable {
         this.edad = edad;
         this.altura = altura;
         this.foto=foto;
-        this.carrera=carrera;
+
     }
 
     /**

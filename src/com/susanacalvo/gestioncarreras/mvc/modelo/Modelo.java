@@ -8,6 +8,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.ResourceBundle;
 
 /**
  * Clase modelo, realiza todas las operaciones de la aplicacion
@@ -18,11 +19,13 @@ public class Modelo {
     private HashSet<Competidor> listaCompetidores;
     private LinkedList<Carrera> listaCarreras;
     private ArrayList<Juez> listaJueces;
+    private ResourceBundle resourceBundle;
 
     /**
      * Constructor de la clase Modelo, inicializa  las Colecciones
      */
     public Modelo(){
+        resourceBundle=ResourceBundle.getBundle("idiomaResourceBundle");
         listaCompetidores = new HashSet<>();
         listaCarreras = new LinkedList<>();
         listaJueces = new ArrayList<>();
@@ -150,15 +153,15 @@ public class Modelo {
         }catch(FileNotFoundException e){
             e.printStackTrace();
             System.err.println("Error: El fichero no existe. ");
-            Util.mostrarDialogoError("El fichero no existe ");
+            Util.mostrarDialogoError(resourceBundle.getString("el.fichero.no.existe"));
         }catch (IOException e) {
             e.printStackTrace();
             System.err.println("Error: Fallo en la lectura del fichero. ");
-            Util.mostrarDialogoError("Error, fallo en la lectura del fichero ");
+            Util.mostrarDialogoError(resourceBundle.getString("error.fallo.en.la.lectura.del.fichero"));
         }catch (ClassNotFoundException e) {
             e.printStackTrace();
             System.out.println("No se pudo acceder a la clase adecuada para revertir la Serializacion al leer del fichero.");
-            Util.mostrarDialogoError("Error, no se pudo acceder a la clase ");
+            Util.mostrarDialogoError(resourceBundle.getString("error.no.se.pudo.acceder.a.la.clase"));
         }
     }
 
@@ -174,15 +177,15 @@ public class Modelo {
             serializador.writeObject(listaJueces);
             serializador.writeObject(listaCarreras);
             serializador.close();
-            Util.mostrarDialogoInformacion("¡Guardado Correctamente!");
+            Util.mostrarDialogoInformacion(resourceBundle.getString("guardado.correctamente"));
         }catch (FileNotFoundException e) {
             e.printStackTrace();
             System.out.println("El fichero no existe. ");
-            Util.mostrarDialogoError("El fichero no existe.");
+            Util.mostrarDialogoError("el.fichero.no.existe");
         }catch (IOException e) {
             e.printStackTrace();
             System.out.println("Fallo en la escritura en el fichero. ");
-            Util.mostrarDialogoError("Error en la escritura del fichero");
+            Util.mostrarDialogoError(resourceBundle.getString("error.en.la.escritura.del.fichero"));
         }
     }
 }
