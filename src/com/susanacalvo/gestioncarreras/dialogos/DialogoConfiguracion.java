@@ -8,6 +8,7 @@ import java.awt.event.*;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Properties;
 import java.util.ResourceBundle;
 
@@ -25,6 +26,7 @@ public class DialogoConfiguracion extends JDialog {
     private JRadioButton rbIngles;
     private JComboBox cbTamanoFuente;
     private DefaultComboBoxModel<Integer>dcbm;
+    private ArrayList<Integer>listFuente;
     private ResourceBundle resourceBundle;
 
     /**
@@ -36,9 +38,20 @@ public class DialogoConfiguracion extends JDialog {
         cbTamanoFuente.setModel(dcbm);
         initDialog();
         cargarConfiguracion();
+        cargarComboBox();
         pack();
-        setVisible(true);
         setLocationRelativeTo(null);
+
+        setVisible(true);
+    }
+
+    /**
+     * Método que carga en el ComboBox los diferentes tamaños de letra que se pueden aplicar
+     */
+    private void cargarComboBox() {
+        for (int i=8;i<=20;i+=2){
+            dcbm.addElement(i);
+        }
     }
 
     /**
@@ -87,10 +100,7 @@ public class DialogoConfiguracion extends JDialog {
     /**
      * Método que reacciona ante el botón Cancelar
      */
-    private void onCancel() {
-        // add your code here if necessary
-        dispose();
-    }
+    private void onCancel() { dispose(); }
 
     /**
      * Método que guarda la configuración
@@ -106,6 +116,7 @@ public class DialogoConfiguracion extends JDialog {
             idioma = "en";
             pais = "UK";
         }
+
         propiedades.setProperty("idioma", idioma);
         propiedades.setProperty("pais", pais);
 
@@ -136,13 +147,5 @@ public class DialogoConfiguracion extends JDialog {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("DialogoConfiguracion");
-        frame.setContentPane(new DialogoConfiguracion().contentPane);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
-        frame.setVisible(true);
     }
 }
