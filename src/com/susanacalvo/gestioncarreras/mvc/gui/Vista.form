@@ -45,7 +45,7 @@
                       <actionCommand value="NuevoJuez"/>
                       <icon value="agregar-usuario.png"/>
                       <text value=""/>
-                      <toolTipText value="Añadir un nuevo juez"/>
+                      <toolTipText resource-bundle="idiomaResourceBundle" key="anadir.nuevo.juez"/>
                     </properties>
                   </component>
                   <component id="47a79" class="javax.swing.JButton" binding="btnEliminarJuez">
@@ -56,7 +56,7 @@
                       <actionCommand value="EliminarJuez"/>
                       <icon value="quitar-usuario.png"/>
                       <text value=""/>
-                      <toolTipText value="Eliminar un juez"/>
+                      <toolTipText resource-bundle="idiomaResourceBundle" key="eliminar.juez"/>
                     </properties>
                   </component>
                   <component id="a24e9" class="javax.swing.JButton" binding="btnModificarJuez">
@@ -67,7 +67,7 @@
                       <actionCommand value="ModificarJuez"/>
                       <icon value="modificar-usuario.png"/>
                       <text value=""/>
-                      <toolTipText value="Modificar Juez"/>
+                      <toolTipText resource-bundle="idiomaResourceBundle" key="modificar.juez"/>
                     </properties>
                   </component>
                   <hspacer id="bc7e6">
@@ -299,7 +299,7 @@
                       <actionCommand value="NuevoCompetidor"/>
                       <icon value="agregar-usuario.png"/>
                       <text value=""/>
-                      <toolTipText value="Añadir un nuevo competidor"/>
+                      <toolTipText resource-bundle="idiomaResourceBundle" key="anadir.nuevo.competidor"/>
                     </properties>
                   </component>
                   <component id="d8fd0" class="javax.swing.JButton" binding="btnEliminarCompetidor">
@@ -310,7 +310,7 @@
                       <actionCommand value="EliminarCompetidor"/>
                       <icon value="quitar-usuario.png"/>
                       <text value=""/>
-                      <toolTipText value="Eliminar un competidor"/>
+                      <toolTipText resource-bundle="idiomaResourceBundle" key="elimiar.competidor"/>
                     </properties>
                   </component>
                   <component id="fd8ab" class="javax.swing.JButton" binding="btnModificarCompetidor">
@@ -321,7 +321,7 @@
                       <actionCommand value="ModificarCompetidor"/>
                       <icon value="modificar-usuario.png"/>
                       <text value=""/>
-                      <toolTipText value="Modificar Competidor"/>
+                      <toolTipText resource-bundle="idiomaResourceBundle" key="modificar.competidor"/>
                     </properties>
                   </component>
                   <hspacer id="d98a6">
@@ -517,7 +517,9 @@
                         </constraints>
                         <properties>
                           <actionCommand value="NuevaImagen"/>
+                          <icon value="camaraNueva.png"/>
                           <text value=""/>
+                          <toolTipText resource-bundle="idiomaResourceBundle" key="anadir.imagen"/>
                         </properties>
                       </component>
                       <component id="c0001" class="javax.swing.JLabel" binding="lblFoto">
@@ -547,7 +549,9 @@
                         </constraints>
                         <properties>
                           <actionCommand value="EliminarImagen"/>
+                          <icon value="camaraMenos.png"/>
                           <text value=""/>
+                          <toolTipText resource-bundle="idiomaResourceBundle" key="eliminar.imagen"/>
                         </properties>
                       </component>
                     </children>
@@ -581,14 +585,384 @@
               </grid>
             </children>
           </grid>
-          <grid id="f8571" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+          <grid id="f8571" layout-manager="GridLayoutManager" row-count="2" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
             <margin top="0" left="0" bottom="0" right="0"/>
             <constraints>
               <tabbedpane title-resource-bundle="idiomaResourceBundle" title-key="nombre.carrera"/>
             </constraints>
             <properties/>
             <border type="none"/>
-            <children/>
+            <children>
+              <grid id="3bbd7" layout-manager="GridLayoutManager" row-count="1" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="0" left="0" bottom="0" right="0"/>
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties/>
+                <border type="empty">
+                  <size top="20" left="20" bottom="5" right="0"/>
+                </border>
+                <children>
+                  <component id="7cf2a" class="javax.swing.JButton" binding="btnNuevaCarrera">
+                    <constraints>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <actionCommand value="NuevaCarrera"/>
+                      <icon value="agregar-usuario.png"/>
+                      <text value=""/>
+                      <toolTipText resource-bundle="idiomaResourceBundle" key="anadir.nueva.carrera"/>
+                    </properties>
+                  </component>
+                  <component id="c4fa2" class="javax.swing.JButton" binding="btnEliminarCarrera">
+                    <constraints>
+                      <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <actionCommand value="EliminarCarrera"/>
+                      <icon value="quitar-usuario.png"/>
+                      <text value=""/>
+                      <toolTipText resource-bundle="idiomaResourceBundle" key="eliminar.carrera"/>
+                    </properties>
+                  </component>
+                  <component id="93acd" class="javax.swing.JButton" binding="btnModificarCarrera">
+                    <constraints>
+                      <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <actionCommand value="ModificarCarrera"/>
+                      <icon value="modificar-usuario.png"/>
+                      <text value=""/>
+                      <toolTipText resource-bundle="idiomaResourceBundle" key="modificar.carrera"/>
+                    </properties>
+                  </component>
+                  <hspacer id="e4abf">
+                    <constraints>
+                      <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                  </hspacer>
+                </children>
+              </grid>
+              <vspacer id="77bc3">
+                <constraints>
+                  <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                </constraints>
+              </vspacer>
+              <grid id="6e872" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="0" left="0" bottom="0" right="0"/>
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <grid id="89f3" layout-manager="FormLayout">
+                    <rowspec value="center:d:noGrow"/>
+                    <rowspec value="top:4dlu:noGrow"/>
+                    <rowspec value="center:max(d;4px):noGrow"/>
+                    <rowspec value="top:4dlu:noGrow"/>
+                    <rowspec value="center:max(d;4px):noGrow"/>
+                    <rowspec value="top:4dlu:noGrow"/>
+                    <rowspec value="center:max(d;4px):noGrow"/>
+                    <rowspec value="top:4dlu:noGrow"/>
+                    <rowspec value="center:max(d;4px):noGrow"/>
+                    <rowspec value="top:4dlu:noGrow"/>
+                    <rowspec value="center:max(d;4px):noGrow"/>
+                    <rowspec value="top:4dlu:noGrow"/>
+                    <rowspec value="center:max(d;4px):noGrow"/>
+                    <colspec value="fill:d:grow"/>
+                    <constraints>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties/>
+                    <border type="none"/>
+                    <children>
+                      <grid id="f756b" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                        <margin top="0" left="0" bottom="0" right="0"/>
+                        <constraints>
+                          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                          <forms/>
+                        </constraints>
+                        <properties/>
+                        <border type="empty">
+                          <size top="10" left="10" bottom="10" right="10"/>
+                        </border>
+                        <children>
+                          <component id="db935" class="javax.swing.JLabel" binding="lblNombreCarrera">
+                            <constraints>
+                              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                            </constraints>
+                            <properties>
+                              <text resource-bundle="idiomaResourceBundle" key="nombre"/>
+                            </properties>
+                          </component>
+                          <component id="a23eb" class="javax.swing.JTextField" binding="txtCarrera">
+                            <constraints>
+                              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                                <preferred-size width="150" height="-1"/>
+                              </grid>
+                            </constraints>
+                            <properties/>
+                          </component>
+                        </children>
+                      </grid>
+                      <grid id="61e2e" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                        <margin top="0" left="0" bottom="0" right="0"/>
+                        <constraints>
+                          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                          <forms/>
+                        </constraints>
+                        <properties/>
+                        <border type="empty">
+                          <size top="5" left="10" bottom="5" right="10"/>
+                        </border>
+                        <children>
+                          <component id="f74b7" class="javax.swing.JLabel" binding="lblMetros">
+                            <constraints>
+                              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                            </constraints>
+                            <properties>
+                              <text resource-bundle="idiomaResourceBundle" key="metros"/>
+                            </properties>
+                          </component>
+                          <component id="35247" class="javax.swing.JTextField" binding="txtMetros">
+                            <constraints>
+                              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                                <preferred-size width="150" height="-1"/>
+                              </grid>
+                            </constraints>
+                            <properties/>
+                          </component>
+                        </children>
+                      </grid>
+                      <grid id="65b7f" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                        <margin top="0" left="0" bottom="0" right="0"/>
+                        <constraints>
+                          <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                          <forms/>
+                        </constraints>
+                        <properties/>
+                        <border type="empty">
+                          <size top="5" left="10" bottom="5" right="10"/>
+                        </border>
+                        <children>
+                          <component id="972e1" class="javax.swing.JLabel" binding="lblLugar">
+                            <constraints>
+                              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                            </constraints>
+                            <properties>
+                              <text resource-bundle="idiomaResourceBundle" key="lugar"/>
+                            </properties>
+                          </component>
+                          <component id="c6925" class="javax.swing.JTextField" binding="txtLugar">
+                            <constraints>
+                              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                                <preferred-size width="150" height="-1"/>
+                              </grid>
+                            </constraints>
+                            <properties/>
+                          </component>
+                        </children>
+                      </grid>
+                      <grid id="d09ac" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                        <margin top="0" left="0" bottom="0" right="0"/>
+                        <constraints>
+                          <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                          <forms/>
+                        </constraints>
+                        <properties/>
+                        <border type="empty">
+                          <size top="5" left="10" bottom="5" right="10"/>
+                        </border>
+                        <children>
+                          <component id="76236" class="javax.swing.JLabel" binding="lblFecha">
+                            <constraints>
+                              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                            </constraints>
+                            <properties>
+                              <text resource-bundle="idiomaResourceBundle" key="fecha"/>
+                            </properties>
+                          </component>
+                        </children>
+                      </grid>
+                      <grid id="6ece2" layout-manager="GridLayoutManager" row-count="2" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                        <margin top="0" left="0" bottom="0" right="0"/>
+                        <constraints>
+                          <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                          <forms/>
+                        </constraints>
+                        <properties/>
+                        <border type="empty">
+                          <size top="5" left="10" bottom="5" right="10"/>
+                        </border>
+                        <children>
+                          <component id="92ee4" class="javax.swing.JLabel" binding="lblRealizado">
+                            <constraints>
+                              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                            </constraints>
+                            <properties>
+                              <text resource-bundle="idiomaResourceBundle" key="realizado"/>
+                            </properties>
+                          </component>
+                          <vspacer id="79611">
+                            <constraints>
+                              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                            </constraints>
+                          </vspacer>
+                          <component id="d1de0" class="javax.swing.JCheckBox" binding="cbRealizado">
+                            <constraints>
+                              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                            </constraints>
+                            <properties>
+                              <text value=""/>
+                            </properties>
+                          </component>
+                        </children>
+                      </grid>
+                      <grid id="cabe3" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                        <margin top="0" left="0" bottom="0" right="0"/>
+                        <constraints>
+                          <grid row="10" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                          <forms/>
+                        </constraints>
+                        <properties/>
+                        <border type="empty">
+                          <size top="5" left="10" bottom="5" right="10"/>
+                        </border>
+                        <children>
+                          <component id="a9677" class="javax.swing.JLabel" binding="lblJuezCarrera">
+                            <constraints>
+                              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                            </constraints>
+                            <properties>
+                              <text resource-bundle="idiomaResourceBundle" key="nombre.juez.singular"/>
+                            </properties>
+                          </component>
+                          <component id="2c254" class="javax.swing.JComboBox" binding="cbJuezCarrera">
+                            <constraints>
+                              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                            </constraints>
+                            <properties/>
+                          </component>
+                        </children>
+                      </grid>
+                      <grid id="dd514" layout-manager="GridLayoutManager" row-count="2" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                        <margin top="0" left="0" bottom="0" right="0"/>
+                        <constraints>
+                          <grid row="12" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                          <forms/>
+                        </constraints>
+                        <properties/>
+                        <border type="empty">
+                          <size top="0" left="10" bottom="10" right="10"/>
+                        </border>
+                        <children>
+                          <component id="df595" class="javax.swing.JLabel" binding="lblCompetidoresCarrera">
+                            <constraints>
+                              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                            </constraints>
+                            <properties>
+                              <text resource-bundle="idiomaResourceBundle" key="nombre.competidor"/>
+                            </properties>
+                          </component>
+                          <component id="8f7c1" class="javax.swing.JButton" binding="btnAnadirCompetidorCarrera">
+                            <constraints>
+                              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                            </constraints>
+                            <properties>
+                              <icon value="agregar-usuario.png"/>
+                              <text value=""/>
+                              <toolTipText resource-bundle="idiomaResourceBundle" key="anadir.competidor"/>
+                            </properties>
+                          </component>
+                          <scrollpane id="4f2a3">
+                            <constraints>
+                              <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                            </constraints>
+                            <properties/>
+                            <border type="none"/>
+                            <children>
+                              <component id="82d14" class="javax.swing.JList" binding="listCompetidorCarrera">
+                                <constraints/>
+                                <properties/>
+                              </component>
+                            </children>
+                          </scrollpane>
+                        </children>
+                      </grid>
+                    </children>
+                  </grid>
+                  <grid id="e8a62" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                    <margin top="0" left="0" bottom="0" right="0"/>
+                    <constraints>
+                      <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties/>
+                    <border type="empty" title-resource-bundle="idiomaResourceBundle" title-key="title.lista.carrera">
+                      <size top="10" left="10" bottom="30" right="10"/>
+                    </border>
+                    <children>
+                      <scrollpane id="3ba9f">
+                        <constraints>
+                          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties/>
+                        <border type="none"/>
+                        <children>
+                          <component id="ae330" class="javax.swing.JList" binding="listCarrera">
+                            <constraints/>
+                            <properties/>
+                          </component>
+                        </children>
+                      </scrollpane>
+                    </children>
+                  </grid>
+                </children>
+              </grid>
+            </children>
+          </grid>
+          <grid id="de8d5" layout-manager="GridLayoutManager" row-count="1" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <tabbedpane title-resource-bundle="idiomaResourceBundle" title-key="nombre.relacion"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <grid id="1df69" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="0" left="0" bottom="0" right="0"/>
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties/>
+                <border type="empty" title-resource-bundle="idiomaResourceBundle" title-key="nombre.carrera">
+                  <size top="30" left="30" bottom="30" right="0"/>
+                </border>
+                <children/>
+              </grid>
+              <grid id="e4804" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="0" left="0" bottom="0" right="0"/>
+                <constraints>
+                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties/>
+                <border type="empty" title-resource-bundle="idiomaResourceBundle" title-key="nombre.competidor">
+                  <size top="30" left="0" bottom="30" right="0"/>
+                </border>
+                <children/>
+              </grid>
+              <grid id="8b1e7" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="0" left="0" bottom="0" right="0"/>
+                <constraints>
+                  <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties/>
+                <border type="empty" title-resource-bundle="idiomaResourceBundle" title-key="nombre.juez">
+                  <size top="30" left="0" bottom="30" right="0"/>
+                </border>
+                <children/>
+              </grid>
+            </children>
           </grid>
         </children>
       </tabbedpane>

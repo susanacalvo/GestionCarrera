@@ -1,6 +1,13 @@
 package com.susanacalvo.gestioncarreras.mvc.gui;
 
+import com.github.lgooddatepicker.components.DatePicker;
+import com.susanacalvo.gestioncarreras.base.Carrera;
+import com.susanacalvo.gestioncarreras.base.Competidor;
+import com.susanacalvo.gestioncarreras.base.Juez;
+import com.susanacalvo.gestioncarreras.base.Usuario;
 import javax.swing.*;
+import java.awt.event.InputEvent;
+import java.awt.event.KeyEvent;
 import java.util.ResourceBundle;
 
 public class Vista {
@@ -15,6 +22,7 @@ public class Vista {
      JTextField txtNombreJuez;
      JTextField txtApellidosJuez;
      JList listaJueces;
+    DefaultListModel<Juez>dlmJuez;
      JLabel lblCodJuez;
      JLabel lblNombreJuez;
      JLabel lblApeJuez;
@@ -36,12 +44,37 @@ public class Vista {
      JLabel lblFoto;
      JLabel lblImagen;
      JList listCompetidores;
-    ResourceBundle resourceBundle;
+    DefaultListModel<Competidor>dlmCompetidor;
+     JTextField txtCarrera;
+     JTextField txtMetros;
+     JTextField txtLugar;
+     JCheckBox cbRealizado;
+     JComboBox cbJuezCarrera;
+     DefaultComboBoxModel<Juez>dcbmJuez;
+     JButton btnAnadirCompetidorCarrera;
+     JList listCompetidorCarrera;
+     DefaultListModel<Carrera>dlmCompetidorCarrera;
+     JList listCarrera;
+    DefaultListModel<Carrera>dlmCarrera;
+     JButton btnNuevaCarrera;
+     JButton btnEliminarCarrera;
+     JButton btnModificarCarrera;
+     JLabel lblNombreCarrera;
+     JLabel lblMetros;
+     JLabel lblLugar;
+     JLabel lblFecha;
+     JLabel lblRealizado;
+     JLabel lblJuezCarrera;
+     JLabel lblCompetidoresCarrera;
+    DatePicker carreraDatePicker;
+    private ResourceBundle resourceBundle;
+    private int tipoUsuario;
     JMenuItem itemSalir;
     JMenuItem itemGuardar;
     JMenuItem itemCargar;
     JMenuItem itemGestionUsuarios;
     JMenuItem itemPreferencias;
+
 
     /**
      * Constructor de la clase, recibe el tipo de usuario que se ha logueado
@@ -53,14 +86,57 @@ public class Vista {
         frame.setIconImage(new ImageIcon(getClass().getResource("/corriendo.png")).getImage());
         frame.setContentPane(contentPane);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        crearMenu();
+        activarControlPorTeclado();
+        iniciarModelos();
+        controlarTipoUsuario();
+        //configurarDatePicker();
+
         frame.pack();
         frame.setVisible(true);
+
         frame.setLocationRelativeTo(null);
-        crearMenu();
+
     }
 
-    private void crearMenu(){
+    /**
+     * Método que dependiendo del tipo usuario que se haya logueado le permite realizar unas acciones u otras
+     */
+    private void controlarTipoUsuario() {
+        if(tipoUsuario== Usuario.USUSARIO_JUEZ){
+            itemGestionUsuarios.setEnabled(false);
+            btnEliminarJuez.setEnabled(false);
+            btnNuevoJuez.setEnabled(false);
+            btnModificarJuez.setEnabled(false);
+        }else if(tipoUsuario==Usuario.USUARIO_COMPETIDOR){
 
+        }else{
+
+        }
+    }
+
+    /**
+     * Método que incializa las listas y los comboBox
+     */
+    private void iniciarModelos() {
+        dlmCompetidorCarrera = new DefaultListModel<>();
+        listCompetidorCarrera.setModel(dlmCompetidorCarrera);
+
+        dlmCompetidor = new DefaultListModel<>();
+        listCompetidores.setModel(dlmCompetidor);
+
+        dlmCarrera = new DefaultListModel<>();
+        listCarrera.setModel(dlmCarrera);
+
+        dlmJuez = new DefaultListModel<>();
+        listaJueces.setModel(dlmJuez);
+    }
+
+    /**
+     * Método que crea el Menu
+     */
+    private void crearMenu(){
         //Barra de menu
         JMenuBar barra = new JMenuBar();
         frame.setJMenuBar(barra);
@@ -100,5 +176,27 @@ public class Vista {
         menuEditar.add(itemGestionUsuarios);
         menuEditar.add(itemPreferencias);
 
+    }
+
+    /**
+     * Método que permite hacer varias acciones con combinaciones de teclado
+     */
+    private void activarControlPorTeclado() {
+
+        //Aceleradores
+        itemGuardar.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.CTRL_DOWN_MASK));
+        itemCargar.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O, InputEvent.CTRL_DOWN_MASK));
+        itemSalir.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, InputEvent.CTRL_DOWN_MASK));
+
+        //Boton por defecto de la aplicacion
+    }
+
+    /**
+     * Método para personalizar el DatePicker
+     */
+    private void configurarDatePicker(){
+        JButton button = carreraDatePicker.getComponentToggleCalendarButton();
+        button.setText("");
+        button.setIcon(new ImageIcon(getClass().getResource("/calendario.png")));
     }
 }

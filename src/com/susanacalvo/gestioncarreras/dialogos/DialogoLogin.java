@@ -83,7 +83,7 @@ public class DialogoLogin extends JDialog {
     /**
      * Método que reacciona cuando pulsas el botón Cancel
      */
-    private void onCancel() { dispose(); }
+    private void onCancel() { System.exit(0); }
 
     /**
      * Método que comprueba el usuario, ADMIN, JUEZ, COMPETIDOR y le asigna un estado 0 ,2 ,1
