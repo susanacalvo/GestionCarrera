@@ -69,7 +69,7 @@ public class Vista {
      JPanel panelJueces;
      JPanel panelCompetidores;
      JPanel panelCarreras;
-     JPanel panelRelacion;
+     DatePicker dpFecha;
     DatePicker carreraDatePicker;
     private ResourceBundle resourceBundle;
     private int tipoUsuario;
@@ -78,6 +78,8 @@ public class Vista {
     JMenuItem itemCargar;
     JMenuItem itemGestionUsuarios;
     JMenuItem itemPreferencias;
+    JMenuItem itemRelaciones;
+    JMenuItem itemGraficos;
 
 
     /**
@@ -180,6 +182,16 @@ public class Vista {
 
         menuEditar.add(itemGestionUsuarios);
         menuEditar.add(itemPreferencias);
+
+        //Menu Vista
+        JMenu menuVista = new JMenu((resourceBundle.getString("menu.ver")));
+        barra.add(menuVista);
+
+        itemRelaciones = new JMenuItem(resourceBundle.getString("ver.relaciones"));
+        itemGraficos = new JMenuItem(resourceBundle.getString("ver.graficos"));
+
+        menuVista.add(itemRelaciones);
+        menuVista.add(itemGraficos);
 
     }
 
