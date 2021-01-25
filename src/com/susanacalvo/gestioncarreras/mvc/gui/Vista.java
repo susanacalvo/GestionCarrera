@@ -70,6 +70,8 @@ public class Vista {
      JPanel panelCompetidores;
      JPanel panelCarreras;
      DatePicker dpFecha;
+    private JList list1;
+    private JButton btnAgregarCarreraAJuez;
     DatePicker carreraDatePicker;
     private ResourceBundle resourceBundle;
     private int tipoUsuario;

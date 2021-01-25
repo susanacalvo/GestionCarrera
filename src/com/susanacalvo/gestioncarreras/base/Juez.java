@@ -1,6 +1,7 @@
 package com.susanacalvo.gestioncarreras.base;
 
 import java.io.Serializable;
+import java.util.LinkedList;
 
 /**
  * Clase Juez
@@ -13,6 +14,7 @@ public class Juez implements Serializable {
     private String numJuez;
     private String nombre;
     private String apellidos;
+    private LinkedList<Carrera>carrerasdeJuez;
 
     /**
      * Constructor de la clase Juez
@@ -24,6 +26,7 @@ public class Juez implements Serializable {
         this.numJuez = numJuez;
         this.nombre = nombre;
         this.apellidos = apellidos;
+        carrerasdeJuez=new LinkedList<>();
     }
 
     /**
@@ -71,6 +74,20 @@ public class Juez implements Serializable {
      * @param apellidos
      */
     public void setApellidos(String apellidos) { this.apellidos = apellidos; }
+
+    /**
+     * Método que devuelve la lista de las carreras de un Juez
+     * @return carrerasdeJuez
+     */
+    public LinkedList<Carrera> getCarrerasdeJuez() { return carrerasdeJuez; }
+
+    /**
+     * Método que establece la lista de carreras de un Juez
+     * @param carrerasdeJuez
+     */
+    public void setCarrerasdeJuez(LinkedList<Carrera> carrerasdeJuez) {
+        this.carrerasdeJuez = carrerasdeJuez;
+    }
 
     /**
      * Método que devuelve una cadena de información de la clase Juez
