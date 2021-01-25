@@ -1,7 +1,9 @@
 package com.susanacalvo.gestioncarreras;
 
 import com.susanacalvo.gestioncarreras.dialogos.DialogoLogin;
+import com.susanacalvo.gestioncarreras.mvc.gui.Controlador;
 import com.susanacalvo.gestioncarreras.mvc.gui.Vista;
+import com.susanacalvo.gestioncarreras.mvc.modelo.Modelo;
 import com.susanacalvo.gestioncarreras.util.Util;
 
 import java.util.Locale;
@@ -25,5 +27,8 @@ public class Principal {
         int tipoUsuario = DialogoLogin.mostrarDialogoLogin();
 
         Vista vista=new Vista();
+        Modelo modelo = new Modelo();
+
+        Controlador controlador = new Controlador(vista, modelo);
     }
 }

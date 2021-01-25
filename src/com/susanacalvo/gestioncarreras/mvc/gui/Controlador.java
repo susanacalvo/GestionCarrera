@@ -412,7 +412,7 @@ public class Controlador implements ActionListener, ListSelectionListener {
         listarJuecesEnComboBox();
         listarJuecesEnJList();
 
-        vista.listaJueces.setSelectedValue(juez,true);
+
     }
 
     /**

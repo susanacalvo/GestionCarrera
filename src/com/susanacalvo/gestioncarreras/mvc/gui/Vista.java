@@ -192,7 +192,9 @@ public class Vista {
         barra.add(menuVista);
 
         itemRelaciones = new JMenuItem(resourceBundle.getString("ver.relaciones"));
+        itemRelaciones.setIcon(new ImageIcon(getClass().getResource("/relacion.png")));
         itemGraficos = new JMenuItem(resourceBundle.getString("ver.graficos"));
+        itemGraficos.setIcon(new ImageIcon(getClass().getResource("/grafico.png")));
 
         menuVista.add(itemRelaciones);
         menuVista.add(itemGraficos);
