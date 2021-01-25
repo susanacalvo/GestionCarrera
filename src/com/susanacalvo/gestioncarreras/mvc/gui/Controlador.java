@@ -9,13 +9,11 @@ import com.susanacalvo.gestioncarreras.dialogos.DialogoGestionUsuarios;
 import com.susanacalvo.gestioncarreras.mvc.modelo.Modelo;
 import com.susanacalvo.gestioncarreras.util.Util;
 import javax.swing.*;
-import javax.swing.event.CaretEvent;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.util.Date;
 import java.util.LinkedList;
 import java.util.ResourceBundle;
 

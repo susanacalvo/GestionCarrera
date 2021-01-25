@@ -73,7 +73,6 @@ public class Vista {
      JList<Carrera> listCarrerasDeJuez;
      DefaultListModel<Carrera>dlmCarreraDeJuez;
      JButton btnAgregarCarreraAJuez;
-    DatePicker carreraDatePicker;
     private ResourceBundle resourceBundle;
     private int tipoUsuario;
     JMenuItem itemSalir;
@@ -100,7 +99,6 @@ public class Vista {
         activarControlPorTeclado();
         iniciarModelos();
         controlarTipoUsuario();
-        //configurarDatePicker();
 
         frame.pack();
         frame.setVisible(true);
@@ -212,14 +210,5 @@ public class Vista {
         itemSalir.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, InputEvent.CTRL_DOWN_MASK));
 
         //Boton por defecto de la aplicacion
-    }
-
-    /**
-     * Método para personalizar el DatePicker
-     */
-    private void configurarDatePicker(){
-        JButton button = carreraDatePicker.getComponentToggleCalendarButton();
-        button.setText("");
-        button.setIcon(new ImageIcon(getClass().getResource("/calendario.png")));
     }
 }

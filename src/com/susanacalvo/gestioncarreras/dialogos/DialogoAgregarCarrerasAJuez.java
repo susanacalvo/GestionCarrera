@@ -138,7 +138,7 @@ public class DialogoAgregarCarrerasAJuez extends JDialog {
     private void initUI() {
         setContentPane(contentPane);
         setModal(true);
-        getRootPane().setDefaultButton(buttonCancel);
+        getRootPane().setDefaultButton(buttonOK);
         setTitle(juez.getNumJuez() + " - " + juez.getNombre() + " " + juez.getApellidos());
 
         lblJuez.setText(juez.toString());
