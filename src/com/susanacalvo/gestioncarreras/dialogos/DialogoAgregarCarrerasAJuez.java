@@ -1,34 +1,159 @@
 package com.susanacalvo.gestioncarreras.dialogos;
 
+import com.susanacalvo.gestioncarreras.base.Carrera;
+import com.susanacalvo.gestioncarreras.base.Juez;
+
 import javax.swing.*;
+import javax.swing.text.Caret;
+import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
 
 public class DialogoAgregarCarrerasAJuez extends JDialog {
     private JPanel contentPane;
     private JButton buttonOK;
     private JButton buttonCancel;
-    private JButton button1;
-    private JButton button2;
+    private JButton eliminar;
+    private JButton agregar;
+    private JList <Carrera>listCarrerasDeJuez;
+    private DefaultListModel<Carrera>dlmExistentes;
+    private DefaultListModel<Carrera>dlmDeJuez;
+    private JList<Carrera> listCarrerasExistentes;
+    private JLabel lblJuez;
+    private Juez juez;
+    private LinkedList<Carrera> listaTemporalMatriculados;
+    private LinkedList<Carrera> listaTemporalNoMatriculados;
 
-    public DialogoAgregarCarrerasAJuez() {
+    public DialogoAgregarCarrerasAJuez(Juez juez, LinkedList<Carrera>carreras) {
+        this.juez=juez;
+
+        //Creo dos listas temporales. Si finalmente acepto los cambios, se hacen efectivas
+        listaTemporalMatriculados = new LinkedList<>(juez.getCarrerasdeJuez());
+        System.out.println(listaTemporalMatriculados.size());
+        listaTemporalNoMatriculados = new LinkedList<>(carreras);
+        System.out.println(listaTemporalNoMatriculados.size());
+        //Elimino los alumnos que ya tiene el profesor de la lista de no matriculados
+        listaTemporalNoMatriculados.removeAll(listaTemporalMatriculados);
+        System.out.println(listaTemporalNoMatriculados.size());
+
+        dlmDeJuez = new DefaultListModel<>();
+        dlmExistentes = new DefaultListModel<>();
+        listCarrerasExistentes.setModel(dlmExistentes);
+        listCarrerasDeJuez.setModel(dlmDeJuez);
+
+        listarCarrerasExistentes();
+        listarCarrerasDeJuez();
+
+        initUI();
+    }
+
+    /**
+     * Método onOk
+     */
+    private void onOK() {
+        realizarCambios();
+        dispose();
+    }
+
+    /**
+     * Método onCancel
+     */
+    private void onCancel() { dispose(); }
+
+    /**
+     * Método que lista las carreras que tiene un Juez
+     */
+    private void listarCarrerasDeJuez() {
+        dlmDeJuez.clear();
+        for(Carrera carrera : listaTemporalMatriculados){
+            dlmDeJuez.addElement(carrera);
+            System.out.println(carrera);
+        }
+    }
+
+    /**
+     * Método que lista las Carreras que hay en el sistema
+     */
+    private void listarCarrerasExistentes() {
+
+        dlmExistentes.clear();
+        for(Carrera carrera : listaTemporalNoMatriculados){
+            dlmExistentes.addElement(carrera);
+        }
+    }
+
+    /**
+     * Método que agrega una Carrera a un juez
+     */
+    private void agregarCarreras() {
+        //Obtengo todos los alumnos seleccionados de la lista de no matriculados
+        List<Carrera> seleccionados = listCarrerasExistentes.getSelectedValuesList();
+        //Los elimino de su lista
+        listaTemporalNoMatriculados.removeAll(seleccionados);
+        //Y los annado a la lista del profesor
+        listaTemporalMatriculados.addAll(seleccionados);
+
+        listarCarrerasExistentes();
+        listarCarrerasDeJuez();
+    }
+
+    /**
+     * Método que elimina una Carrera de un Juez
+     */
+    private void eleminarCarreras() {
+        List<Carrera> seleccionados = listCarrerasDeJuez.getSelectedValuesList();
+        listaTemporalMatriculados.removeAll(seleccionados);
+        listaTemporalNoMatriculados.addAll(seleccionados);
+
+        listarCarrerasExistentes();
+        listarCarrerasDeJuez();
+    }
+
+    /**
+     * Método que aplica los cambios realizados
+     */
+    private void realizarCambios() {
+        //Los unicos cambios que afectan son los relativos a la lista definitiva de alumnos del profesor
+
+        //Si finalmente acepto los cambios debo recorrer a los alumnos antiguos del profesor y quitarles el profesor
+        //Y  recorrerlos para indicarles el nuevo profesor matriculados y cambiarles el profesor
+
+        for(Carrera  carrera : juez.getCarrerasdeJuez()){
+            carrera.setJuezCarrera(null);
+        }
+
+        for(Carrera carrera : listaTemporalMatriculados){
+            carrera.setJuezCarrera(juez);
+        }
+
+        juez.setCarrerasdeJuez(listaTemporalMatriculados);
+    }
+
+    /**
+     * Método que inicializa los componentes gráficos y manejadores de eventos
+     */
+    private void initUI() {
         setContentPane(contentPane);
         setModal(true);
-        getRootPane().setDefaultButton(buttonOK);
+        getRootPane().setDefaultButton(buttonCancel);
+        setTitle(juez.getNumJuez() + " - " + juez.getNombre() + " " + juez.getApellidos());
+
+        lblJuez.setText(juez.toString());
+
 
         buttonOK.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                onOK();
-            }
+            public void actionPerformed(ActionEvent e) { onOK(); }
         });
 
         buttonCancel.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                onCancel();
-            }
+            public void actionPerformed(ActionEvent e) { onCancel(); }
         });
 
         // call onCancel() when cross is clicked
-        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
                 onCancel();
@@ -41,22 +166,21 @@ public class DialogoAgregarCarrerasAJuez extends JDialog {
                 onCancel();
             }
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
-    }
+        eliminar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                eleminarCarreras();
+            }
+        });
+        agregar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                agregarCarreras();
+            }
+        });
 
-    private void onOK() {
-        // add your code here
-        dispose();
-    }
-
-    private void onCancel() {
-        // add your code here if necessary
-        dispose();
-    }
-
-    public static void main(String[] args) {
-        DialogoAgregarCarrerasAJuez dialog = new DialogoAgregarCarrerasAJuez();
-        dialog.pack();
-        dialog.setVisible(true);
-        System.exit(0);
+        pack();
+        setLocationRelativeTo(null);
+        setVisible(true);
     }
 }

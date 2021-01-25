@@ -1,18 +1,22 @@
 package com.susanacalvo.gestioncarreras.mvc.gui;
 
+import com.susanacalvo.gestioncarreras.base.Carrera;
 import com.susanacalvo.gestioncarreras.base.Competidor;
 import com.susanacalvo.gestioncarreras.base.Juez;
+import com.susanacalvo.gestioncarreras.dialogos.DialogoAgregarCarrerasAJuez;
 import com.susanacalvo.gestioncarreras.dialogos.DialogoConfiguracion;
 import com.susanacalvo.gestioncarreras.dialogos.DialogoGestionUsuarios;
 import com.susanacalvo.gestioncarreras.mvc.modelo.Modelo;
 import com.susanacalvo.gestioncarreras.util.Util;
-
 import javax.swing.*;
+import javax.swing.event.CaretEvent;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.util.Date;
+import java.util.LinkedList;
 import java.util.ResourceBundle;
 
 
@@ -70,6 +74,7 @@ public class Controlador implements ActionListener, ListSelectionListener {
         vista.btnNuevoCompetidor.addActionListener(listener);
         vista.btnEliminarImagen.addActionListener(listener);
         vista.btnNuevaImagen.addActionListener(listener);
+        vista.btnAgregarCarreraAJuez.addActionListener(listener);
     }
 
     /**
@@ -122,7 +127,35 @@ public class Controlador implements ActionListener, ListSelectionListener {
                 break;
             case "AgregarCompetidorCarrera":
                 break;
+            case "AgregarCarrerasAJuez":
+                agregarCarrerasAJuez();
+                break;
         }
+    }
+    /**
+     * Método que lista las carreras de un Juez
+     */
+    private void listarCarrerasDeJuez(Juez juez) {
+        vista.dlmCarreraDeJuez.clear();
+        for (Carrera carrera : juez.getCarrerasdeJuez()){
+            vista.dlmCarreraDeJuez.addElement(carrera);
+        }
+    }
+
+    /**
+     * Método que agrega Carreras a un Juez
+     */
+    private void agregarCarrerasAJuez() {
+        if(vista.listaJueces.isSelectionEmpty()){
+            Util.mostrarDialogoError("no.se.ha.seleccionado.ningun.juez");
+        }
+
+        Juez juez=vista.listaJueces.getSelectedValue();
+        LinkedList<Carrera> carreras = modelo.getCarreras();
+        DialogoAgregarCarrerasAJuez d = new DialogoAgregarCarrerasAJuez(juez,carreras);
+
+        listarCarrerasDeJuez(juez);
+
     }
 
     /**
@@ -193,6 +226,17 @@ public class Controlador implements ActionListener, ListSelectionListener {
                 ,Double.parseDouble(vista.txtAltura.getText().trim()),vista.lblFoto.getIcon()));
     }
 
+    /**
+     * Método que borra los campos de Competidor
+     */
+    private void borrarCamposCompetidor(){
+        vista.txtDni.setText("");
+        vista.txtNombreCompetidor.setText("");
+        vista.txtApeCompetidor.setText("");
+        vista.txtEdad.setText("");
+        vista.txtAltura.setText("");
+        vista.lblImagen.setIcon(null);
+    }
 
     /**
      * Método que refresca ls lista de Jueces en el ComboBox
@@ -302,6 +346,23 @@ public class Controlador implements ActionListener, ListSelectionListener {
     }
 
     /**
+     * Método que muestra los datos de un Competidor seleccionado
+     */
+    private void mostrarDatosCompetidores(){
+        Competidor competidor = vista.listCompetidores.getSelectedValue();
+        if(competidor==null){
+            borrarCamposCompetidor();
+        }else{
+            vista.txtDni.setText(competidor.getDni());
+            vista.txtNombreCompetidor.setText(competidor.getNombre());
+            vista.txtApeCompetidor.setText(competidor.getApellidos());
+            vista.txtEdad.setText(String.valueOf(competidor.getEdad()));
+            vista.txtAltura.setText(String.valueOf(competidor.getAltura()));
+            vista.lblImagen.setIcon(competidor.getFoto());
+        }
+    }
+
+    /**
      * Método que vacía todos los campos de Juez
      */
     private void borrarCamposJuez() {
@@ -309,6 +370,38 @@ public class Controlador implements ActionListener, ListSelectionListener {
         vista.txtNombreJuez.setText("");
         vista.txtApellidosJuez.setText("");
     }
+
+    /**
+     * Método que vacía todos los campos de Carrera
+     */
+    private void borrarCamposCarrera(){
+        vista.txtCarrera.setText("");
+        vista.txtMetros.setText("");
+        vista.txtLugar.setText("");
+        vista.dpFecha.setDateToToday();
+        vista.cbRealizado.setSelected(false);
+        vista.cbJuezCarrera.setSelectedItem(null);
+    }
+
+    /**
+     * Método que muestra los datos de una Carrera seleccionado
+     */
+    private void mostrarDatosCarrera(){
+        Carrera carrera = vista.listCarrera.getSelectedValue();
+        if(carrera==null){
+            borrarCamposCarrera();
+        }else{
+            vista.txtCarrera.setText(carrera.getDenominacion());
+            vista.txtMetros.setText(String.valueOf(carrera.getMetros()));
+            vista.txtLugar.setText(carrera.getLugar());
+            vista.dpFecha.setDate(carrera.getFecha());
+            vista.cbRealizado.setSelected(carrera.isRealizado());
+            vista.cbJuezCarrera.setSelectedItem(carrera.getJuezCarrera());
+
+        }
+    }
+
+
 
 
     /**
@@ -341,6 +434,12 @@ public class Controlador implements ActionListener, ListSelectionListener {
      */
     @Override
     public void valueChanged(ListSelectionEvent e) {
-
+        if(e.getSource() == vista.listaJueces){
+            mostrarDatosJueces();
+        } else if( e.getSource() == vista.listCompetidores){
+            mostrarDatosCompetidores();
+        } else if (e.getSource() == vista.listCarrera){
+            mostrarDatosCarrera();
+        }
     }
 }

@@ -70,8 +70,9 @@ public class Vista {
      JPanel panelCompetidores;
      JPanel panelCarreras;
      DatePicker dpFecha;
-    private JList list1;
-    private JButton btnAgregarCarreraAJuez;
+     JList<Carrera> listCarrerasDeJuez;
+     DefaultListModel<Carrera>dlmCarreraDeJuez;
+     JButton btnAgregarCarreraAJuez;
     DatePicker carreraDatePicker;
     private ResourceBundle resourceBundle;
     private int tipoUsuario;
@@ -129,6 +130,9 @@ public class Vista {
      * Método que incializa las listas y los comboBox
      */
     private void iniciarModelos() {
+        dlmCarreraDeJuez=new DefaultListModel<>();
+        listCarrerasDeJuez.setModel(dlmCarreraDeJuez);
+
         dlmCompetidorCarrera = new DefaultListModel<>();
         listCompetidorCarrera.setModel(dlmCompetidorCarrera);
 
