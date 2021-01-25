@@ -5,10 +5,8 @@ import com.susanacalvo.gestioncarreras.base.Competidor;
 import com.susanacalvo.gestioncarreras.base.Juez;
 import com.susanacalvo.gestioncarreras.util.Util;
 import java.io.*;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.ResourceBundle;
+import java.time.LocalDate;
+import java.util.*;
 
 /**
  * Clase modelo, realiza todas las operaciones de la aplicacion
@@ -127,9 +125,10 @@ public class Modelo {
      * Método que comprueba que no haya la misma carrera en la misma fecha
      * @return
      */
-    public boolean existeCarrera(Carrera carrera){
+    public boolean existeCarrera(LocalDate fecha, String nombre, String lugar){
         for (Carrera c:listaCarreras){
-            if (c.getFecha().equals(carrera.getFecha())){
+            if (c.getFecha().equals(fecha) && c.getDenominacion().toLowerCase().equals(nombre.toLowerCase()) &&
+            c.getLugar().toLowerCase().equals(lugar.toLowerCase())){
                 return true;
             }
         }

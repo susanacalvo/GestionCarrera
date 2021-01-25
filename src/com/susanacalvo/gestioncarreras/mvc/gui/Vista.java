@@ -52,8 +52,8 @@ public class Vista {
      JComboBox<Juez> cbJuezCarrera;
      DefaultComboBoxModel<Juez>dcbmJuez;
      JButton btnAnadirCompetidorCarrera;
-     JList listCompetidorCarrera;
-     DefaultListModel<Carrera>dlmCompetidorCarrera;
+     JList<Competidor> listCompetidorCarrera;
+     DefaultListModel<Competidor>dlmCompetidorCarrera;
      JList<Carrera>listCarrera;
     DefaultListModel<Carrera>dlmCarrera;
      JButton btnNuevaCarrera;

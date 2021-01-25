@@ -4,6 +4,7 @@ import com.susanacalvo.gestioncarreras.base.Carrera;
 import com.susanacalvo.gestioncarreras.base.Competidor;
 import com.susanacalvo.gestioncarreras.base.Juez;
 import com.susanacalvo.gestioncarreras.dialogos.DialogoAgregarCarrerasAJuez;
+import com.susanacalvo.gestioncarreras.dialogos.DialogoAgregarCompetidoresACarrera;
 import com.susanacalvo.gestioncarreras.dialogos.DialogoConfiguracion;
 import com.susanacalvo.gestioncarreras.dialogos.DialogoGestionUsuarios;
 import com.susanacalvo.gestioncarreras.mvc.modelo.Modelo;
@@ -14,6 +15,7 @@ import javax.swing.event.ListSelectionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.ResourceBundle;
 
@@ -83,6 +85,7 @@ public class Controlador implements ActionListener, ListSelectionListener {
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()){
             case "Salir":
+                System.exit(0);
                 break;
             case "Guardar":
                 guardarDatos();
@@ -115,21 +118,50 @@ public class Controlador implements ActionListener, ListSelectionListener {
                 modificarCompetidor();
                 break;
             case "NuevaCarrera":
-               // nuevaCarrera();
+                nuevaCarrera();
                 break;
             case "EliminarCarrera":
-                //eliminarCarrera();
+                eliminarCarrera();
                 break;
             case "ModificarCarrera":
-                //modificarCarrera();
+                modificarCarrera();
                 break;
             case "AgregarCompetidorCarrera":
+                agregarCompetidorACarrera();
                 break;
             case "AgregarCarrerasAJuez":
                 agregarCarrerasAJuez();
                 break;
         }
     }
+
+
+    /**
+     * Método que lista los competidores de una Carrera
+     * @param carrera
+     */
+    private void listarCompetididoresDeCarrera(Carrera carrera) {
+        vista.dlmCompetidorCarrera.clear();
+        for(Competidor competidor : carrera.getCompetidoresCarrera()){
+            vista.dlmCompetidorCarrera.addElement(competidor);
+        }
+    }
+
+    /**
+     * Método que agrega Competidores a una Carrera
+     */
+    private void agregarCompetidorACarrera() {
+        if(vista.listCarrera.isSelectionEmpty()){
+            Util.mostrarDialogoError(resourceBundle.getString("no.se.ha.seleccionado.ninguna.carrera"));
+        }
+
+        Carrera carrera=vista.listCarrera.getSelectedValue();
+        HashSet<Competidor> competidores = modelo.getCompetidores();
+        DialogoAgregarCompetidoresACarrera d =new DialogoAgregarCompetidoresACarrera(carrera,competidores);
+
+        listarCompetididoresDeCarrera(carrera);
+    }
+
     /**
      * Método que lista las carreras de un Juez
      */
@@ -167,6 +199,83 @@ public class Controlador implements ActionListener, ListSelectionListener {
     }
 
     /**
+     * Método que comprueba que los datos de la Carrera son correctos
+     * @return
+     */
+    private boolean datosCarreraCorrectos(){
+        if(vista.txtCarrera.getText().isEmpty() || vista.txtMetros.getText().isEmpty() || vista.txtLugar.getText().isEmpty()||
+        vista.dpFecha.getDate().equals("")){
+            return false;
+        }
+        return true;
+    }
+    /**
+     * Método que lista las Carreras
+     */
+    private void litarCarreras(){
+        vista.dlmCarrera.clear();
+        for (Carrera carrera : modelo.getCarreras()){
+            vista.dlmCarrera.addElement(carrera);
+        }
+    }
+
+    /**
+     * Método que anade una nueva Carrera
+     */
+    private void nuevaCarrera(){
+        if(!datosCarreraCorrectos()){
+            Util.mostrarDialogoError("datos.incorrectos");
+        }
+
+        if(modelo.existeCarrera(vista.dpFecha.getDate(),vista.txtCarrera.getText(),vista.txtLugar.getText())){
+            Util.mostrarDialogoError(resourceBundle.getString("no.puede.haber.dos.carreras.iguales.el.mismo.dia"));
+        }
+
+        modelo.nuevaCarrera(new Carrera(vista.txtCarrera.toString().trim(),Double.parseDouble(vista.txtMetros.getText().trim()),
+                vista.dpFecha.getDate(),vista.txtLugar.getText().trim(),vista.cbRealizado.isSelected(),
+                (Juez) vista.cbJuezCarrera.getSelectedItem()));
+
+        litarCarreras();
+
+    }
+    /**
+     * Método que elimina una Carrera
+     */
+    private void eliminarCarrera(){
+        if(vista.listCarrera.isSelectionEmpty()){
+            Util.mostrarDialogoError(resourceBundle.getString("no.se.ha.seleccionado.ninguna.carrera"));
+        }
+        modelo.eliminarCarrera(vista.listCarrera.getSelectedValue());
+        litarCarreras();
+    }
+    /**
+     * Método que modifica una Carrera
+     */
+    private void modificarCarrera(){
+        if(vista.listCarrera.isSelectionEmpty()){
+            Util.mostrarDialogoError(resourceBundle.getString("no.se.ha.seleccionado.ninguna.carrera"));
+        }
+        if(!datosCarreraCorrectos()){
+            Util.mostrarDialogoError("datos.incorrectos");
+        }
+        Carrera carrera = vista.listCarrera.getSelectedValue();
+        if(modelo.existeCarrera(vista.dpFecha.getDate(),vista.txtCarrera.getText(),vista.txtLugar.getText())){
+            Util.mostrarDialogoError(resourceBundle.getString("no.puede.haber.dos.carreras.iguales.el.mismo.dia"));
+        }
+
+        carrera.setDenominacion(vista.txtCarrera.getText().trim());
+        carrera.setMetros(Double.parseDouble(vista.txtMetros.getText().trim()));
+        carrera.setLugar(vista.txtLugar.getText().trim());
+        carrera.setFecha(vista.dpFecha.getDate());
+        carrera.setRealizado(vista.cbRealizado.isSelected());
+        carrera.setJuezCarrera((Juez) vista.cbJuezCarrera.getSelectedItem());
+        carrera.setCompetidoresCarrera((HashSet<Competidor>) vista.listCompetidorCarrera.getSelectedValuesList());
+
+        litarCarreras();
+
+
+    }
+    /**
      * Método que comprueba que no estén vacíos los campos de Competidor
      * @return true/false
      */
@@ -196,6 +305,8 @@ public class Controlador implements ActionListener, ListSelectionListener {
         competidor.setAltura(Double.parseDouble(vista.txtAltura.getText().trim()));
         competidor.setFoto(vista.lblImagen.getIcon());
 
+        listarCompetidoresEnJlist();
+
     }
 
     /**
@@ -222,6 +333,7 @@ public class Controlador implements ActionListener, ListSelectionListener {
         modelo.nuevoCompetidor(new Competidor(vista.txtDni.getText().trim(),vista.txtNombreCompetidor.getText().trim(),
                 vista.txtApeCompetidor.getText().trim(),Integer.parseInt(vista.txtEdad.getText().trim())
                 ,Double.parseDouble(vista.txtAltura.getText().trim()),vista.lblFoto.getIcon()));
+        listarCompetidoresEnJlist();
     }
 
     /**
