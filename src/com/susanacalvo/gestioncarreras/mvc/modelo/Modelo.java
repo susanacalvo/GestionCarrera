@@ -102,11 +102,9 @@ public class Modelo {
 
         for(Competidor c:listaCompetidores){
             if(c.getDni().equals(dni)){
-                System.out.println("Existe");
                 return true;
             }
         }
-        System.out.println("NO");
         return false;
     }
 

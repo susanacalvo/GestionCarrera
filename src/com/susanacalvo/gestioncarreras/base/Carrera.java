@@ -15,7 +15,7 @@ public class Carrera implements Serializable {
      */
     private static final long serialVersionUID = 1L;
     private String denominacion;
-    private double metros;
+    private int metros;
     private LocalDate fecha;
     private String lugar;
     private boolean realizado;
@@ -31,7 +31,7 @@ public class Carrera implements Serializable {
      * @param realizado
      * @param juezCarrera
      */
-    public Carrera(String denominacion, double metros, LocalDate fecha, String lugar, boolean realizado, Juez juezCarrera) {
+    public Carrera(String denominacion, int metros, LocalDate fecha, String lugar, boolean realizado, Juez juezCarrera) {
         super();
         this.denominacion = denominacion;
         this.metros = metros;
@@ -58,13 +58,13 @@ public class Carrera implements Serializable {
      * Método que devuelve los metros de la carrera
      * @return metros
      */
-    public double getMetros() { return metros; }
+    public int getMetros() { return metros; }
 
     /**
      * Método que establece los metros de la carrera
      * @param metros
      */
-    public void setMetros(double metros) { this.metros = metros; }
+    public void setMetros(int metros) { this.metros = metros; }
 
     /**
      * Método que devuelve una Fecha
@@ -130,5 +130,5 @@ public class Carrera implements Serializable {
      * @return metros + denominacion
      */
     @Override
-    public String toString() { return  metros + " - " + denominacion+" - "+juezCarrera; }
+    public String toString() { return  metros + " - " + denominacion+" - "+lugar; }
 }
