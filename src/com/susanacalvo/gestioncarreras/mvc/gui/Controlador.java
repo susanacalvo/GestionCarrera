@@ -3,10 +3,7 @@ package com.susanacalvo.gestioncarreras.mvc.gui;
 import com.susanacalvo.gestioncarreras.base.Carrera;
 import com.susanacalvo.gestioncarreras.base.Competidor;
 import com.susanacalvo.gestioncarreras.base.Juez;
-import com.susanacalvo.gestioncarreras.dialogos.DialogoAgregarCarrerasAJuez;
-import com.susanacalvo.gestioncarreras.dialogos.DialogoAgregarCompetidoresACarrera;
-import com.susanacalvo.gestioncarreras.dialogos.DialogoConfiguracion;
-import com.susanacalvo.gestioncarreras.dialogos.DialogoGestionUsuarios;
+import com.susanacalvo.gestioncarreras.dialogos.*;
 import com.susanacalvo.gestioncarreras.mvc.modelo.Modelo;
 import com.susanacalvo.gestioncarreras.util.Util;
 import javax.swing.*;
@@ -94,6 +91,8 @@ public class Controlador implements ActionListener, ListSelectionListener, KeyLi
         vista.btnEliminarImagen.addActionListener(listener);
         vista.btnNuevaImagen.addActionListener(listener);
         vista.btnAgregarCarreraAJuez.addActionListener(listener);
+        vista.itemGraficos.addActionListener(listener);
+        vista.itemRelaciones.addActionListener(listener);
     }
 
     /**
@@ -103,6 +102,11 @@ public class Controlador implements ActionListener, ListSelectionListener, KeyLi
     @Override
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()){
+            case "Relacion":
+                DialogoRelaciones d = new DialogoRelaciones();
+                break;
+            case "Graficos":
+                break;
             case "Salir":
                 System.exit(0);
                 break;
@@ -111,6 +115,10 @@ public class Controlador implements ActionListener, ListSelectionListener, KeyLi
                 break;
             case "Abrir":
                 cargarDatos();
+                listarJuecesEnJList();
+                listarCompetidoresEnJlist();
+                listarCarreras();
+                listarJuecesEnComboBox();
                 break;
             case "Usuarios":
                 DialogoGestionUsuarios dialogoGestionUsuarios = new DialogoGestionUsuarios();
@@ -167,7 +175,7 @@ public class Controlador implements ActionListener, ListSelectionListener, KeyLi
         int opt=chooser.showOpenDialog(null);
         if(opt==JFileChooser.APPROVE_OPTION){
             File foto= chooser.getSelectedFile();
-            vista.lblImagen.setIcon(Util.escalarImagen(new ImageIcon(foto.getPath()),50,50));
+            vista.lblImagen.setIcon(Util.escalarImagen(new ImageIcon(foto.getPath()),140,120));
         }
     }
     /**
@@ -302,7 +310,9 @@ public class Controlador implements ActionListener, ListSelectionListener, KeyLi
             return;
         }
         Carrera carrera = vista.listCarrera.getSelectedValue();
-        if(modelo.existeCarrera(vista.dpFecha.getDate(),vista.txtCarrera.getText(),vista.txtLugar.getText())){
+        if(modelo.existeCarrera(vista.dpFecha.getDate(),vista.txtCarrera.getText(),vista.txtLugar.getText()) &&
+            !vista.dpFecha.getDate().equals(carrera.getFecha()) && !vista.txtCarrera.getText().equalsIgnoreCase(carrera.getDenominacion() )&&
+                !vista.txtLugar.getText().equalsIgnoreCase(carrera.getLugar())){
             Util.mostrarDialogoError(resourceBundle.getString("no.puede.haber.dos.carreras.iguales.el.mismo.dia"));
             return;
         }
@@ -342,11 +352,11 @@ public class Controlador implements ActionListener, ListSelectionListener, KeyLi
             Util.mostrarDialogoError(resourceBundle.getString("datos.incorrectos"));
             return;
         }
-        if(modelo.existeDniCompetidor(vista.txtDni.getText().trim())){
+        Competidor competidor =vista.listCompetidores.getSelectedValue();
+        if(modelo.existeDniCompetidor(vista.txtDni.getText().trim()) && !vista.txtDni.getText().equalsIgnoreCase(competidor.getDni())){
             Util.mostrarDialogoError("el.dni.del.competitor.ya.existe");
             return;
         }
-        Competidor competidor =vista.listCompetidores.getSelectedValue();
             competidor.setDni(vista.txtDni.getText().trim());
             competidor.setNombre(vista.txtNombreCompetidor.getText().trim());
             competidor.setApellidos(vista.txtApeCompetidor.getText().trim());
@@ -519,6 +529,7 @@ public class Controlador implements ActionListener, ListSelectionListener, KeyLi
             vista.txtCodJuez.setText(juez.getNumJuez());
             vista.txtNombreJuez.setText(juez.getNombre());
             vista.txtApellidosJuez.setText(juez.getApellidos());
+            listarCarrerasDeJuez(juez);
         }
     }
 
@@ -578,9 +589,6 @@ public class Controlador implements ActionListener, ListSelectionListener, KeyLi
         }
     }
 
-
-
-
     /**
      * Método que carga datos de la aplicación
      */
@@ -620,6 +628,10 @@ public class Controlador implements ActionListener, ListSelectionListener, KeyLi
         }
     }
 
+    /**
+     * Método que reacciona ante la pulsación del teclado
+     * @param e
+     */
     @Override
     public void keyTyped(KeyEvent e) {
         if(e.getSource()==vista.txtMetros || e.getSource()==vista.txtEdad ||

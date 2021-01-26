@@ -195,8 +195,10 @@ public class Vista {
         barra.add(menuVista);
 
         itemRelaciones = new JMenuItem(resourceBundle.getString("ver.relaciones"));
+        itemRelaciones.setActionCommand("Relacion");
         itemRelaciones.setIcon(new ImageIcon(getClass().getResource("/relacion.png")));
         itemGraficos = new JMenuItem(resourceBundle.getString("ver.graficos"));
+        itemGraficos.setActionCommand("Graficos");
         itemGraficos.setIcon(new ImageIcon(getClass().getResource("/grafico.png")));
 
         menuVista.add(itemRelaciones);
@@ -213,6 +215,10 @@ public class Vista {
         itemGuardar.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.CTRL_DOWN_MASK));
         itemCargar.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O, InputEvent.CTRL_DOWN_MASK));
         itemSalir.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, InputEvent.CTRL_DOWN_MASK));
+        itemGraficos.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F, InputEvent.CTRL_DOWN_MASK));
+        itemRelaciones.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R, InputEvent.CTRL_DOWN_MASK));
+        itemGestionUsuarios.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_U, InputEvent.CTRL_DOWN_MASK));
+        itemPreferencias.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, InputEvent.CTRL_DOWN_MASK));
 
         //Boton por defecto de la aplicacion
     }

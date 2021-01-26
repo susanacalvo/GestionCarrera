@@ -140,7 +140,6 @@ public class Modelo {
      * Método para leer los datos de un fichero binario
      * @param fichero
      */
-    @SuppressWarnings("unchecked")
     public void cargarDatos(File fichero) {
         try {
             FileInputStream flujoEntrada = new FileInputStream (fichero);
