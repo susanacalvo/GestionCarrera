@@ -26,7 +26,7 @@ public class Principal {
         //Control de tipo de usuario logueado
         int tipoUsuario = DialogoLogin.mostrarDialogoLogin();
 
-        Vista vista=new Vista();
+        Vista vista=new Vista(tipoUsuario);
         Modelo modelo = new Modelo();
 
         Controlador controlador = new Controlador(vista, modelo);

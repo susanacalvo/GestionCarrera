@@ -88,7 +88,8 @@ public class Vista {
      * Constructor de la clase, recibe el tipo de usuario que se ha logueado
      *
      */
-    public Vista() {
+    public Vista(int tipoUsuario) {
+        this.tipoUsuario=tipoUsuario;
         frame = new JFrame("Gestión de Atletismo 2020");
         resourceBundle=ResourceBundle.getBundle("idiomaResourceBundle");
         frame.setIconImage(new ImageIcon(getClass().getResource("/corriendo.png")).getImage());
@@ -113,11 +114,18 @@ public class Vista {
     private void controlarTipoUsuario() {
         if(tipoUsuario== Usuario.USUSARIO_JUEZ){
             itemGestionUsuarios.setEnabled(false);
+            itemGuardar.setEnabled(false);
+            itemCargar.setEnabled(false);
 
         }else if(tipoUsuario==Usuario.USUARIO_COMPETIDOR){
-            panelJueces.setEnabled(false);
-            panelCarreras.setEnabled(false);
-            panelCompetidores.setEnabled(false);
+            tabbedPane1.setEnabled(false);
+            btnNuevoJuez.setEnabled(false);
+            btnEliminarJuez.setEnabled(false);
+            btnModificarJuez.setEnabled(false);
+            btnAgregarCarreraAJuez.setEnabled(false);
+            txtNombreJuez.setEnabled(false);
+            txtApellidosJuez.setEnabled(false);
+            txtCodJuez.setEnabled(false);
             itemGestionUsuarios.setEnabled(false);
             itemGuardar.setEnabled(false);
             itemCargar.setEnabled(false);
