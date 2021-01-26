@@ -5,7 +5,9 @@
     <constraints>
       <xy x="48" y="54" width="470" height="297"/>
     </constraints>
-    <properties/>
+    <properties>
+      <preferredSize width="650" height="350"/>
+    </properties>
     <border type="none"/>
     <children>
       <grid id="94766" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
@@ -107,7 +109,7 @@
             </constraints>
             <properties/>
             <border type="empty">
-              <size top="0" left="0" bottom="0" right="0"/>
+              <size top="55" left="0" bottom="0" right="0"/>
             </border>
             <children>
               <component id="4fe52" class="javax.swing.JButton" binding="eliminar">

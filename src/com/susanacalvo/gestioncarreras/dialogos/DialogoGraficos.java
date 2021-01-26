@@ -64,7 +64,7 @@ public class DialogoGraficos extends JDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
                 DefaultPieDataset dataset = new DefaultPieDataset();
-                
+
 
                 JFreeChart grafica = ChartFactory.createPieChart(resourceBundle.getString("title.grafico.uno"), dataset, true, true, false);
                 ChartPanel panel = new ChartPanel(grafica);
