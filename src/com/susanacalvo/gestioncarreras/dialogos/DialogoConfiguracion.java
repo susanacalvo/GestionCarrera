@@ -115,8 +115,8 @@ public class DialogoConfiguracion extends JDialog {
             idioma = "en";
             pais = "UK";
         }
-        int fuente=cbTamanoFuente.getSelectedIndex();
-        propiedades.setProperty("fuente", String.valueOf(fuente));
+        //int fuente=cbTamanoFuente.getSelectedIndex();
+        //propiedades.setProperty("fuente", String.valueOf(fuente));
         propiedades.setProperty("idioma", idioma);
         propiedades.setProperty("pais", pais);
 
@@ -137,9 +137,8 @@ public class DialogoConfiguracion extends JDialog {
             properties.load(new FileReader("data/preferencias.conf"));
 
             String pais = properties.getProperty("pais");
-            int fuente = Integer.parseInt(properties.getProperty("fuente"));
-            //cbTamanoFuente.setSelectedIndex(fuente);
-            cbTamanoFuente.setSelectedItem(fuente);
+           // int fuente = Integer.parseInt(properties.getProperty("fuente"));
+           // cbTamanoFuente.setSelectedItem(fuente);
 
             if(pais.equals("ES")){
                 rbEspanol.setSelected(true);

@@ -130,5 +130,5 @@ public class Carrera implements Serializable {
      * @return metros + denominacion
      */
     @Override
-    public String toString() { return  metros + " " + denominacion+" "+juezCarrera; }
+    public String toString() { return  metros + " - " + denominacion+" - "+juezCarrera; }
 }

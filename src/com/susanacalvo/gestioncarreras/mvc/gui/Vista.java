@@ -142,6 +142,9 @@ public class Vista {
 
         dlmJuez = new DefaultListModel<>();
         listaJueces.setModel(dlmJuez);
+
+        dcbmJuez = new DefaultComboBoxModel<>();
+        cbJuezCarrera.setModel(dcbmJuez);
     }
 
     /**

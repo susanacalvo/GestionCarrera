@@ -132,10 +132,25 @@ public class Controlador implements ActionListener, ListSelectionListener {
             case "AgregarCarrerasAJuez":
                 agregarCarrerasAJuez();
                 break;
+            case "NuevaImagen":
+                cargarFoto();
+                break;
+            case "EliminarImagen":
+                break;
         }
     }
 
-
+    /**
+     * Método que visualiza una previa de la foto
+     */
+    private void cargarFoto() {
+        JFileChooser chooser = new JFileChooser();
+        int opt=chooser.showOpenDialog(null);
+        if(opt==JFileChooser.APPROVE_OPTION){
+            File foto= chooser.getSelectedFile();
+            vista.lblImagen.setIcon(Util.escalarImagen(new ImageIcon(foto.getPath()),50,50));
+        }
+    }
     /**
      * Método que lista los competidores de una Carrera
      * @param carrera
@@ -153,6 +168,7 @@ public class Controlador implements ActionListener, ListSelectionListener {
     private void agregarCompetidorACarrera() {
         if(vista.listCarrera.isSelectionEmpty()){
             Util.mostrarDialogoError(resourceBundle.getString("no.se.ha.seleccionado.ninguna.carrera"));
+            return;
         }
 
         Carrera carrera=vista.listCarrera.getSelectedValue();
@@ -177,7 +193,8 @@ public class Controlador implements ActionListener, ListSelectionListener {
      */
     private void agregarCarrerasAJuez() {
         if(vista.listaJueces.isSelectionEmpty()){
-            Util.mostrarDialogoError("no.se.ha.seleccionado.ningun.juez");
+            Util.mostrarDialogoError(resourceBundle.getString("no.se.ha.seleccionado.ningun.juez"));
+            return;
         }
 
         Juez juez=vista.listaJueces.getSelectedValue();
@@ -224,14 +241,16 @@ public class Controlador implements ActionListener, ListSelectionListener {
      */
     private void nuevaCarrera(){
         if(!datosCarreraCorrectos()){
-            Util.mostrarDialogoError("datos.incorrectos");
+            Util.mostrarDialogoError(resourceBundle.getString("datos.incorrectos"));
+            return;
         }
 
         if(modelo.existeCarrera(vista.dpFecha.getDate(),vista.txtCarrera.getText(),vista.txtLugar.getText())){
             Util.mostrarDialogoError(resourceBundle.getString("no.puede.haber.dos.carreras.iguales.el.mismo.dia"));
+            return;
         }
 
-        modelo.nuevaCarrera(new Carrera(vista.txtCarrera.toString().trim(),Double.parseDouble(vista.txtMetros.getText().trim()),
+        modelo.nuevaCarrera(new Carrera(vista.txtCarrera.getText().trim(),Double.parseDouble(vista.txtMetros.getText().trim()),
                 vista.dpFecha.getDate(),vista.txtLugar.getText().trim(),vista.cbRealizado.isSelected(),
                 (Juez) vista.cbJuezCarrera.getSelectedItem()));
 
@@ -244,6 +263,7 @@ public class Controlador implements ActionListener, ListSelectionListener {
     private void eliminarCarrera(){
         if(vista.listCarrera.isSelectionEmpty()){
             Util.mostrarDialogoError(resourceBundle.getString("no.se.ha.seleccionado.ninguna.carrera"));
+            return;
         }
         modelo.eliminarCarrera(vista.listCarrera.getSelectedValue());
         litarCarreras();
@@ -254,13 +274,16 @@ public class Controlador implements ActionListener, ListSelectionListener {
     private void modificarCarrera(){
         if(vista.listCarrera.isSelectionEmpty()){
             Util.mostrarDialogoError(resourceBundle.getString("no.se.ha.seleccionado.ninguna.carrera"));
+            return;
         }
         if(!datosCarreraCorrectos()){
-            Util.mostrarDialogoError("datos.incorrectos");
+            Util.mostrarDialogoError(resourceBundle.getString("datos.incorrectos"));
+            return;
         }
         Carrera carrera = vista.listCarrera.getSelectedValue();
         if(modelo.existeCarrera(vista.dpFecha.getDate(),vista.txtCarrera.getText(),vista.txtLugar.getText())){
             Util.mostrarDialogoError(resourceBundle.getString("no.puede.haber.dos.carreras.iguales.el.mismo.dia"));
+            return;
         }
 
         carrera.setDenominacion(vista.txtCarrera.getText().trim());
@@ -270,9 +293,6 @@ public class Controlador implements ActionListener, ListSelectionListener {
         carrera.setRealizado(vista.cbRealizado.isSelected());
         carrera.setJuezCarrera((Juez) vista.cbJuezCarrera.getSelectedItem());
         carrera.setCompetidoresCarrera((HashSet<Competidor>) vista.listCompetidorCarrera.getSelectedValuesList());
-
-        litarCarreras();
-
 
     }
     /**
@@ -286,24 +306,30 @@ public class Controlador implements ActionListener, ListSelectionListener {
         }
         return true;
     }
+
+    /**
+     * Método que modifica un Competidor
+     */
     private void modificarCompetidor() {
         if(vista.listCompetidores.isSelectionEmpty()){
             Util.mostrarDialogoError(resourceBundle.getString("no.se.ha.seleccionado.ningun.competidor"));
+            return;
         }
         if(!datosCompetidorCorrectos()){
             Util.mostrarDialogoError(resourceBundle.getString("datos.incorrectos"));
+            return;
+        }
+        if(modelo.existeDniCompetidor(vista.txtDni.getText().trim())){
+            Util.mostrarDialogoError("el.dni.del.competitor.ya.existe");
+            return;
         }
         Competidor competidor =vista.listCompetidores.getSelectedValue();
-        if(!vista.txtDni.getText().trim().equalsIgnoreCase(competidor.getDni()) && modelo.existeDniCompetidor(vista.txtDni.getText().trim())){
-            Util.mostrarDialogoError("el.dni.del.competidor.ya.existe");
-        }
-
-        competidor.setDni(vista.txtDni.getText().trim());
-        competidor.setNombre(vista.txtNombreCompetidor.getText().trim());
-        competidor.setApellidos(vista.txtApeCompetidor.getText().trim());
-        competidor.setEdad(Integer.parseInt(vista.txtEdad.getText().trim()));
-        competidor.setAltura(Double.parseDouble(vista.txtAltura.getText().trim()));
-        competidor.setFoto(vista.lblImagen.getIcon());
+            competidor.setDni(vista.txtDni.getText().trim());
+            competidor.setNombre(vista.txtNombreCompetidor.getText().trim());
+            competidor.setApellidos(vista.txtApeCompetidor.getText().trim());
+            competidor.setEdad(Integer.parseInt(vista.txtEdad.getText().trim()));
+            competidor.setAltura(Double.parseDouble(vista.txtAltura.getText().trim()));
+            competidor.setFoto(vista.lblImagen.getIcon());
 
         listarCompetidoresEnJlist();
 
@@ -315,9 +341,11 @@ public class Controlador implements ActionListener, ListSelectionListener {
     private void eliminarCompetidor() {
         if(vista.listCompetidores.isSelectionEmpty()){
             Util.mostrarDialogoError(resourceBundle.getString("no.se.ha.seleccionado.ningun.competidor"));
+            return;
         }
         modelo.eliminarCompetidor(vista.listCompetidores.getSelectedValue());
         listarCompetidoresEnJlist();
+
     }
 
     /**
@@ -325,15 +353,19 @@ public class Controlador implements ActionListener, ListSelectionListener {
      */
     private void nuevoCompetidor() {
         if(!datosCompetidorCorrectos()){
-            Util.mostrarDialogoError("datos.incorrectos");
+            Util.mostrarDialogoError(resourceBundle.getString("datos.incorrectos"));
+            return;
         }
         if (modelo.existeDniCompetidor(vista.txtDni.getText().trim())){
             Util.mostrarDialogoError(resourceBundle.getString("el.dni.del.competidor.ya.existe"));
+            return;
+
         }
-        modelo.nuevoCompetidor(new Competidor(vista.txtDni.getText().trim(),vista.txtNombreCompetidor.getText().trim(),
-                vista.txtApeCompetidor.getText().trim(),Integer.parseInt(vista.txtEdad.getText().trim())
-                ,Double.parseDouble(vista.txtAltura.getText().trim()),vista.lblFoto.getIcon()));
+        modelo.nuevoCompetidor(new Competidor(vista.txtDni.getText().trim(), vista.txtNombreCompetidor.getText().trim(),
+                    vista.txtApeCompetidor.getText().trim(), Integer.parseInt(vista.txtEdad.getText().trim())
+                    , Double.parseDouble(vista.txtAltura.getText().trim()), vista.lblFoto.getIcon()));
         listarCompetidoresEnJlist();
+
     }
 
     /**
@@ -386,6 +418,7 @@ public class Controlador implements ActionListener, ListSelectionListener {
     private void eliminarJuez() {
         if(vista.listaJueces.isSelectionEmpty()){
             Util.mostrarDialogoError(resourceBundle.getString("no.se.ha.seleccionado.ningun.juez"));
+            return;
         }
 
         Juez juez = vista.listaJueces.getSelectedValue();
@@ -402,9 +435,11 @@ public class Controlador implements ActionListener, ListSelectionListener {
     private void nuevoJuez() {
         if(!datosJuezCorrectos()){
             Util.mostrarDialogoError(resourceBundle.getString("datos.incorrectos"));
+            return;
         }
         if (modelo.existeCodigoJuez(vista.txtCodJuez.getText().trim())){
             Util.mostrarDialogoError(resourceBundle.getString("el.codigo.de.juez.ya.existe"));
+            return;
         }
 
         Juez juez = new Juez(vista.txtCodJuez.getText().trim(),vista.txtNombreJuez.getText().trim(),vista.txtApellidosJuez.getText().trim());
@@ -421,24 +456,26 @@ public class Controlador implements ActionListener, ListSelectionListener {
     private void modificarJuez() {
         if(vista.listaJueces.isSelectionEmpty()){
             Util.mostrarDialogoError(resourceBundle.getString("no.se.ha.seleccionado.ningun.juez"));
+            return;
         }
 
         if(!datosJuezCorrectos()){
             Util.mostrarDialogoError(resourceBundle.getString("datos.incorrectos"));
+            return;
         }
 
         Juez juez =vista.listaJueces.getSelectedValue();
 
         if(!vista.txtCodJuez.getText().trim().equalsIgnoreCase(juez.getNumJuez()) && modelo.existeCodigoJuez(vista.txtCodJuez.getText().trim())){
-            Util.mostrarDialogoError("el.codigo.de.juez.ya.existe");
+            Util.mostrarDialogoError(resourceBundle.getString("el.codigo.de.juez.ya.existe"));
+            return;
         }
 
         juez.setNumJuez(vista.txtCodJuez.getText().trim());
         juez.setNombre(vista.txtNombreJuez.getText().trim());
         juez.setApellidos(vista.txtApellidosJuez.getText().trim());
 
-        listarJuecesEnJList();
-        listarJuecesEnComboBox();
+
     }
 
     /**

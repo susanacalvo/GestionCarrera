@@ -99,11 +99,14 @@ public class Modelo {
      * @return false/true
      */
     public boolean existeDniCompetidor(String dni){
+
         for(Competidor c:listaCompetidores){
             if(c.getDni().equals(dni)){
+                System.out.println("Existe");
                 return true;
             }
         }
+        System.out.println("NO");
         return false;
     }
 
