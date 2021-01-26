@@ -2,6 +2,7 @@ package com.susanacalvo.gestioncarreras.mvc.componentes;
 
 import com.susanacalvo.gestioncarreras.base.Competidor;
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -13,9 +14,11 @@ public class PanelCompetidor extends JPanel {
     private JLabel lblAltura;
     private JPanel panelNombre;
     private JPanel panelDatos;
+    private JPanel contentPane;
 
     public PanelCompetidor(Competidor competidor) {
-        //setMaximumSize(new Dimension(450, 109));
+        //setContentPane(contentPane);
+
         initGUI();
         mostrarDatosCompetidor(competidor);
     }
@@ -43,4 +46,5 @@ public class PanelCompetidor extends JPanel {
             }
         });
     }
+
 }
