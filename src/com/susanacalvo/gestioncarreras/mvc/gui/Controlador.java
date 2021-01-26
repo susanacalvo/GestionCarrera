@@ -103,7 +103,7 @@ public class Controlador implements ActionListener, ListSelectionListener, KeyLi
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()){
             case "Relacion":
-                DialogoRelaciones d = new DialogoRelaciones();
+                DialogoRelaciones d = new DialogoRelaciones(modelo);
                 break;
             case "Graficos":
                 break;

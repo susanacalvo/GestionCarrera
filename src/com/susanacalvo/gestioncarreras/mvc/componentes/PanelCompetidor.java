@@ -7,14 +7,15 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class PanelCompetidor extends JPanel {
-    private JLabel lblNombreCompetidor;
-    private JLabel lblApellidoCompetidor;
-    private JLabel lblDNI;
-    private JLabel lblEdad;
-    private JLabel lblAltura;
-    private JPanel panelNombre;
-    private JPanel panelDatos;
-    private JPanel contentPane;
+
+     JLabel lblNombreCompetidor;
+     JLabel lblApellidoCompetidor;
+     JLabel lblDNI;
+     JLabel lblEdad;
+     JLabel lblAltura;
+     JPanel panelNombre;
+     JPanel panelDatos;
+     public JPanel contentPane;
 
     public PanelCompetidor(Competidor competidor) {
         //setContentPane(contentPane);
@@ -22,6 +23,7 @@ public class PanelCompetidor extends JPanel {
         initGUI();
         mostrarDatosCompetidor(competidor);
     }
+
 
     private void mostrarDatosCompetidor(Competidor competidor) {
         lblNombreCompetidor.setText(competidor.getNombre());

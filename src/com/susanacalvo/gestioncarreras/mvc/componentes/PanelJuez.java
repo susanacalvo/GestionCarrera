@@ -7,12 +7,12 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class PanelJuez extends JPanel {
-    private JPanel contentPane;
-    private JLabel lblNombre;
-    private JLabel lblApellidos;
-    private JPanel panelNombre;
-    private JPanel panelDatos;
-    private JLabel lblCod;
+    public JPanel contentPane;
+    JLabel lblNombre;
+    JLabel lblApellidos;
+    JPanel panelNombre;
+    JPanel panelDatos;
+    JLabel lblCod;
 
     public PanelJuez(Juez juez){
         mostrarDatosJuez(juez);
