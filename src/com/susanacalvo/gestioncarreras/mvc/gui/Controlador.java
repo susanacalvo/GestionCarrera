@@ -9,6 +9,7 @@ import com.susanacalvo.gestioncarreras.util.Util;
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -25,6 +26,7 @@ public class Controlador implements ActionListener, ListSelectionListener, KeyLi
      */
     private Vista vista;
     private Modelo modelo;
+    private int fuente;
     private ResourceBundle resourceBundle;
 
     /**
@@ -32,13 +34,31 @@ public class Controlador implements ActionListener, ListSelectionListener, KeyLi
      * @param vista
      * @param modelo
      */
-    public Controlador(Vista vista,Modelo modelo){
+    public Controlador(Vista vista,Modelo modelo,int fuente){
+        this.fuente=fuente;
         this.vista=vista;
         this.modelo=modelo;
         resourceBundle=ResourceBundle.getBundle("idiomaResourceBundle");
+        establecerTamanoFuente(fuente);
         anadirActionListener(this);
         anadirListSelectionListener(this);
         anadirKeyListener(this);
+    }
+
+    /**
+     * Método que establece el tamano de fuente de la aplicación
+     * @param fuente
+     */
+    private void establecerTamanoFuente(int fuente) {
+        vista.itemCargar.setFont(new Font(null,Font.PLAIN,fuente));
+        vista.itemGuardar.setFont(new Font(null,Font.PLAIN,fuente));
+        vista.itemRelaciones.setFont(new Font(null,Font.PLAIN,fuente));
+        vista.itemGraficos.setFont(new Font(null,Font.PLAIN,fuente));
+        vista.itemPreferencias.setFont(new Font(null,Font.PLAIN,fuente));
+        vista.itemGestionUsuarios.setFont(new Font(null,Font.PLAIN,fuente));
+        vista.itemSalir.setFont(new Font(null,Font.PLAIN,fuente));
+        vista.lblNombreJuez.setFont(new Font(null,Font.PLAIN,fuente));
+
     }
 
     /**

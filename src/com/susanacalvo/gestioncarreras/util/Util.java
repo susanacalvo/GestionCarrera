@@ -84,6 +84,23 @@ public class Util {
     }
 
     /**
+     * Método que obtiene la fuente de la configuracion
+     */
+    public static int obtenerFuente(){
+        //Por defecto
+        int fuente=12;
+        Properties properties = new Properties();
+        try {
+            properties.load(new FileReader("data/preferencias.conf"));
+            fuente=Integer.parseInt(properties.getProperty("fuente"));
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return fuente;
+    }
+
+    /**
      * Método para redimensionar las imágenes
      * @param icon
      * @param alto

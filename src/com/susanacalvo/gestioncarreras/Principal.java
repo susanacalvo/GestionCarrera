@@ -22,6 +22,8 @@ public class Principal {
         Locale locale = Util.obtenerLocale();
         Locale.setDefault(locale);
 
+        int fuente=Util.obtenerFuente();
+
         Util.crearSiNoExisteDirectorioDatos();
         //Control de tipo de usuario logueado
         int tipoUsuario = DialogoLogin.mostrarDialogoLogin();
@@ -29,6 +31,6 @@ public class Principal {
         Vista vista=new Vista(tipoUsuario);
         Modelo modelo = new Modelo();
 
-        Controlador controlador = new Controlador(vista, modelo);
+        Controlador controlador = new Controlador(vista, modelo,fuente);
     }
 }
