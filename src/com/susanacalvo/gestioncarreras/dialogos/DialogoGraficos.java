@@ -1,9 +1,9 @@
 package com.susanacalvo.gestioncarreras.dialogos;
 
 import com.susanacalvo.gestioncarreras.base.Carrera;
+import com.susanacalvo.gestioncarreras.base.Juez;
 import com.susanacalvo.gestioncarreras.mvc.modelo.Modelo;
 import org.jfree.chart.ChartFactory;
-import org.jfree.chart.ChartFrame;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.data.category.DefaultCategoryDataset;
@@ -11,7 +11,6 @@ import org.jfree.data.general.DefaultPieDataset;
 
 import javax.swing.*;
 import java.awt.event.*;
-import java.io.File;
 import java.util.ResourceBundle;
 
 public class DialogoGraficos extends JDialog {
@@ -20,15 +19,19 @@ public class DialogoGraficos extends JDialog {
     private JButton buttonCancel;
     private JButton btnGrafico1;
     private JButton btnGrafico2;
-    private JPanel panelGraficos;
+    private JPanel panelGrafico1;
+    private JPanel panelGrafico2;
     private ResourceBundle resourceBundle;
     private Modelo modelo;
 
 
     public DialogoGraficos(Modelo modelo) {
-        initUI();
-
+        this.modelo=modelo;
         resourceBundle = ResourceBundle.getBundle("idiomaResourceBundle");
+        initUI();
+        pack();
+        setLocationRelativeTo(null);
+        setVisible(true);
 
 
     }
@@ -36,7 +39,6 @@ public class DialogoGraficos extends JDialog {
     private void initUI() {
         setContentPane(contentPane);
         setModal(true);
-        setLocationRelativeTo(null);
         getRootPane().setDefaultButton(buttonOK);
 
         buttonOK.addActionListener(new ActionListener() {
@@ -67,31 +69,33 @@ public class DialogoGraficos extends JDialog {
             public void actionPerformed(ActionEvent e) {
                 DefaultPieDataset dataset = new DefaultPieDataset();
 
-                for(Carrera c : modelo.getCarreras()){
-                    dataset.setValue(c.getDenominacion()+""+c.getMetros(),c.getCompetidoresCarrera().size());
+                for(Juez juez : modelo.getJueces()){
+                    dataset.setValue(juez.getNombre(),juez.getCarrerasdeJuez().size());
                 }
 
                 JFreeChart grafica = ChartFactory.createPieChart(resourceBundle.getString("title.grafico.uno"), dataset, true, true, false);
                 ChartPanel panel = new ChartPanel(grafica);
-                panelGraficos.add(panel);
+                panelGrafico1.add(panel);
+                panelGrafico1.setVisible(true);
+                panelGrafico2.setVisible(false);
             }
         });
         btnGrafico2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-                for(Carrera profesor:modelo.getCarreras()){
-                    dataset.addValue(profesor.getCompetidoresCarrera().size(),profesor.getDenominacion(), profesor.getDenominacion());
+                for(Carrera carrera:modelo.getCarreras()){
+                    dataset.addValue(carrera.getCompetidoresCarrera().size(),carrera.getDenominacion(), carrera.getDenominacion());
                 }
 
-                JFreeChart jFreeChart = ChartFactory.createBarChart("Cantidad de alumnos por profesor","profesores","alumnos",dataset);
-                ChartFrame frame = new ChartFrame("Diagrama",jFreeChart);
-                frame.pack();
-                frame.setVisible(true);
+                JFreeChart jFreeChart = ChartFactory.createBarChart(resourceBundle.getString("title.grafica.dos"), resourceBundle.getString("nombre.carrera"), resourceBundle.getString("nombre.competidor"),dataset);
+                ChartPanel panel = new ChartPanel(jFreeChart);
+                panelGrafico2.add(panel);
+                panelGrafico2.setVisible(true);
+                panelGrafico1.setVisible(false);
+
             }
         });
-        pack();
-        setVisible(true);
     }
 
     private void onOK() { dispose(); }

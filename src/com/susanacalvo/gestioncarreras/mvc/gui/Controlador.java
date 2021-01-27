@@ -9,15 +9,13 @@ import com.susanacalvo.gestioncarreras.util.Util;
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import javax.swing.plaf.FontUIResource;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.File;
-import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 
@@ -27,7 +25,6 @@ public class Controlador implements ActionListener, ListSelectionListener, KeyLi
      */
     private Vista vista;
     private Modelo modelo;
-
     private ResourceBundle resourceBundle;
 
     /**
@@ -227,7 +224,7 @@ public class Controlador implements ActionListener, ListSelectionListener, KeyLi
         }
 
         Carrera carrera=vista.listCarrera.getSelectedValue();
-        HashSet<Competidor> competidores = modelo.getCompetidores();
+        List<Competidor> competidores = modelo.getCompetidores();
         DialogoAgregarCompetidoresACarrera d =new DialogoAgregarCompetidoresACarrera(carrera,competidores);
 
         listarCompetididoresDeCarrera(carrera);
@@ -276,7 +273,7 @@ public class Controlador implements ActionListener, ListSelectionListener, KeyLi
      */
     private boolean datosCarreraCorrectos(){
         if(vista.txtCarrera.getText().isEmpty() || vista.txtMetros.getText().isEmpty() || vista.txtLugar.getText().isEmpty()||
-        vista.dpFecha.getDate().equals("")){
+        vista.dpFecha.getDate().equals("")|| vista.cbJuezCarrera.getSelectedItem()==null){
             return false;
         }
         return true;
@@ -410,7 +407,9 @@ public class Controlador implements ActionListener, ListSelectionListener, KeyLi
             Util.mostrarDialogoError(resourceBundle.getString("no.se.ha.seleccionado.ningun.competidor"));
             return;
         }
+
         modelo.eliminarCompetidor(vista.listCompetidores.getSelectedValue());
+        vista.listCompetidores.getSelectedValue().getCarrera().getCompetidoresCarrera().remove(vista.listCompetidores.getSelectedValue());
         //Util.mostrarDialogoInformacion(resourceBundle.getString("eliminado.correctamente"));
         listarCompetidoresEnJlist();
 

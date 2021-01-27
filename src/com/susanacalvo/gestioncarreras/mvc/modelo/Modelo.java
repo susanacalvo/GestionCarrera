@@ -14,7 +14,7 @@ import java.util.*;
  *
  */
 public class Modelo {
-    private HashSet<Competidor> listaCompetidores;
+    private List<Competidor> listaCompetidores;
     private LinkedList<Carrera> listaCarreras;
     private ArrayList<Juez> listaJueces;
     private ResourceBundle resourceBundle;
@@ -24,7 +24,7 @@ public class Modelo {
      */
     public Modelo(){
         resourceBundle=ResourceBundle.getBundle("idiomaResourceBundle");
-        listaCompetidores = new HashSet<>();
+        listaCompetidores = new ArrayList<>();
         listaCarreras = new LinkedList<>();
         listaJueces = new ArrayList<>();
     }
@@ -55,7 +55,7 @@ public class Modelo {
      * Método que devuelve una lista de los competidores
      * @return listsCompetidores
      */
-    public HashSet<Competidor>getCompetidores(){ return listaCompetidores; }
+    public List<Competidor>getCompetidores(){ return listaCompetidores; }
 
     /**
      * Método que añade un nuevo Juez al sistema
@@ -144,7 +144,7 @@ public class Modelo {
         try {
             FileInputStream flujoEntrada = new FileInputStream (fichero);
             ObjectInputStream deserializador = new ObjectInputStream(flujoEntrada);
-            listaCompetidores = (HashSet<Competidor>) deserializador.readObject();
+            listaCompetidores = (ArrayList<Competidor>) deserializador.readObject();
             listaJueces=(ArrayList<Juez>)deserializador.readObject();
             listaCarreras = (LinkedList<Carrera>)deserializador.readObject();
             deserializador.close();
@@ -176,7 +176,7 @@ public class Modelo {
             serializador.writeObject(listaJueces);
             serializador.writeObject(listaCarreras);
             serializador.close();
-            Util.mostrarDialogoInformacion(resourceBundle.getString("guardado.correctamente"));
+            //Util.mostrarDialogoInformacion(resourceBundle.getString("guardado.correctamente"));
         }catch (FileNotFoundException e) {
             e.printStackTrace();
             System.out.println("El fichero no existe. ");

@@ -25,16 +25,16 @@ public class DialogoAgregarCompetidoresACarrera extends JDialog {
     private List<Competidor> listaTemporalMatriculados;
     private List<Competidor> listaTemporalNoMatriculados;
 
-    public DialogoAgregarCompetidoresACarrera(Carrera carrera, HashSet<Competidor>competidores) {
+    public DialogoAgregarCompetidoresACarrera(Carrera carrera, List<Competidor>competidores) {
         this.carrera=carrera;
         //Creo dos listas temporales. Si finalmente acepto los cambios, se hacen efectivas
         listaTemporalMatriculados = new ArrayList<>(carrera.getCompetidoresCarrera());
-        System.out.println(listaTemporalMatriculados.size());
+
         listaTemporalNoMatriculados = new ArrayList<>(competidores);
-        System.out.println(listaTemporalNoMatriculados.size());
+
         //Elimino los alumnos que ya tiene el profesor de la lista de no matriculados
         listaTemporalNoMatriculados.removeAll(listaTemporalMatriculados);
-        System.out.println(listaTemporalNoMatriculados.size());
+
 
         dlmCompetidoresEnCarrera = new DefaultListModel<>();
         dlmCompetidoresExistentes = new DefaultListModel<>();
@@ -96,8 +96,8 @@ public class DialogoAgregarCompetidoresACarrera extends JDialog {
      */
     private void agregarCompetidor(){
         List<Competidor> seleccionados = listCompetidoresExistentes.getSelectedValuesList();
-        listaTemporalMatriculados.removeAll(seleccionados);
-        listaTemporalNoMatriculados.addAll(seleccionados);
+        listaTemporalMatriculados.addAll(seleccionados);
+        listaTemporalNoMatriculados.removeAll(seleccionados);
 
         listarCompetidoresDeCarrera();
         listarCompetidoresExistentes();

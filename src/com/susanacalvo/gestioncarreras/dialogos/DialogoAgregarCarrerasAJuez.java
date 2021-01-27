@@ -32,12 +32,12 @@ public class DialogoAgregarCarrerasAJuez extends JDialog {
 
         //Creo dos listas temporales. Si finalmente acepto los cambios, se hacen efectivas
         listaTemporalMatriculados = new LinkedList<>(juez.getCarrerasdeJuez());
-        System.out.println(listaTemporalMatriculados.size());
+
         listaTemporalNoMatriculados = new LinkedList<>(carreras);
-        System.out.println(listaTemporalNoMatriculados.size());
+
         //Elimino los alumnos que ya tiene el profesor de la lista de no matriculados
         listaTemporalNoMatriculados.removeAll(listaTemporalMatriculados);
-        System.out.println(listaTemporalNoMatriculados.size());
+
 
         dlmDeJuez = new DefaultListModel<>();
         dlmExistentes = new DefaultListModel<>();
@@ -70,7 +70,6 @@ public class DialogoAgregarCarrerasAJuez extends JDialog {
         dlmDeJuez.clear();
         for(Carrera carrera : listaTemporalMatriculados){
             dlmDeJuez.addElement(carrera);
-            System.out.println(carrera);
         }
     }
 
@@ -116,11 +115,6 @@ public class DialogoAgregarCarrerasAJuez extends JDialog {
      * Método que aplica los cambios realizados
      */
     private void realizarCambios() {
-        //Los unicos cambios que afectan son los relativos a la lista definitiva de alumnos del profesor
-
-        //Si finalmente acepto los cambios debo recorrer a los alumnos antiguos del profesor y quitarles el profesor
-        //Y  recorrerlos para indicarles el nuevo profesor matriculados y cambiarles el profesor
-
         for(Carrera  carrera : juez.getCarrerasdeJuez()){
             carrera.setJuezCarrera(null);
         }
