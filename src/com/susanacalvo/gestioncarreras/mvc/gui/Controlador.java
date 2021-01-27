@@ -9,6 +9,7 @@ import com.susanacalvo.gestioncarreras.util.Util;
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.plaf.FontUIResource;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -26,7 +27,7 @@ public class Controlador implements ActionListener, ListSelectionListener, KeyLi
      */
     private Vista vista;
     private Modelo modelo;
-    private int fuente;
+
     private ResourceBundle resourceBundle;
 
     /**
@@ -34,47 +35,17 @@ public class Controlador implements ActionListener, ListSelectionListener, KeyLi
      * @param vista
      * @param modelo
      */
-    public Controlador(Vista vista,Modelo modelo,int fuente){
-        this.fuente=fuente;
+    public Controlador(Vista vista,Modelo modelo){
         this.vista=vista;
         this.modelo=modelo;
         resourceBundle=ResourceBundle.getBundle("idiomaResourceBundle");
-        establecerTamanoFuente(fuente);
+
         anadirActionListener(this);
         anadirListSelectionListener(this);
         anadirKeyListener(this);
     }
 
-    /**
-     * Método que establece el tamano de fuente de la aplicación
-     * @param fuente
-     */
-    private void establecerTamanoFuente(int fuente) {
-        vista.itemCargar.setFont(new Font(null,Font.PLAIN,fuente));
-        vista.itemGuardar.setFont(new Font(null,Font.PLAIN,fuente));
-        vista.itemRelaciones.setFont(new Font(null,Font.PLAIN,fuente));
-        vista.itemGraficos.setFont(new Font(null,Font.PLAIN,fuente));
-        vista.itemPreferencias.setFont(new Font(null,Font.PLAIN,fuente));
-        vista.itemGestionUsuarios.setFont(new Font(null,Font.PLAIN,fuente));
-        vista.itemSalir.setFont(new Font(null,Font.PLAIN,fuente));
-        vista.lblNombreJuez.setFont(new Font(null,Font.PLAIN,fuente));
-        vista.lblApeJuez.setFont(new Font(null,Font.PLAIN,fuente));
-        vista.lblCodJuez.setFont(new Font(null,Font.PLAIN,fuente));
-        vista.lblNombreCompetidor.setFont(new Font(null,Font.PLAIN,fuente));
-        vista.lblApeCompetidor.setFont(new Font(null,Font.PLAIN,fuente));
-        vista.lblEdad.setFont(new Font(null,Font.PLAIN,fuente));
-        vista.lblAltura.setFont(new Font(null,Font.PLAIN,fuente));
-        vista.lblFoto.setFont(new Font(null,Font.PLAIN,fuente));
-        vista.lblCopyRight.setFont(new Font(null,Font.PLAIN,fuente));
-        vista.lblDni.setFont(new Font(null,Font.PLAIN,fuente));
-        vista.lblNombreCarrera.setFont(new Font(null,Font.PLAIN,fuente));
-        vista.lblMetros.setFont(new Font(null,Font.PLAIN,fuente));
-        vista.lblLugar.setFont(new Font(null,Font.PLAIN,fuente));
-        vista.lblFecha.setFont(new Font(null,Font.PLAIN,fuente));
-        vista.lblJuezCarrera.setFont(new Font(null,Font.PLAIN,fuente));
-        vista.lblRealizado.setFont(new Font(null,Font.PLAIN,fuente));
-        vista.lblCompetidoresCarrera.setFont(new Font(null,Font.PLAIN,fuente));
-    }
+
 
     /**
      * Método que inicializa el control del KeyListener
