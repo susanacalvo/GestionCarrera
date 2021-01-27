@@ -17,8 +17,7 @@ public class Vista {
      JButton btnNuevoJuez;
      JButton btnEliminarJuez;
      JButton btnModificarJuez;
-     JLabel lblCopyRight;
-     JTextField txtCodJuez;
+    JTextField txtCodJuez;
      JTextField txtNombreJuez;
      JTextField txtApellidosJuez;
      JList <Juez>listaJueces;
@@ -221,6 +220,7 @@ public class Vista {
     private void activarControlPorTeclado() {
 
         //Aceleradores
+        //Ctr +
         itemGuardar.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.CTRL_DOWN_MASK));
         itemCargar.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O, InputEvent.CTRL_DOWN_MASK));
         itemSalir.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, InputEvent.CTRL_DOWN_MASK));
@@ -228,6 +228,21 @@ public class Vista {
         itemRelaciones.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R, InputEvent.CTRL_DOWN_MASK));
         itemGestionUsuarios.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_U, InputEvent.CTRL_DOWN_MASK));
         itemPreferencias.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, InputEvent.CTRL_DOWN_MASK));
+        //Alt +
+        btnNuevoJuez.setMnemonic(KeyEvent.VK_1);
+        btnEliminarJuez.setMnemonic(KeyEvent.VK_2);
+        btnModificarJuez.setMnemonic(KeyEvent.VK_3);
+        btnAgregarCarreraAJuez.setMnemonic(KeyEvent.VK_4);
+        btnNuevoCompetidor.setMnemonic(KeyEvent.VK_5);
+        btnEliminarCompetidor.setMnemonic(KeyEvent.VK_6);
+        btnModificarCompetidor.setMnemonic(KeyEvent.VK_7);
+        btnNuevaImagen.setMnemonic(KeyEvent.VK_8);
+        btnEliminarImagen.setMnemonic(KeyEvent.VK_9);
+        btnNuevaCarrera.setMnemonic(KeyEvent.VK_F1);
+        btnEliminarCarrera.setMnemonic(KeyEvent.VK_F2);
+        btnModificarCarrera.setMnemonic(KeyEvent.VK_F3);
+        btnAnadirCompetidorCarrera.setMnemonic(KeyEvent.VK_F4);
+
 
         //Boton por defecto de la aplicacion
     }

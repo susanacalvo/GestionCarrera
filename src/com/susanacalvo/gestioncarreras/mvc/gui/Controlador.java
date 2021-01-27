@@ -170,19 +170,40 @@ public class Controlador implements ActionListener, ListSelectionListener, KeyLi
                 cargarFoto();
                 break;
             case "EliminarImagen":
+                 eliminarImagen();
                 break;
         }
+    }
+
+    /**
+     * Método que elimina la imagen del competidor
+     */
+    private void eliminarImagen() {
+        if(vista.listCompetidores.isSelectionEmpty()){
+            Util.mostrarDialogoError(resourceBundle.getString("no.se.ha.seleccionado.ningun.competidor"));
+            return;
+        }
+        Competidor c= vista.listCompetidores.getSelectedValue();
+        c.setFoto(null);
+        vista.lblImagen.setIcon(null);
     }
 
     /**
      * Método que visualiza una previa de la foto
      */
     private void cargarFoto() {
+        if(vista.listCompetidores.isSelectionEmpty()){
+            Util.mostrarDialogoError(resourceBundle.getString("no.se.ha.seleccionado.ningun.competidor"));
+            return;
+        }
+        Competidor c= vista.listCompetidores.getSelectedValue();
         JFileChooser chooser = new JFileChooser();
         int opt=chooser.showOpenDialog(null);
         if(opt==JFileChooser.APPROVE_OPTION){
             File foto= chooser.getSelectedFile();
+
             vista.lblImagen.setIcon(Util.escalarImagen(new ImageIcon(foto.getPath()),140,120));
+            c.setFoto(vista.lblImagen.getIcon());
         }
     }
     /**
