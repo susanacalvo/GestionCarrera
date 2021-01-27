@@ -58,7 +58,22 @@ public class Controlador implements ActionListener, ListSelectionListener, KeyLi
         vista.itemGestionUsuarios.setFont(new Font(null,Font.PLAIN,fuente));
         vista.itemSalir.setFont(new Font(null,Font.PLAIN,fuente));
         vista.lblNombreJuez.setFont(new Font(null,Font.PLAIN,fuente));
-
+        vista.lblApeJuez.setFont(new Font(null,Font.PLAIN,fuente));
+        vista.lblCodJuez.setFont(new Font(null,Font.PLAIN,fuente));
+        vista.lblNombreCompetidor.setFont(new Font(null,Font.PLAIN,fuente));
+        vista.lblApeCompetidor.setFont(new Font(null,Font.PLAIN,fuente));
+        vista.lblEdad.setFont(new Font(null,Font.PLAIN,fuente));
+        vista.lblAltura.setFont(new Font(null,Font.PLAIN,fuente));
+        vista.lblFoto.setFont(new Font(null,Font.PLAIN,fuente));
+        vista.lblCopyRight.setFont(new Font(null,Font.PLAIN,fuente));
+        vista.lblDni.setFont(new Font(null,Font.PLAIN,fuente));
+        vista.lblNombreCarrera.setFont(new Font(null,Font.PLAIN,fuente));
+        vista.lblMetros.setFont(new Font(null,Font.PLAIN,fuente));
+        vista.lblLugar.setFont(new Font(null,Font.PLAIN,fuente));
+        vista.lblFecha.setFont(new Font(null,Font.PLAIN,fuente));
+        vista.lblJuezCarrera.setFont(new Font(null,Font.PLAIN,fuente));
+        vista.lblRealizado.setFont(new Font(null,Font.PLAIN,fuente));
+        vista.lblCompetidoresCarrera.setFont(new Font(null,Font.PLAIN,fuente));
     }
 
     /**

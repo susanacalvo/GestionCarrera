@@ -73,6 +73,7 @@ public class Vista {
      JList<Carrera> listCarrerasDeJuez;
      DefaultListModel<Carrera>dlmCarreraDeJuez;
      JButton btnAgregarCarreraAJuez;
+     JPanel panelListaCarreras;
     private ResourceBundle resourceBundle;
     private int tipoUsuario;
     JMenuItem itemSalir;
