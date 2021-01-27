@@ -189,17 +189,14 @@ public class Controlador implements ActionListener, ListSelectionListener, KeyLi
      * Método que visualiza una previa de la foto
      */
     private void cargarFoto() {
-        if(vista.listCompetidores.isSelectionEmpty()){
-            Util.mostrarDialogoError(resourceBundle.getString("no.se.ha.seleccionado.ningun.competidor"));
-            return;
-        }
+
         Competidor c= vista.listCompetidores.getSelectedValue();
         JFileChooser chooser = new JFileChooser();
         int opt=chooser.showOpenDialog(null);
         if(opt==JFileChooser.APPROVE_OPTION){
             File foto= chooser.getSelectedFile();
 
-            vista.lblImagen.setIcon(Util.escalarImagen(new ImageIcon(foto.getPath()),140,120));
+            vista.lblImagen.setIcon(Util.escalarImagen(new ImageIcon(foto.getPath()),190,140));
             c.setFoto(vista.lblImagen.getIcon());
         }
     }
@@ -325,6 +322,7 @@ public class Controlador implements ActionListener, ListSelectionListener, KeyLi
         vista.listCarrera.getSelectedValue().getJuezCarrera().getCarrerasdeJuez().remove(vista.listCarrera.getSelectedValue());
         //Util.mostrarDialogoInformacion(resourceBundle.getString("eliminado.correctamente"));
         listarCarreras();
+        vista.dlmCompetidorCarrera.clear();
     }
     /**
      * Método que modifica una Carrera
@@ -352,7 +350,7 @@ public class Controlador implements ActionListener, ListSelectionListener, KeyLi
         carrera.setFecha(vista.dpFecha.getDate());
         carrera.setRealizado(vista.cbRealizado.isSelected());
         carrera.setJuezCarrera((Juez) vista.cbJuezCarrera.getSelectedItem());
-        carrera.setCompetidoresCarrera( vista.listCompetidorCarrera.getSelectedValuesList());
+        //carrera.setCompetidoresCarrera( vista.listCompetidorCarrera.getSelectedValuesList());
 
 
         ((Juez) vista.cbJuezCarrera.getSelectedItem()).getCarrerasdeJuez().add(carrera);
@@ -619,6 +617,7 @@ public class Controlador implements ActionListener, ListSelectionListener, KeyLi
             vista.cbRealizado.setSelected(carrera.isRealizado());
             vista.cbJuezCarrera.setSelectedItem(carrera.getJuezCarrera());
 
+            listarCompetididoresDeCarrera(carrera);
         }
     }
 

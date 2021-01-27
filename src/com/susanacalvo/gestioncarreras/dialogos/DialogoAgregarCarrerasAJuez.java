@@ -2,13 +2,9 @@ package com.susanacalvo.gestioncarreras.dialogos;
 
 import com.susanacalvo.gestioncarreras.base.Carrera;
 import com.susanacalvo.gestioncarreras.base.Juez;
-
+import com.susanacalvo.gestioncarreras.mvc.gui.Vista;
 import javax.swing.*;
-import javax.swing.text.Caret;
-import java.awt.*;
 import java.awt.event.*;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -26,6 +22,7 @@ public class DialogoAgregarCarrerasAJuez extends JDialog {
     private Juez juez;
     private LinkedList<Carrera> listaTemporalMatriculados;
     private LinkedList<Carrera> listaTemporalNoMatriculados;
+    private Vista vista;
 
     public DialogoAgregarCarrerasAJuez(Juez juez, LinkedList<Carrera>carreras) {
         this.juez=juez;
@@ -124,6 +121,7 @@ public class DialogoAgregarCarrerasAJuez extends JDialog {
         }
 
         juez.setCarrerasdeJuez(listaTemporalMatriculados);
+
     }
 
     /**
