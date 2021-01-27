@@ -112,11 +112,8 @@ public class DialogoAgregarCarrerasAJuez extends JDialog {
      * Método que aplica los cambios realizados
      */
     private void realizarCambios() {
-        for(Carrera  carrera : juez.getCarrerasdeJuez()){
-            carrera.setJuezCarrera(null);
-        }
-
         for(Carrera carrera : listaTemporalMatriculados){
+            carrera.getJuezCarrera().getCarrerasdeJuez().remove(carrera);
             carrera.setJuezCarrera(juez);
         }
 
