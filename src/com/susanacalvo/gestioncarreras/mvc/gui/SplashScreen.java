@@ -1,15 +1,15 @@
 package com.susanacalvo.gestioncarreras.mvc.gui;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 
-public class SplashScreen extends JDialog implements Runnable{
-    private JPanel contentPane;
+public class SplashScreen extends JDialog implements Runnable {
     private static final long serialVersionUID = 1L;
     private JProgressBar barraProgreso;
 
     public SplashScreen() {
-        setBounds(100, 100, 637, 566);
+        setBounds(100, 100, 700, 700);
 
         JPanel contentPane = new JPanel();
         contentPane.setLayout(new BorderLayout());
@@ -18,7 +18,7 @@ public class SplashScreen extends JDialog implements Runnable{
         //Creo una etiqueta con la imagen en el centro
         JLabel lblImagen = new JLabel();
         //Indico la imagen que quiero mostrar en la label
-        lblImagen.setIcon(new ImageIcon(getClass().getResource("/logoPrincipal.png")));
+        lblImagen.setIcon(new ImageIcon(getClass().getResource("/logo3.png")));
         contentPane.add(lblImagen, BorderLayout.CENTER);
 
         //Creo un panel al sur con una barra de carga y una label para el autor
@@ -30,7 +30,6 @@ public class SplashScreen extends JDialog implements Runnable{
         panelInferior.add(barraProgreso);
 
         JLabel lblFersoft = new JLabel("Susana Calvo Martinez 2021");
-        lblFersoft.setForeground(Color.BLUE);
         lblFersoft.setHorizontalAlignment(SwingConstants.CENTER);
         panelInferior.add(lblFersoft);
 
@@ -41,9 +40,7 @@ public class SplashScreen extends JDialog implements Runnable{
         setUndecorated(true); //Eliminar la barra de título y sus botones
         setLocationRelativeTo(null); //Mostrar en el centro
         setVisible(true);
-
     }
-
     @Override
     public void run() {
         try {
@@ -57,6 +54,5 @@ public class SplashScreen extends JDialog implements Runnable{
         }
         //Al terminar la espera cierro el JDialog
         dispose();
-
     }
 }

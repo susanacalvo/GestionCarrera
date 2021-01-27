@@ -39,6 +39,8 @@ public class DialogoRelaciones extends JDialog {
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
 
+        panelCompetidores.setLayout(new BoxLayout(panelCompetidores,BoxLayout.Y_AXIS));
+
 
         buttonOK.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) { onOK(); }

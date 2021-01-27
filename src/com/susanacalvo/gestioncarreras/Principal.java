@@ -23,6 +23,15 @@ public class Principal {
     public static void main(String args[]){
         aplicarLookAndFeel();
 
+        Thread hilo = new Thread(new SplashScreen());
+        hilo.start();
+
+        try {
+            hilo.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         Locale locale = Util.obtenerLocale();
         Locale.setDefault(locale);
 
@@ -38,16 +47,7 @@ public class Principal {
 
         Controlador controlador = new Controlador(vista, modelo);
 
-        Thread hilo = new Thread(new SplashScreen());
-        hilo.start();
 
-        try {
-            hilo.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        //vista.setVisible(true);
     }
 
     /**
