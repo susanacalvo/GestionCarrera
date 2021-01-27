@@ -247,4 +247,5 @@ public class Vista {
         //Boton por defecto de la aplicacion
         btnNuevoJuez.getRootPane().setDefaultButton(btnNuevoJuez);
     }
+
 }

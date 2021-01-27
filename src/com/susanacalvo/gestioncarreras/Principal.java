@@ -2,6 +2,7 @@ package com.susanacalvo.gestioncarreras;
 
 import com.susanacalvo.gestioncarreras.dialogos.DialogoLogin;
 import com.susanacalvo.gestioncarreras.mvc.gui.Controlador;
+import com.susanacalvo.gestioncarreras.mvc.gui.SplashScreen;
 import com.susanacalvo.gestioncarreras.mvc.gui.Vista;
 import com.susanacalvo.gestioncarreras.mvc.modelo.Modelo;
 import com.susanacalvo.gestioncarreras.util.Util;
@@ -36,6 +37,17 @@ public class Principal {
         Modelo modelo = new Modelo();
 
         Controlador controlador = new Controlador(vista, modelo);
+
+        Thread hilo = new Thread(new SplashScreen());
+        hilo.start();
+
+        try {
+            hilo.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        //vista.setVisible(true);
     }
 
     /**

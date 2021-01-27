@@ -1,7 +1,6 @@
 package com.susanacalvo.gestioncarreras.mvc.componentes;
 
 import com.susanacalvo.gestioncarreras.base.Juez;
-
 import javax.swing.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -15,6 +14,7 @@ public class PanelJuez extends JPanel {
     JLabel lblCod;
 
     public PanelJuez(Juez juez){
+        panelDatos.setVisible(false);
         mostrarDatosJuez(juez);
         initUI();
     }
@@ -28,8 +28,8 @@ public class PanelJuez extends JPanel {
     private void initUI() {
         panelNombre.addMouseListener(new MouseAdapter() {
             @Override
-            public void mouseReleased(MouseEvent e) {
-                super.mouseReleased(e);
+            public void mouseExited(MouseEvent e) {
+                super.mouseExited(e);
                 panelDatos.setVisible(false);
             }
 

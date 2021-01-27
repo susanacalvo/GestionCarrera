@@ -24,15 +24,14 @@ public class DialogoRelaciones extends JDialog {
     private Modelo modelo;
 
     public DialogoRelaciones(Modelo modelo) {
-        initUI();
-        pack();
-        setLocationRelativeTo(null);
-        setVisible(true);
         this.modelo=modelo;
         dlm=new DefaultListModel<>();
         listCarreras.setModel(dlm);
         listarCarreras();
-        System.out.println("SI");
+        initUI();
+        pack();
+        setLocationRelativeTo(null);
+        setVisible(true);
     }
 
     private void initUI() {
@@ -82,7 +81,7 @@ public class DialogoRelaciones extends JDialog {
         panelJueces.removeAll();
         for(Juez juez: modelo.getJueces()){
             for (Carrera c : juez.getCarrerasdeJuez()){
-                if (c==carrera){
+                if (c.equals(carrera)){
                     panelJueces.add(new PanelJuez(juez).contentPane);
                 }
                 panelJueces.revalidate();
@@ -94,7 +93,7 @@ public class DialogoRelaciones extends JDialog {
     private void mostrarCompetidores(Carrera carrera){
         panelCompetidores.removeAll();
         for(Competidor competidor : modelo.getCompetidores()){
-            if(competidor.getCarrera()==carrera){
+            if(competidor.getCarrera().equals(carrera)){
                 panelCompetidores.add(new PanelCompetidor(competidor).contentPane);
             }
             panelCompetidores.revalidate();
@@ -104,11 +103,8 @@ public class DialogoRelaciones extends JDialog {
 
     private void listarCarreras(){
         dlm.clear();
-
         for(Carrera carrera : modelo.getCarreras()){
             dlm.addElement(carrera);
-            System.out.println("Entra");
         }
     }
-
 }

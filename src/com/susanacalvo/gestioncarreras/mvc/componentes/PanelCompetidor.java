@@ -2,7 +2,6 @@ package com.susanacalvo.gestioncarreras.mvc.componentes;
 
 import com.susanacalvo.gestioncarreras.base.Competidor;
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -18,8 +17,8 @@ public class PanelCompetidor extends JPanel {
      public JPanel contentPane;
 
     public PanelCompetidor(Competidor competidor) {
-        //setContentPane(contentPane);
 
+        panelDatos.setVisible(false);
         initGUI();
         mostrarDatosCompetidor(competidor);
     }
@@ -36,8 +35,8 @@ public class PanelCompetidor extends JPanel {
     public void initGUI() {
         panelNombre.addMouseListener(new MouseAdapter() {
             @Override
-            public void mouseReleased(MouseEvent e) {
-                super.mouseReleased(e);
+            public void mouseExited(MouseEvent e) {
+                super.mouseExited(e);
                 panelDatos.setVisible(false);
             }
 
