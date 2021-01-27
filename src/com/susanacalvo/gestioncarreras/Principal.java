@@ -21,7 +21,7 @@ public class Principal {
      */
     public static void main(String args[]){
         aplicarLookAndFeel();
-        //Obtenemos la localizacion por defecto de donde se encuentre el usuario
+
         Locale locale = Util.obtenerLocale();
         Locale.setDefault(locale);
 
@@ -29,7 +29,7 @@ public class Principal {
         establecerTamanoFuente(fuente);
 
         Util.crearSiNoExisteDirectorioDatos();
-        //Control de tipo de usuario logueado
+
         int tipoUsuario = DialogoLogin.mostrarDialogoLogin();
 
         Vista vista=new Vista(tipoUsuario);

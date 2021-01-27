@@ -304,10 +304,12 @@ public class Controlador implements ActionListener, ListSelectionListener, KeyLi
             Util.mostrarDialogoError(resourceBundle.getString("no.puede.haber.dos.carreras.iguales.el.mismo.dia"));
             return;
         }
-
-        modelo.nuevaCarrera(new Carrera(vista.txtCarrera.getText().trim(),Integer.parseInt(vista.txtMetros.getText().trim()),
+        Carrera carrera= new Carrera(vista.txtCarrera.getText().trim(),Integer.parseInt(vista.txtMetros.getText().trim()),
                 vista.dpFecha.getDate(),vista.txtLugar.getText().trim(),vista.cbRealizado.isSelected(),
-                (Juez) vista.cbJuezCarrera.getSelectedItem()));
+                (Juez) vista.cbJuezCarrera.getSelectedItem());
+        modelo.nuevaCarrera(carrera);
+
+        ((Juez) vista.cbJuezCarrera.getSelectedItem()).getCarrerasdeJuez().add(carrera);
 
         //Util.mostrarDialogoInformacion(resourceBundle.getString("guardado.correctamente"));
         listarCarreras();
@@ -321,7 +323,9 @@ public class Controlador implements ActionListener, ListSelectionListener, KeyLi
             Util.mostrarDialogoError(resourceBundle.getString("no.se.ha.seleccionado.ninguna.carrera"));
             return;
         }
+
         modelo.eliminarCarrera(vista.listCarrera.getSelectedValue());
+        vista.listCarrera.getSelectedValue().getJuezCarrera().getCarrerasdeJuez().remove(vista.listCarrera.getSelectedValue());
         //Util.mostrarDialogoInformacion(resourceBundle.getString("eliminado.correctamente"));
         listarCarreras();
     }
@@ -344,15 +348,17 @@ public class Controlador implements ActionListener, ListSelectionListener, KeyLi
             Util.mostrarDialogoError(resourceBundle.getString("no.puede.haber.dos.carreras.iguales.el.mismo.dia"));
             return;
         }
-
+        vista.listCarrera.getSelectedValue().getJuezCarrera().getCarrerasdeJuez().remove(vista.listCarrera.getSelectedValue());
         carrera.setDenominacion(vista.txtCarrera.getText().trim());
         carrera.setMetros(Integer.parseInt(vista.txtMetros.getText().trim()));
         carrera.setLugar(vista.txtLugar.getText().trim());
         carrera.setFecha(vista.dpFecha.getDate());
         carrera.setRealizado(vista.cbRealizado.isSelected());
         carrera.setJuezCarrera((Juez) vista.cbJuezCarrera.getSelectedItem());
-        carrera.setCompetidoresCarrera((HashSet<Competidor>) vista.listCompetidorCarrera.getSelectedValuesList());
+        carrera.setCompetidoresCarrera( vista.listCompetidorCarrera.getSelectedValuesList());
 
+
+        ((Juez) vista.cbJuezCarrera.getSelectedItem()).getCarrerasdeJuez().add(carrera);
         //Util.mostrarDialogoInformacion(resourceBundle.getString("modificado.correctamente"));
 
     }

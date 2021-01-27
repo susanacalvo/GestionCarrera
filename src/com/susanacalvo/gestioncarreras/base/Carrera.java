@@ -2,7 +2,9 @@ package com.susanacalvo.gestioncarreras.base;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 
 /**
  * Clase Carrera
@@ -20,7 +22,7 @@ public class Carrera implements Serializable {
     private String lugar;
     private boolean realizado;
     private Juez juezCarrera;
-    private HashSet<Competidor>competidoresCarrera;
+    private List<Competidor> competidoresCarrera;
 
     /**
      * Constructor de la clase Carrera
@@ -39,7 +41,7 @@ public class Carrera implements Serializable {
         this.lugar = lugar;
         this.realizado = realizado;
         this.juezCarrera=juezCarrera;
-        competidoresCarrera=new HashSet<>();
+        competidoresCarrera=new ArrayList<>();
     }
 
     /**
@@ -118,13 +120,13 @@ public class Carrera implements Serializable {
      * Método que devuelve una lista de los competidores de una carrera
      * @return competidoresCarrera
      */
-    public HashSet<Competidor>getCompetidoresCarrera(){return competidoresCarrera; }
+    public List<Competidor>getCompetidoresCarrera(){return competidoresCarrera; }
 
     /**
      * Método que establece competidores a una Carrera
      * @param competidoresCarrera
      */
-    public void setCompetidoresCarrera(HashSet<Competidor>competidoresCarrera){this.competidoresCarrera=competidoresCarrera; }
+    public void setCompetidoresCarrera(List<Competidor>competidoresCarrera){this.competidoresCarrera=competidoresCarrera; }
     /**
      * Método que devuelve una cadena de información de la clase Carrera
      * @return metros + denominacion

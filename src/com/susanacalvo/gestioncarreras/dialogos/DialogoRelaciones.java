@@ -24,20 +24,22 @@ public class DialogoRelaciones extends JDialog {
     private Modelo modelo;
 
     public DialogoRelaciones(Modelo modelo) {
+        initUI();
+        pack();
+        setLocationRelativeTo(null);
+        setVisible(true);
         this.modelo=modelo;
         dlm=new DefaultListModel<>();
         listCarreras.setModel(dlm);
-        initUI();
         listarCarreras();
+        System.out.println("SI");
     }
 
     private void initUI() {
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
-        pack();
-        setLocationRelativeTo(null);
-        setVisible(true);
+
 
         buttonOK.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) { onOK(); }
@@ -102,8 +104,10 @@ public class DialogoRelaciones extends JDialog {
 
     private void listarCarreras(){
         dlm.clear();
+
         for(Carrera carrera : modelo.getCarreras()){
             dlm.addElement(carrera);
+            System.out.println("Entra");
         }
     }
 

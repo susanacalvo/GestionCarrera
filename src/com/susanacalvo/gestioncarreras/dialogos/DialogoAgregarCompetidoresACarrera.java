@@ -5,6 +5,7 @@ import com.susanacalvo.gestioncarreras.base.Competidor;
 
 import javax.swing.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -21,15 +22,15 @@ public class DialogoAgregarCompetidoresACarrera extends JDialog {
     private JButton btnAgregar;
     private JButton btnEliminar;
     private Carrera carrera;
-    private HashSet<Competidor> listaTemporalMatriculados;
-    private HashSet<Competidor> listaTemporalNoMatriculados;
+    private List<Competidor> listaTemporalMatriculados;
+    private List<Competidor> listaTemporalNoMatriculados;
 
     public DialogoAgregarCompetidoresACarrera(Carrera carrera, HashSet<Competidor>competidores) {
         this.carrera=carrera;
         //Creo dos listas temporales. Si finalmente acepto los cambios, se hacen efectivas
-        listaTemporalMatriculados = new HashSet<>(carrera.getCompetidoresCarrera());
+        listaTemporalMatriculados = new ArrayList<>(carrera.getCompetidoresCarrera());
         System.out.println(listaTemporalMatriculados.size());
-        listaTemporalNoMatriculados = new HashSet<>(competidores);
+        listaTemporalNoMatriculados = new ArrayList<>(competidores);
         System.out.println(listaTemporalNoMatriculados.size());
         //Elimino los alumnos que ya tiene el profesor de la lista de no matriculados
         listaTemporalNoMatriculados.removeAll(listaTemporalMatriculados);

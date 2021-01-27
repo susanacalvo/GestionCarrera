@@ -3,8 +3,10 @@ package com.susanacalvo.gestioncarreras.dialogos;
 import com.susanacalvo.gestioncarreras.base.Carrera;
 import com.susanacalvo.gestioncarreras.mvc.modelo.Modelo;
 import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartFrame;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
+import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.general.DefaultPieDataset;
 
 import javax.swing.*;
@@ -24,8 +26,10 @@ public class DialogoGraficos extends JDialog {
 
 
     public DialogoGraficos(Modelo modelo) {
-        resourceBundle = ResourceBundle.getBundle("idiomaResourceBundle");
         initUI();
+
+        resourceBundle = ResourceBundle.getBundle("idiomaResourceBundle");
+
 
     }
 
@@ -33,8 +37,6 @@ public class DialogoGraficos extends JDialog {
         setContentPane(contentPane);
         setModal(true);
         setLocationRelativeTo(null);
-        pack();
-        setVisible(true);
         getRootPane().setDefaultButton(buttonOK);
 
         buttonOK.addActionListener(new ActionListener() {
@@ -65,6 +67,9 @@ public class DialogoGraficos extends JDialog {
             public void actionPerformed(ActionEvent e) {
                 DefaultPieDataset dataset = new DefaultPieDataset();
 
+                for(Carrera c : modelo.getCarreras()){
+                    dataset.setValue(c.getDenominacion()+""+c.getMetros(),c.getCompetidoresCarrera().size());
+                }
 
                 JFreeChart grafica = ChartFactory.createPieChart(resourceBundle.getString("title.grafico.uno"), dataset, true, true, false);
                 ChartPanel panel = new ChartPanel(grafica);
@@ -74,9 +79,19 @@ public class DialogoGraficos extends JDialog {
         btnGrafico2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+                for(Carrera profesor:modelo.getCarreras()){
+                    dataset.addValue(profesor.getCompetidoresCarrera().size(),profesor.getDenominacion(), profesor.getDenominacion());
+                }
 
+                JFreeChart jFreeChart = ChartFactory.createBarChart("Cantidad de alumnos por profesor","profesores","alumnos",dataset);
+                ChartFrame frame = new ChartFrame("Diagrama",jFreeChart);
+                frame.pack();
+                frame.setVisible(true);
             }
         });
+        pack();
+        setVisible(true);
     }
 
     private void onOK() { dispose(); }
