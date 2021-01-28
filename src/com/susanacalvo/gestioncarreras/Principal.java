@@ -21,6 +21,12 @@ public class Principal {
      * @param args
      */
     public static void main(String args[]){
+        Util.crearSiNoExisteDirectorioDatos();
+        Locale locale = Util.obtenerLocale();
+        Locale.setDefault(locale);
+
+        int fuente=Util.obtenerFuente();
+        establecerTamanoFuente(fuente);
         aplicarLookAndFeel();
 
         Thread hilo = new Thread(new SplashScreen());
@@ -32,13 +38,7 @@ public class Principal {
             e.printStackTrace();
         }
 
-        Locale locale = Util.obtenerLocale();
-        Locale.setDefault(locale);
 
-        int fuente=Util.obtenerFuente();
-        establecerTamanoFuente(fuente);
-
-        Util.crearSiNoExisteDirectorioDatos();
 
         int tipoUsuario = DialogoLogin.mostrarDialogoLogin();
 

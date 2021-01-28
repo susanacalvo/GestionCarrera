@@ -126,9 +126,11 @@ public class Controlador implements ActionListener, ListSelectionListener, KeyLi
                 break;
             case "Usuarios":
                 DialogoGestionUsuarios dialogoGestionUsuarios = new DialogoGestionUsuarios();
+                System.out.println("User");
                 break;
             case "Configuracion":
                 DialogoConfiguracion dialogoConfiguracion = new DialogoConfiguracion();
+                System.out.println("Con");
                 break;
             case "NuevoJuez":
                 nuevoJuez();

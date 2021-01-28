@@ -32,7 +32,7 @@ public class DialogoConfiguracion extends JDialog {
      * Constructor publico de la clase
      */
     public DialogoConfiguracion() {
-        resourceBundle = ResourceBundle.getBundle("idiomaResourcebundle");
+        resourceBundle = ResourceBundle.getBundle("idiomaResourceBundle");
         dcbm=new DefaultComboBoxModel<>();
         cbTamanoFuente.setModel(dcbm);
         initDialog();

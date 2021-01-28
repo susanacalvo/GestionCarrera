@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Locale;
 import java.util.Properties;
@@ -26,6 +27,31 @@ public class Util {
         File directorio = new File("data");
         if(!directorio.exists()) {
             directorio.mkdir();
+        }
+
+        File user = new File("data/users.dat");
+        if(!user.exists()){
+            try {
+                user.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        File preferencias = new File("data/preferencias.conf");
+        if(!preferencias.exists()){
+            try {
+                preferencias.createNewFile();
+                Properties propiedades = new Properties();
+                String idioma="es";
+                String pais="ES";
+                int fuente=12;
+                propiedades.setProperty("fuente", String.valueOf(fuente));
+                propiedades.setProperty("idioma", idioma);
+                propiedades.setProperty("pais", pais);
+                propiedades.store(new FileWriter("data/preferencias.conf"), "Fichero de preferencias");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -64,11 +90,13 @@ public class Util {
         Properties properties = new Properties();
         try {
             properties.load(new FileReader("data/preferencias.conf"));
-            String pais = properties.getProperty("pais");
+
             String idioma = properties.getProperty("idioma");
 
-            if(pais.equals("UK")){
-                locale = new Locale("en", "UK");
+            if(idioma.equals("en")){
+                locale = new Locale("EN");
+            }else{
+                locale = new Locale("ES");
             }
 
         } catch (IOException e) {
@@ -77,7 +105,7 @@ public class Util {
 
         //Si no se ha podido cargar el fichero, idioma spanish
         if(locale == null){
-            locale = new Locale("es", "ES");
+            locale = new Locale("ES");
         }
 
         return locale;

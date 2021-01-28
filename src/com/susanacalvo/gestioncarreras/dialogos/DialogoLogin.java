@@ -5,10 +5,7 @@ import com.susanacalvo.gestioncarreras.util.Util;
 
 import javax.swing.*;
 import java.awt.event.*;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.ObjectInputStream;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -121,15 +118,21 @@ public class DialogoLogin extends JDialog {
 
         try {
             fis = new FileInputStream("data/users.dat");
+
             deserializador = new ObjectInputStream(fis);
+
             usuarios = (ArrayList<Usuario>) deserializador.readObject();
+
+
         } catch (FileNotFoundException e) {
             e.printStackTrace();
+        }catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch(EOFException e) {
+            usuarios = new ArrayList<Usuario>();
         } catch (IOException e) {
             e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } finally {
+        } finally{
             if(deserializador != null){
                 try {
                     deserializador.close();

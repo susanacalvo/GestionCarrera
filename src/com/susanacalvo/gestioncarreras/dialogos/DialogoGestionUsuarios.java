@@ -35,14 +35,14 @@ public class DialogoGestionUsuarios extends JDialog {
      * Constructor publico de la clase DialogoGestionUsuarios
      */
     public DialogoGestionUsuarios() {
-        resourceBundle = ResourceBundle.getBundle("idiomaResourcebundle");
+        resourceBundle = ResourceBundle.getBundle("idiomaResourceBundle");
         dlm = new DefaultListModel<>();
         listUsuarios.setModel(dlm);
         initDialog();
         cargarUsuarios();
         listarUsuarios();
-        setLocationRelativeTo(null);
         pack();
+        setLocationRelativeTo(null);
         setVisible(true);
 
     }
@@ -213,16 +213,23 @@ public class DialogoGestionUsuarios extends JDialog {
             deserializador = new ObjectInputStream(fileInputStream);
             usuarios = (ArrayList<Usuario>) deserializador.readObject();
 
-        } catch (Exception e){
+
+
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
-            usuarios =  new ArrayList<>();
-        } finally {
-            try {
-                if(deserializador != null) {
+        }catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch(EOFException e) {
+            usuarios = new ArrayList<Usuario>();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally{
+            if(deserializador != null){
+                try {
                     deserializador.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
-            } catch (IOException e) {
-                e.printStackTrace();
             }
         }
     }
