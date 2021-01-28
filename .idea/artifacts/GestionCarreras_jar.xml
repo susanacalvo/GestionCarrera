@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="GestionCarreras:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/GestionCarreras_jar</output-path>
+    <root id="archive" name="GestionCarreras.jar">
+      <element id="module-output" name="GestionCarreras" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/libs/jfreechart-1.0.19.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/libs/jgoodies-forms-1.2.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/libs/jgoodies-common-1.8.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/libs/LGoodDatePicker-10.3.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/libs/jfreechart-jcommon-1.0.24.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
