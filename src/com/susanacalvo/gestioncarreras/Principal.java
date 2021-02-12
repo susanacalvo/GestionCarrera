@@ -28,7 +28,7 @@ public class Principal {
         int fuente=Util.obtenerFuente();
         establecerTamanoFuente(fuente);
         aplicarLookAndFeel();
-
+        /**
         Thread hilo = new Thread(new SplashScreen());
         hilo.start();
 
@@ -37,7 +37,7 @@ public class Principal {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
+        */
 
 
         int tipoUsuario = DialogoLogin.mostrarDialogoLogin();

@@ -69,6 +69,7 @@ public class Controlador implements ActionListener, ListSelectionListener, KeyLi
         vista.listCarrera.addListSelectionListener(listener);
         vista.listCompetidores.addListSelectionListener(listener);
         vista.listCompetidorCarrera.addListSelectionListener(listener);
+        vista.listCarrerasCompetidor.addListSelectionListener(listener);
     }
 
     /**
@@ -96,6 +97,7 @@ public class Controlador implements ActionListener, ListSelectionListener, KeyLi
         vista.btnAgregarCarreraAJuez.addActionListener(listener);
         vista.itemGraficos.addActionListener(listener);
         vista.itemRelaciones.addActionListener(listener);
+        vista.btnAnadirCarreraACompetidor.addActionListener(listener);
     }
 
     /**
@@ -165,6 +167,9 @@ public class Controlador implements ActionListener, ListSelectionListener, KeyLi
             case "AgregarCarrerasAJuez":
                 agregarCarrerasAJuez();
                 break;
+            case "AnadirCarreraACompetidor":
+                agregarCarrerasACompetidor();
+                break;
             case "NuevaImagen":
                 cargarFoto();
                 break;
@@ -214,6 +219,19 @@ public class Controlador implements ActionListener, ListSelectionListener, KeyLi
     }
 
     /**
+     * Método que lista las carreras de un Competidor
+     * @param competidor
+     */
+    private void listarCarrerasDeCompetidores(Competidor competidor){
+        vista.dlmCarrerasCompetidor.clear();
+        for(Carrera carrera : modelo.getCarreras()){
+           if(carrera.getCompetidoresCarrera().contains(competidor)){
+               vista.dlmCarrerasCompetidor.addElement(carrera);
+           }
+        }
+    }
+
+    /**
      * Método que agrega Competidores a una Carrera
      */
     private void agregarCompetidorACarrera() {
@@ -227,6 +245,22 @@ public class Controlador implements ActionListener, ListSelectionListener, KeyLi
         DialogoAgregarCompetidoresACarrera d =new DialogoAgregarCompetidoresACarrera(carrera,competidores);
 
         listarCompetididoresDeCarrera(carrera);
+    }
+
+    /**
+     * Método que agrega Carreras a Competidores
+     */
+    private void agregarCarrerasACompetidor(){
+        if(vista.listCompetidores.isSelectionEmpty()){
+            Util.mostrarDialogoError(resourceBundle.getString("no.se.ha.seleccionado.ningun.competidor"));
+            return;
+        }
+
+        Competidor competidor = vista.listCompetidores.getSelectedValue();
+        List<Carrera> carreras = modelo.getCarreras();
+        DialogoAgregarCarrerasACompetidor dialogo = new DialogoAgregarCarrerasACompetidor(competidor,carreras);
+
+        listarCarrerasDeCompetidores(competidor);
     }
 
     /**
@@ -410,6 +444,7 @@ public class Controlador implements ActionListener, ListSelectionListener, KeyLi
 
         modelo.eliminarCompetidor(vista.listCompetidores.getSelectedValue());
         vista.listCompetidores.getSelectedValue().getCarrera().getCompetidoresCarrera().remove(vista.listCompetidores.getSelectedValue());
+
         //Util.mostrarDialogoInformacion(resourceBundle.getString("eliminado.correctamente"));
         listarCompetidoresEnJlist();
 
@@ -580,6 +615,8 @@ public class Controlador implements ActionListener, ListSelectionListener, KeyLi
             vista.txtEdad.setText(String.valueOf(competidor.getEdad()));
             vista.txtAltura.setText(String.valueOf(competidor.getAltura()));
             vista.lblImagen.setIcon(competidor.getFoto());
+
+            listarCarrerasDeCompetidores(competidor);
         }
     }
 

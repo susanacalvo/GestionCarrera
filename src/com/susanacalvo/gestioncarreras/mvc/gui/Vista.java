@@ -73,6 +73,9 @@ public class Vista {
      DefaultListModel<Carrera>dlmCarreraDeJuez;
      JButton btnAgregarCarreraAJuez;
      JPanel panelListaCarreras;
+     JButton btnAnadirCarreraACompetidor;
+     JList<Carrera> listCarrerasCompetidor;
+     DefaultListModel<Carrera>dlmCarrerasCompetidor;
     private ResourceBundle resourceBundle;
     private int tipoUsuario;
     JMenuItem itemSalir;
@@ -150,6 +153,9 @@ public class Vista {
 
         dlmJuez = new DefaultListModel<>();
         listaJueces.setModel(dlmJuez);
+
+        dlmCarrerasCompetidor = new DefaultListModel<>();
+        listCarrerasCompetidor.setModel(dlmCarrerasCompetidor);
 
         dcbmJuez = new DefaultComboBoxModel<>();
         cbJuezCarrera.setModel(dcbmJuez);
