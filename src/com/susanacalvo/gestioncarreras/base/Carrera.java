@@ -9,7 +9,8 @@ import java.util.List;
 /**
  * Clase Carrera
  * @author Susana
- *
+ * @since JDK 8
+ * @version 1.8
  */
 public class Carrera implements Serializable {
     /**
@@ -26,12 +27,12 @@ public class Carrera implements Serializable {
 
     /**
      * Constructor de la clase Carrera
-     * @param denominacion
-     * @param metros
-     * @param fecha
-     * @param lugar
-     * @param realizado
-     * @param juezCarrera
+     * @param denominacion nombre de la Carrera
+     * @param metros cantidad de metros de la Carrera
+     * @param fecha Fecha de la realización de la Carrera
+     * @param lugar Lugar de realización de la Carrera
+     * @param realizado Si se ha realizado o no
+     * @param juezCarrera Objeto Juez
      */
     public Carrera(String denominacion, int metros, LocalDate fecha, String lugar, boolean realizado, Juez juezCarrera) {
         super();
@@ -52,7 +53,7 @@ public class Carrera implements Serializable {
 
     /**
      * Método que establece una Denominación
-     * @param denominacion
+     * @param denominacion nombre de la Carrera
      */
     public void setDenominacion(String denominacion) { this.denominacion = denominacion; }
 
@@ -64,7 +65,7 @@ public class Carrera implements Serializable {
 
     /**
      * Método que establece los metros de la carrera
-     * @param metros
+     * @param metros cantidad de metros de la Carrera
      */
     public void setMetros(int metros) { this.metros = metros; }
 
@@ -76,7 +77,7 @@ public class Carrera implements Serializable {
 
     /**
      * Método que establece una Fecha
-     * @param fecha
+     * @param fecha Fecha de realización de la carrera
      */
     public void setFecha(LocalDate fecha) { this.fecha = fecha; }
 

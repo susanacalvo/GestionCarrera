@@ -8,8 +8,16 @@ import java.awt.event.*;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-
+/**
+ * Clase Login
+ * @author Susana
+ * @since JDK 8
+ * @version 1.8
+ */
 public class DialogoLogin extends JDialog {
+    /**
+     * Atributos de la clase
+     */
     private JPanel contentPane;
     private JButton buttonOK;
     private JButton buttonCancel;
@@ -145,9 +153,9 @@ public class DialogoLogin extends JDialog {
 
     /**
      * Método que comprueba recorre los usuarios creados y si es todo correcto le asigna el estado
-     * @param login
-     * @param password
-     * @return false/true
+     * @param login nombre de usuario
+     * @param password constraseña de usuario
+     * @return True si ya existe, False si no
      */
     private boolean comprobarUsuarioRegistrados(String login, char[] password) {
         for(Usuario usuario : usuarios){

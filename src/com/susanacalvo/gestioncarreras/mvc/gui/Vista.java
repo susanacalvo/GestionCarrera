@@ -9,6 +9,12 @@ import javax.swing.*;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.util.ResourceBundle;
+/**
+ * Clase Vista
+ * @author Susana
+ * @since JDK8
+ * @version 1.8
+ */
 
 public class Vista {
     JFrame frame;
@@ -85,11 +91,12 @@ public class Vista {
     JMenuItem itemPreferencias;
     JMenuItem itemRelaciones;
     JMenuItem itemGraficos;
+    JMenuItem itemInformes;
 
 
     /**
      * Constructor de la clase, recibe el tipo de usuario que se ha logueado
-     *
+     * @param tipoUsuario Tipo de Usuario que se ha logueado
      */
     public Vista(int tipoUsuario) {
         this.tipoUsuario=tipoUsuario;
@@ -117,9 +124,6 @@ public class Vista {
     private void controlarTipoUsuario() {
         if(tipoUsuario== Usuario.USUSARIO_JUEZ){
             itemGestionUsuarios.setEnabled(false);
-            itemGuardar.setEnabled(false);
-            itemCargar.setEnabled(false);
-
         }else if(tipoUsuario==Usuario.USUARIO_COMPETIDOR){
             tabbedPane1.setEnabled(false);
             btnNuevoJuez.setEnabled(false);
@@ -131,7 +135,6 @@ public class Vista {
             txtCodJuez.setEnabled(false);
             itemGestionUsuarios.setEnabled(false);
             itemGuardar.setEnabled(false);
-            itemCargar.setEnabled(false);
         }
     }
 
@@ -214,9 +217,13 @@ public class Vista {
         itemGraficos = new JMenuItem(resourceBundle.getString("ver.graficos"));
         itemGraficos.setActionCommand("Graficos");
         itemGraficos.setIcon(new ImageIcon(getClass().getResource("/grafico.png")));
+        itemInformes = new JMenuItem("Informes");
+        itemInformes.setActionCommand("Informes");
+        itemInformes.setIcon(new ImageIcon(getClass().getResource("/reporte.png")));
 
         menuVista.add(itemRelaciones);
         menuVista.add(itemGraficos);
+        menuVista.add(itemInformes);
 
     }
 
@@ -234,6 +241,7 @@ public class Vista {
         itemRelaciones.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R, InputEvent.CTRL_DOWN_MASK));
         itemGestionUsuarios.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_U, InputEvent.CTRL_DOWN_MASK));
         itemPreferencias.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, InputEvent.CTRL_DOWN_MASK));
+        itemInformes.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_I, InputEvent.CTRL_DOWN_MASK));
         //Alt +
         btnNuevoJuez.setMnemonic(KeyEvent.VK_1);
         btnEliminarJuez.setMnemonic(KeyEvent.VK_2);

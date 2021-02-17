@@ -1,13 +1,21 @@
 package com.susanacalvo.gestioncarreras.mvc.gui;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
+/**
+ * Clase SplashScreen
+ * @author Susana
+ * @since JDK8
+ * @version 1.8
+ */
 
 public class SplashScreen extends JDialog implements Runnable {
     private static final long serialVersionUID = 1L;
     private JProgressBar barraProgreso;
 
+    /**
+     * Constructor de la clase
+     */
     public SplashScreen() {
         setBounds(100, 100, 700, 700);
 
@@ -41,6 +49,10 @@ public class SplashScreen extends JDialog implements Runnable {
         setLocationRelativeTo(null); //Mostrar en el centro
         setVisible(true);
     }
+
+    /**
+     * Método implementado por la interfaz Runnable que inicializa el hilo
+     */
     @Override
     public void run() {
         try {

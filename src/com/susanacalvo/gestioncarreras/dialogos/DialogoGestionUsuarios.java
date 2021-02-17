@@ -12,6 +12,10 @@ import java.util.ResourceBundle;
 
 /**
  * Clase DialogoGestionUsuarios, encargada de crear nuevos usuarios y/o eliminarlos
+ * @author Susana
+ * @since JDK 8
+ * @version 1.8
+ *
  */
 public class DialogoGestionUsuarios extends JDialog {
     /**
@@ -165,7 +169,6 @@ public class DialogoGestionUsuarios extends JDialog {
      * Método que reacciona ante el botón Aceptar
      */
     private void onOK() {
-        // add your code here
         guardarUsuarios();
         dispose();
     }
@@ -212,8 +215,6 @@ public class DialogoGestionUsuarios extends JDialog {
             fileInputStream = new FileInputStream("data/users.dat");
             deserializador = new ObjectInputStream(fileInputStream);
             usuarios = (ArrayList<Usuario>) deserializador.readObject();
-
-
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();

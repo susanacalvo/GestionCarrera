@@ -9,8 +9,16 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
-
+/**
+ * Clase que agrega o elimina competidores de una Carrera
+ * @author Susana
+ * @since JDK 8
+ * @version 1.8
+ */
 public class DialogoAgregarCompetidoresACarrera extends JDialog {
+    /**
+     * Atributos de la clase
+     */
     private JPanel contentPane;
     private JButton buttonOK;
     private JButton buttonCancel;
@@ -25,6 +33,11 @@ public class DialogoAgregarCompetidoresACarrera extends JDialog {
     private List<Competidor> listaTemporalMatriculados;
     private List<Competidor> listaTemporalNoMatriculados;
 
+    /**
+     * Constructor de la clase
+     * @param carrera Objeto Carrera
+     * @param competidores Lista de competidores
+     */
     public DialogoAgregarCompetidoresACarrera(Carrera carrera, List<Competidor>competidores) {
         this.carrera=carrera;
         //Creo dos listas temporales. Si finalmente acepto los cambios, se hacen efectivas

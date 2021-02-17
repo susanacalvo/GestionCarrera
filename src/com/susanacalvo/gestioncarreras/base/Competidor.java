@@ -8,7 +8,8 @@ import java.util.List;
 /**
  * Clase Competidor
  * @author Susana
- *
+ * @since JDK 8
+ * @version 1.8
  */
 public class Competidor implements Serializable {
     /**

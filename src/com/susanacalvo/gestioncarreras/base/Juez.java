@@ -6,6 +6,8 @@ import java.util.LinkedList;
 /**
  * Clase Juez
  * @author Susana
+ * @since JDK 8
+ * @version 1.8
  */
 public class Juez implements Serializable {
     /**

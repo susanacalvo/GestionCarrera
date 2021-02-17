@@ -5,6 +5,8 @@ import java.io.Serializable;
 /**
  * Clase Usuario
  * @author Susana
+ * @since JDK 8
+ * @version 1.8
  */
 public class Usuario implements Serializable {
     /**

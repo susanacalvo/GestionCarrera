@@ -14,6 +14,8 @@ import java.util.Locale;
 /**
  * Clase Principal, encargada de lanzar la aplicación
  * @author Susana
+ * @since JDK 8
+ * @version 1.8
  */
 public class Principal {
     /**
@@ -46,8 +48,6 @@ public class Principal {
         Modelo modelo = new Modelo();
 
         Controlador controlador = new Controlador(vista, modelo);
-
-
     }
 
     /**
@@ -70,7 +70,7 @@ public class Principal {
 
     /**
      * Método que establece el tamano de fuente de la aplicación
-     * @param fuente
+     * @param fuente tamaño de fuente de la aplicación
      */
     public static void establecerTamanoFuente(int fuente) {
         String[] componentes = {"Label.font", "Button.font", "ToggleButton.font", "RadioButton.font",

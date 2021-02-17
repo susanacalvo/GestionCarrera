@@ -18,7 +18,12 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-
+/**
+ * Clase Controlador
+ * @author Susana
+ * @since JDK8
+ * @version 1.8
+ */
 public class Controlador implements ActionListener, ListSelectionListener, KeyListener {
     /**
      * Atributos de la clase
@@ -29,8 +34,8 @@ public class Controlador implements ActionListener, ListSelectionListener, KeyLi
 
     /**
      * Constructor de la clase Controlador
-     * @param vista
-     * @param modelo
+     * @param vista Vista gui form
+     * @param modelo Modelo de funciones
      */
     public Controlador(Vista vista,Modelo modelo){
         this.vista=vista;
@@ -46,7 +51,7 @@ public class Controlador implements ActionListener, ListSelectionListener, KeyLi
 
     /**
      * Método que inicializa el control del KeyListener
-     * @param listener
+     * @param listener KeyListener
      */
     private void anadirKeyListener(KeyListener listener) {
         vista.txtLugar.addKeyListener(listener);
@@ -62,7 +67,7 @@ public class Controlador implements ActionListener, ListSelectionListener, KeyLi
 
     /**
      * Método que asocia componentes con el ListSelectionListener
-     * @param listener
+     * @param listener ListSelectionListener
      */
     private void anadirListSelectionListener(ListSelectionListener listener) {
         vista.listaJueces.addListSelectionListener(listener);
@@ -74,7 +79,7 @@ public class Controlador implements ActionListener, ListSelectionListener, KeyLi
 
     /**
      * Método que asocia componentes con el ActionListener
-     * @param listener
+     * @param listener ActionListener
      */
     private void anadirActionListener(ActionListener listener) {
         vista.itemCargar.addActionListener(listener);
@@ -97,16 +102,20 @@ public class Controlador implements ActionListener, ListSelectionListener, KeyLi
         vista.btnAgregarCarreraAJuez.addActionListener(listener);
         vista.itemGraficos.addActionListener(listener);
         vista.itemRelaciones.addActionListener(listener);
+        vista.itemInformes.addActionListener(listener);
         vista.btnAnadirCarreraACompetidor.addActionListener(listener);
     }
 
     /**
      * Método que reaccion ante los ActionListeners
-     * @param e
+     * @param e Evento sobre el cuál se ha reaccionado ante el ActionListener
      */
     @Override
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()){
+            case"Informes":
+                DialogoInformes dialogoInformes = new DialogoInformes();
+                break;
             case "Relacion":
                 DialogoRelaciones dialogoRelaciones = new DialogoRelaciones(modelo);
                 break;
@@ -209,7 +218,7 @@ public class Controlador implements ActionListener, ListSelectionListener, KeyLi
     }
     /**
      * Método que lista los competidores de una Carrera
-     * @param carrera
+     * @param carrera Objeto Carrera
      */
     private void listarCompetididoresDeCarrera(Carrera carrera) {
         vista.dlmCompetidorCarrera.clear();
@@ -220,7 +229,7 @@ public class Controlador implements ActionListener, ListSelectionListener, KeyLi
 
     /**
      * Método que lista las carreras de un Competidor
-     * @param competidor
+     * @param competidor Objeto Competidor
      */
     private void listarCarrerasDeCompetidores(Competidor competidor){
         vista.dlmCarrerasCompetidor.clear();
@@ -265,6 +274,8 @@ public class Controlador implements ActionListener, ListSelectionListener, KeyLi
 
     /**
      * Método que lista las carreras de un Juez
+     * @param juez Objeto Juez
+     *
      */
     private void listarCarrerasDeJuez(Juez juez) {
         vista.dlmCarreraDeJuez.clear();
@@ -395,7 +406,7 @@ public class Controlador implements ActionListener, ListSelectionListener, KeyLi
     }
     /**
      * Método que comprueba que no estén vacíos los campos de Competidor
-     * @return true/false
+     * @return True si no están vacíos los datos, False si sí están vacíos
      */
     private boolean datosCompetidorCorrectos(){
         if (vista.txtDni.getText().isEmpty() || vista.txtNombreCompetidor.getText().isEmpty() || vista.txtApeCompetidor.getText().isEmpty()
@@ -507,7 +518,7 @@ public class Controlador implements ActionListener, ListSelectionListener, KeyLi
 
     /**
      * Método que comprueba que los datos del Juez sean correctos
-     * @return true/false
+     * @return True si no están vacíos los datos, False si sí están vacíos
      */
     private boolean datosJuezCorrectos() {
         if(vista.txtCodJuez.getText().isEmpty() || vista.txtNombreJuez.getText().isEmpty() || vista.txtApellidosJuez.getText().isEmpty()){
@@ -686,7 +697,7 @@ public class Controlador implements ActionListener, ListSelectionListener, KeyLi
 
     /**
      * Método que reacciona ante los ListSelectionListener
-     * @param e
+     * @param e Evento del elemento seleccionado en la lista
      */
     @Override
     public void valueChanged(ListSelectionEvent e) {
@@ -701,7 +712,7 @@ public class Controlador implements ActionListener, ListSelectionListener, KeyLi
 
     /**
      * Método que reacciona ante la pulsación del teclado
-     * @param e
+     * @param e Evento del elemento pulsado
      */
     @Override
     public void keyTyped(KeyEvent e) {

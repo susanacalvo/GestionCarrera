@@ -12,8 +12,16 @@ import org.jfree.data.general.DefaultPieDataset;
 import javax.swing.*;
 import java.awt.event.*;
 import java.util.ResourceBundle;
-
+/**
+ * Clase Graficos
+ * @author Susana
+ * @since JDK 8
+ * @version 1.8
+ */
 public class DialogoGraficos extends JDialog {
+    /**
+     * Atributos de la clase
+     */
     private JPanel contentPane;
     private JButton buttonOK;
     private JButton buttonCancel;
@@ -24,7 +32,10 @@ public class DialogoGraficos extends JDialog {
     private ResourceBundle resourceBundle;
     private Modelo modelo;
 
-
+    /**
+     * Constructor de la clase
+     * @param modelo Modelo
+     */
     public DialogoGraficos(Modelo modelo) {
         this.modelo=modelo;
         resourceBundle = ResourceBundle.getBundle("idiomaResourceBundle");
@@ -32,10 +43,11 @@ public class DialogoGraficos extends JDialog {
         pack();
         setLocationRelativeTo(null);
         setVisible(true);
-
-
     }
 
+    /**
+     * Método que inicializa los manejadores de eventos
+     */
     private void initUI() {
         setContentPane(contentPane);
         setModal(true);
@@ -98,8 +110,14 @@ public class DialogoGraficos extends JDialog {
         });
     }
 
+    /**
+     * Método que reacciona ante el botón OK
+     */
     private void onOK() { dispose(); }
 
+    /**
+     * Método que reacciona ante el botón Cancel
+     */
     private void onCancel() { dispose(); }
 
 }

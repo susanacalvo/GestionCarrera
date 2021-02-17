@@ -1,19 +1,25 @@
 package com.susanacalvo.gestioncarreras.dialogos;
 
-import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
 import com.susanacalvo.gestioncarreras.base.Carrera;
 import com.susanacalvo.gestioncarreras.base.Competidor;
 import com.susanacalvo.gestioncarreras.base.Juez;
 import com.susanacalvo.gestioncarreras.mvc.componentes.PanelCompetidor;
 import com.susanacalvo.gestioncarreras.mvc.componentes.PanelJuez;
 import com.susanacalvo.gestioncarreras.mvc.modelo.Modelo;
-
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.event.*;
-
+/**
+ * Clase Relaciones
+ *  @author Susana
+ * @since JDK 8
+ * @version 1.8
+ */
 public class DialogoRelaciones extends JDialog {
+    /**
+     * Atributos de la clase
+     */
     private JPanel contentPane;
     private JButton buttonOK;
     private JButton buttonCancel;
@@ -23,6 +29,10 @@ public class DialogoRelaciones extends JDialog {
     private JPanel panelCompetidores;
     private Modelo modelo;
 
+    /**
+     * Constructor de la clase
+     * @param modelo Modelo
+     */
     public DialogoRelaciones(Modelo modelo) {
         this.modelo=modelo;
         dlm=new DefaultListModel<>();
@@ -34,6 +44,9 @@ public class DialogoRelaciones extends JDialog {
         setVisible(true);
     }
 
+    /**
+     * Método que inicializa los manejadores de evento de la clase
+     */
     private void initUI() {
         setContentPane(contentPane);
         setModal(true);
@@ -75,10 +88,20 @@ public class DialogoRelaciones extends JDialog {
         });
     }
 
+    /**
+     * Método que reacciona ante el botón OK
+     */
     private void onOK() { dispose(); }
 
+    /**
+     * Método que reacciona ante el botón Cancel
+     */
     private void onCancel() { dispose(); }
 
+    /**
+     * Método que muestra un panel de un Juez de una carrera
+     * @param carrera Objeto Carrera
+     */
     private void mostrarJueces(Carrera carrera){
         panelJueces.removeAll();
         for(Juez juez: modelo.getJueces()){
@@ -92,6 +115,10 @@ public class DialogoRelaciones extends JDialog {
         }
     }
 
+    /**
+     * Método que muestra un panel de Competidores de una Carrera
+     * @param carrera Objeto Carrera
+     */
     private void mostrarCompetidores(Carrera carrera){
         panelCompetidores.removeAll();
         for(Competidor competidor : modelo.getCompetidores()){
@@ -103,6 +130,9 @@ public class DialogoRelaciones extends JDialog {
         }
     }
 
+    /**
+     * Método que lista las carreras existentes
+     */
     private void listarCarreras(){
         dlm.clear();
         for(Carrera carrera : modelo.getCarreras()){

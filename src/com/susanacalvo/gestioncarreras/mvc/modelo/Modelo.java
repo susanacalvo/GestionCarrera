@@ -11,9 +11,13 @@ import java.util.*;
 /**
  * Clase modelo, realiza todas las operaciones de la aplicacion
  * @author Susana
- *
+ * @since JDK 8
+ * @version 1.8
  */
 public class Modelo {
+    /**
+     * Atributos de la clase
+     */
     private List<Competidor> listaCompetidores;
     private LinkedList<Carrera> listaCarreras;
     private ArrayList<Juez> listaJueces;
@@ -31,7 +35,7 @@ public class Modelo {
 
     /**
      * Método que añade un nuevo competidor al sistema
-     * @param competidor
+     * @param competidor Objeto Competidor
      */
     public void nuevoCompetidor(Competidor competidor){
         listaCompetidores.add(competidor);
@@ -42,7 +46,7 @@ public class Modelo {
 
     /**
      * Método que elimina un competidor del sistema
-     * @param competidor
+     * @param competidor Objeto Competidor
      */
     public void eliminarCompetidor(Competidor competidor){
         if(competidor.getCarrera()!=null){
@@ -53,50 +57,50 @@ public class Modelo {
 
     /**
      * Método que devuelve una lista de los competidores
-     * @return listsCompetidores
+     * @return listaCompetidores lista con todos los competidores
      */
     public List<Competidor>getCompetidores(){ return listaCompetidores; }
 
     /**
      * Método que añade un nuevo Juez al sistema
-     * @param juez
+     * @param juez Objeto Juez
      */
     public void nuevoJuez(Juez juez){listaJueces.add(juez);}
 
     /**
      * Método que elimina un Juez del sistema
-     * @param juez
+     * @param juez Objeto Juez
      */
     public void eliminarJuez(Juez juez){listaJueces.remove(juez);}
 
     /**
      * Método que devuelve una lista de los jueces
-     * @return listaJueces
+     * @return listaJueces lista con todos los jueces
      */
     public ArrayList<Juez>getJueces(){return listaJueces;}
 
     /**
      * Método que añade una nueva carrera al sistema
-     * @param carrera
+     * @param carrera Objeto Carrera
      */
     public void nuevaCarrera(Carrera carrera){listaCarreras.add(carrera);}
 
     /**
      * Método que elimina una carrera del sistema
-     * @param carrera
+     * @param carrera Objeto Carrera
      */
     public void eliminarCarrera(Carrera carrera){listaCarreras.remove(carrera);}
 
     /**
      * Método que devuelve una lista de las carreras
-     * @return
+     * @return listaCarreras lista con todas las carreras
      */
     public LinkedList<Carrera>getCarreras(){return listaCarreras;}
 
     /**
      * Método que comprueba que el Competidor ya existe
-     * @param dni
-     * @return false/true
+     * @param dni cadena de texto referente al dni del Competidor
+     * @return True si ya existe, False si no existe
      */
     public boolean existeDniCompetidor(String dni){
 
@@ -110,8 +114,8 @@ public class Modelo {
 
     /**
      * Método que comprueba que el Juez ya existe
-     * @param codigo
-     * @return false/true
+     * @param codigo cadena de texto referente al código del Juez
+     * @return True si ya existe, False si no existe
      */
     public boolean existeCodigoJuez(String codigo){
         for(Juez j:listaJueces){
@@ -123,8 +127,11 @@ public class Modelo {
     }
 
     /**
-     * Método que comprueba que no haya la misma carrera en la misma fecha
-     * @return
+     * Método que comprueba que si la carrera ya existe
+     * @param fecha Fecha de realización de la carrera
+     * @param nombre Nombre de la carrera
+     * @param lugar Lugar de realización de la carrera
+     * @return True si ya existe, False si no existe
      */
     public boolean existeCarrera(LocalDate fecha, String nombre, String lugar){
         for (Carrera c:listaCarreras){
@@ -138,7 +145,7 @@ public class Modelo {
 
     /**
      * Método para leer los datos de un fichero binario
-     * @param fichero
+     * @param fichero Fichero de datos
      */
     public void cargarDatos(File fichero) {
         try {
@@ -166,7 +173,7 @@ public class Modelo {
 
     /**
      * Método para guardar los datos en un fichero binario
-     * @param fichero
+     * @param fichero Fichero de datos
      */
     public void guardarDatos(File fichero) {
         try {

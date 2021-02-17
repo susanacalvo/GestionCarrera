@@ -5,7 +5,9 @@
     <constraints>
       <xy x="48" y="54" width="478" height="297"/>
     </constraints>
-    <properties/>
+    <properties>
+      <preferredSize width="650" height="350"/>
+    </properties>
     <border type="none"/>
     <children>
       <grid id="94766" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
@@ -102,7 +104,7 @@
                     <properties>
                       <icon value="menor.png"/>
                       <text value=""/>
-                      <toolTipText resource-bundle="idiomaResourceBundle" key="anadir.competidor"/>
+                      <toolTipText resource-bundle="idiomaResourceBundle" key="agregar.carrera"/>
                     </properties>
                   </component>
                   <component id="66f09" class="javax.swing.JButton" binding="btnEliminar">
@@ -112,7 +114,7 @@
                     <properties>
                       <icon value="mayor.png"/>
                       <text value=""/>
-                      <toolTipText resource-bundle="idiomaResourceBundle" key="elimiar.competidor"/>
+                      <toolTipText resource-bundle="idiomaResourceBundle" key="eliminar.carrera"/>
                     </properties>
                   </component>
                 </children>

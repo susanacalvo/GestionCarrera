@@ -14,6 +14,10 @@ import java.util.ResourceBundle;
 
 /**
  * Clase DialogoConfiguración, permite al usuario configurar su aplicacion a su gusto
+ * @author Susana
+ * @since JDK 8
+ * @version 1.8
+ *
  */
 public class DialogoConfiguracion extends JDialog {
     /**

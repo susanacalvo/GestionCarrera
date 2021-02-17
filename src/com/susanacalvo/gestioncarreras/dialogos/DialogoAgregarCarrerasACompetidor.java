@@ -2,13 +2,17 @@ package com.susanacalvo.gestioncarreras.dialogos;
 
 import com.susanacalvo.gestioncarreras.base.Carrera;
 import com.susanacalvo.gestioncarreras.base.Competidor;
-
+import com.susanacalvo.gestioncarreras.mvc.modelo.Modelo;
 import javax.swing.*;
-import javax.swing.text.Caret;
 import java.awt.event.*;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
+/**
+ * Clase que agrega o elimina carreras a un competidor
+ * @author Susana
+ * @since JDK8
+ * @version 1.8
+ */
 
 public class DialogoAgregarCarrerasACompetidor extends JDialog {
     private JPanel contentPane;
@@ -24,11 +28,17 @@ public class DialogoAgregarCarrerasACompetidor extends JDialog {
     private Competidor competidor;
     private List<Carrera> listaTemporalMatriculados;
     private List<Carrera> listaTemporalNoMatriculados;
+    private List<Carrera> c;
 
-
+    /**
+     * Constructor de la clase
+     * @param competidor Objeto Competidor
+     * @param carreras Lista de carreras
+     */
     public DialogoAgregarCarrerasACompetidor(Competidor competidor, List<Carrera>carreras) {
         this.competidor=competidor;
-        List<Carrera>c = new ArrayList<>();
+
+        c = new ArrayList<>();
         for(Carrera carrera : carreras){
             if(carrera.getCompetidoresCarrera().contains(competidor)){
                c.add(carrera);
@@ -38,7 +48,6 @@ public class DialogoAgregarCarrerasACompetidor extends JDialog {
 
         listaTemporalNoMatriculados = new ArrayList<>(carreras);
 
-        //Elimino los alumnos que ya tiene el profesor de la lista de no matriculados
         listaTemporalNoMatriculados.removeAll(listaTemporalMatriculados);
 
         dlmCarrerasEnCompetidores = new DefaultListModel<>();
@@ -58,7 +67,7 @@ public class DialogoAgregarCarrerasACompetidor extends JDialog {
     private void listarCarrerasEnCompetidor() {
         dlmCarrerasEnCompetidores.clear();
         for(Carrera carrera : listaTemporalMatriculados){
-            dlmCarrerasEnCompetidores.add(carrera);
+            dlmCarrerasEnCompetidores.addElement(carrera);
         }
     }
 
@@ -68,10 +77,13 @@ public class DialogoAgregarCarrerasACompetidor extends JDialog {
     private void listarCarrerasExistentes() {
         dlmCarrerasExistentes.clear();
         for (Carrera carrera : listaTemporalNoMatriculados){
-            dlmCarrerasExistentes.add(carrera);
+            dlmCarrerasExistentes.addElement(carrera);
         }
     }
 
+    /**
+     * Método que inicializa los manejadores de eventos de la clase
+     */
     private void initUI() {
         setContentPane(contentPane);
         setModal(true);
@@ -104,15 +116,11 @@ public class DialogoAgregarCarrerasACompetidor extends JDialog {
 
         btnAgregar.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                agregarCarreras();
-            }
+            public void actionPerformed(ActionEvent e) { agregarCarreras(); }
         });
         btnEliminar.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                eliminarCarreras();
-            }
+            public void actionPerformed(ActionEvent e) { eliminarCarreras(); }
         });
 
         pack();
@@ -156,7 +164,20 @@ public class DialogoAgregarCarrerasACompetidor extends JDialog {
      * Método que aplica los cambios si se pulsa sobre OK
      */
     private void realizarCambios() {
+
+        for(Carrera carrera : listaTemporalMatriculados){
+            if(!carrera.getCompetidoresCarrera().contains(competidor)){
+                carrera.getCompetidoresCarrera().add(competidor);
+            }
+        }
+        for (Carrera carrera : listaTemporalNoMatriculados){
+            carrera.getCompetidoresCarrera().remove(competidor);
+        }
+
     }
 
+    /**
+     * Método que reacciona ante el botón Cancel
+     */
     private void onCancel() { dispose(); }
 }

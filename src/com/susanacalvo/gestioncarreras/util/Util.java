@@ -1,7 +1,5 @@
 package com.susanacalvo.gestioncarreras.util;
 
-import com.sun.deploy.nativesandbox.NativeSandboxBroker;
-
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
@@ -15,8 +13,14 @@ import java.util.ResourceBundle;
 /**
  * Clase Util
  * @author Susana
+ * @since JDK8
+ * @version 1.8
  */
+
 public class Util {
+    /**
+     * Atributos de la clase
+     */
     public static final int ACEPTAR = JOptionPane.OK_OPTION;
     public static final int CANCELAR = JOptionPane.CANCEL_OPTION;
     public static ResourceBundle resourceBundle =ResourceBundle.getBundle("idiomaResourceBundle");
@@ -57,7 +61,7 @@ public class Util {
 
     /**
      * Método que muestra un mensaje de error
-     * @param mensaje
+     * @param mensaje cadena de texto
      */
     public static void mostrarDialogoError(String mensaje){
         JOptionPane.showMessageDialog(null, mensaje, resourceBundle.getString("error"), JOptionPane.ERROR_MESSAGE);
@@ -65,8 +69,8 @@ public class Util {
 
     /**
      * Método que muestra un mensaje de confirmación Sí/No
-     * @param mensaje
-     * @return 0 1
+     * @param mensaje cadena de texto
+     * @return 0 si la opción es SI, 1 si la opcion es NO
      */
     public static int mensajeConfirmacion(String mensaje){
         return JOptionPane.showConfirmDialog(null, mensaje, resourceBundle.getString("confirmacion"), JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
@@ -74,7 +78,7 @@ public class Util {
 
     /**
      * Método que muestra un cuadro de diálogo de información
-     * @param mensaje
+     * @param mensaje cadena de texto
      */
     public static void mostrarDialogoInformacion(String mensaje) {
         JOptionPane.showMessageDialog(null,mensaje, resourceBundle.getString(resourceBundle.getString("informacion")), JOptionPane.INFORMATION_MESSAGE);
@@ -82,7 +86,7 @@ public class Util {
 
     /**
      * Método que obtiene la localización del Usuario
-     * @return locale
+     * @return locale locaclización del usuario
      */
     public static Locale obtenerLocale() {
 
@@ -130,10 +134,10 @@ public class Util {
 
     /**
      * Método para redimensionar las imágenes
-     * @param icon
-     * @param alto
-     * @param ancho
-     * @return icon
+     * @param icon Imagen a redimensionar
+     * @param alto alto de la imagen
+     * @param ancho ancho de la imagen
+     * @return icon Imagen redimensionada
      */
     public static Icon escalarImagen(ImageIcon icon, int alto, int ancho){
         Image imagen = icon.getImage();

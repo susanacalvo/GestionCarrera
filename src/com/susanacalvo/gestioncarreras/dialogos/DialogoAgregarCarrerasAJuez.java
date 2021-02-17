@@ -7,7 +7,12 @@ import javax.swing.*;
 import java.awt.event.*;
 import java.util.LinkedList;
 import java.util.List;
-
+/**
+ * Clase que agrega o elimina carreras a un juez
+ * @author Susana
+ * @since JDK 8
+ * @version 1.8
+ */
 public class DialogoAgregarCarrerasAJuez extends JDialog {
     private JPanel contentPane;
     private JButton buttonOK;
@@ -24,6 +29,11 @@ public class DialogoAgregarCarrerasAJuez extends JDialog {
     private LinkedList<Carrera> listaTemporalNoMatriculados;
     private Vista vista;
 
+    /**
+     * Controlador de la clase
+     * @param juez Objeto Juez
+     * @param carreras Lista de carreras
+     */
     public DialogoAgregarCarrerasAJuez(Juez juez, LinkedList<Carrera>carreras) {
         this.juez=juez;
 
