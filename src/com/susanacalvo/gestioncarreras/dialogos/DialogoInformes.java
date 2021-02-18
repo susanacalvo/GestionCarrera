@@ -9,20 +9,22 @@ public class DialogoInformes extends JDialog {
     private JButton buttonCancel;
 
     public DialogoInformes() {
+        initUI();
+        //JasperReport informe = (JasperReport) JRLoader.loadObject(getClass().getResource("/InformeProfesores.jasper"));
+        
+    }
+
+    private void initUI() {
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
 
         buttonOK.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                onOK();
-            }
+            public void actionPerformed(ActionEvent e) { onOK(); }
         });
 
         buttonCancel.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                onCancel();
-            }
+            public void actionPerformed(ActionEvent e) { onCancel(); }
         });
 
         // call onCancel() when cross is clicked
@@ -41,13 +43,7 @@ public class DialogoInformes extends JDialog {
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
     }
 
-    private void onOK() {
-        // add your code here
-        dispose();
-    }
+    private void onOK() { dispose(); }
 
-    private void onCancel() {
-        // add your code here if necessary
-        dispose();
-    }
+    private void onCancel() { dispose(); }
 }
