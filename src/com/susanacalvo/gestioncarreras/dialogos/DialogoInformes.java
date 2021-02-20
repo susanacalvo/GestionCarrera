@@ -13,6 +13,12 @@ import javax.swing.*;
 import java.awt.event.*;
 import java.io.File;
 
+/**
+ * Clase Informes
+ * @author Susana
+ * @since JDK 8
+ * @version 1.8
+ */
 public class DialogoInformes extends JDialog {
     private JPanel contentPane;
     private JButton buttonOK;
@@ -23,6 +29,10 @@ public class DialogoInformes extends JDialog {
     private JPanel panelInforme2;
     private Modelo modelo;
 
+    /**
+     * Constructor de la clase
+     * @param modelo modelo del programa
+     */
     public DialogoInformes(Modelo modelo) {
         this.modelo=modelo;
         initUI();
@@ -32,6 +42,9 @@ public class DialogoInformes extends JDialog {
 
     }
 
+    /**
+     * Método que inicializa los componentes gráficos y manejadores de eventos de la clase
+     */
     private void initUI() {
         setContentPane(contentPane);
         setModal(true);
@@ -95,7 +108,13 @@ public class DialogoInformes extends JDialog {
         });
     }
 
+    /**
+     * Método que reacciona ante el botón OK
+     */
     private void onOK() { dispose(); }
 
+    /**
+     * Método que reacciona ante el botón CANCEL
+     */
     private void onCancel() { dispose(); }
 }

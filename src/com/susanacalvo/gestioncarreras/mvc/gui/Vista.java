@@ -5,7 +5,6 @@ import com.susanacalvo.gestioncarreras.base.Carrera;
 import com.susanacalvo.gestioncarreras.base.Competidor;
 import com.susanacalvo.gestioncarreras.base.Juez;
 import com.susanacalvo.gestioncarreras.base.Usuario;
-import com.susanacalvo.gestioncarreras.mvc.componentes.CompetidorRenderer;
 
 import javax.swing.*;
 import java.awt.event.InputEvent;
@@ -94,6 +93,7 @@ public class Vista {
     JMenuItem itemRelaciones;
     JMenuItem itemGraficos;
     JMenuItem itemInformes;
+    JMenuItem itemManualUser;
 
 
     /**
@@ -152,7 +152,6 @@ public class Vista {
 
         dlmCompetidor = new DefaultListModel<>();
         listCompetidores.setModel(dlmCompetidor);
-        //listCompetidores.setCellRenderer(new CompetidorRenderer());
 
         dlmCarrera = new DefaultListModel<>();
         listCarrera.setModel(dlmCarrera);
@@ -220,13 +219,23 @@ public class Vista {
         itemGraficos = new JMenuItem(resourceBundle.getString("ver.graficos"));
         itemGraficos.setActionCommand("Graficos");
         itemGraficos.setIcon(new ImageIcon(getClass().getResource("/grafico.png")));
-        itemInformes = new JMenuItem("Informes");
+        itemInformes = new JMenuItem(resourceBundle.getString("informes"));
         itemInformes.setActionCommand("Informes");
         itemInformes.setIcon(new ImageIcon(getClass().getResource("/reporte.png")));
 
         menuVista.add(itemRelaciones);
         menuVista.add(itemGraficos);
         menuVista.add(itemInformes);
+
+        //Menu Ayuda
+        JMenu menuAyuda = new JMenu(resourceBundle.getString("ayuda"));
+        barra.add(menuAyuda);
+        itemManualUser = new JMenuItem(resourceBundle.getString("manual.usuario"));
+        itemManualUser.setActionCommand("ManualUser");
+        itemManualUser.setIcon(new ImageIcon(getClass().getResource("/informacion.png")));
+
+        menuAyuda.add(itemManualUser);
+
 
     }
 
