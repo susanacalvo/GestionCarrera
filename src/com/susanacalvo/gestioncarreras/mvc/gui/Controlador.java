@@ -14,6 +14,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.File;
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -114,7 +115,7 @@ public class Controlador implements ActionListener, ListSelectionListener, KeyLi
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()){
             case"Informes":
-                DialogoInformes dialogoInformes = new DialogoInformes();
+                DialogoInformes dialogoInformes = new DialogoInformes(modelo);
                 break;
             case "Relacion":
                 DialogoRelaciones dialogoRelaciones = new DialogoRelaciones(modelo);
@@ -294,7 +295,7 @@ public class Controlador implements ActionListener, ListSelectionListener, KeyLi
         }
 
         Juez juez=vista.listaJueces.getSelectedValue();
-        LinkedList<Carrera> carreras = modelo.getCarreras();
+        List<Carrera> carreras = modelo.getCarreras();
         DialogoAgregarCarrerasAJuez d = new DialogoAgregarCarrerasAJuez(juez,carreras);
 
         listarCarrerasDeJuez(juez);
@@ -439,6 +440,7 @@ public class Controlador implements ActionListener, ListSelectionListener, KeyLi
             competidor.setEdad(Integer.parseInt(vista.txtEdad.getText().trim()));
             competidor.setAltura(Double.parseDouble(vista.txtAltura.getText().trim()));
             competidor.setFoto(vista.lblImagen.getIcon());
+
         //Util.mostrarDialogoInformacion(resourceBundle.getString("modificado.correctamente"));
         listarCompetidoresEnJlist();
 
@@ -455,6 +457,7 @@ public class Controlador implements ActionListener, ListSelectionListener, KeyLi
 
         modelo.eliminarCompetidor(vista.listCompetidores.getSelectedValue());
         vista.listCompetidores.getSelectedValue().getCarrera().getCompetidoresCarrera().remove(vista.listCompetidores.getSelectedValue());
+
 
         //Util.mostrarDialogoInformacion(resourceBundle.getString("eliminado.correctamente"));
         listarCompetidoresEnJlist();
@@ -477,6 +480,8 @@ public class Controlador implements ActionListener, ListSelectionListener, KeyLi
         modelo.nuevoCompetidor(new Competidor(vista.txtDni.getText().trim(), vista.txtNombreCompetidor.getText().trim(),
                     vista.txtApeCompetidor.getText().trim(), Integer.parseInt(vista.txtEdad.getText().trim())
                     , Double.parseDouble(vista.txtAltura.getText().trim()), vista.lblFoto.getIcon()));
+
+
 
         //Util.mostrarDialogoInformacion(resourceBundle.getString("guardado.correctamente"));
         listarCompetidoresEnJlist();

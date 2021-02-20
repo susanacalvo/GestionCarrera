@@ -1,8 +1,18 @@
 <component name="ArtifactManager">
-  <artifact type="jar" name="unnamed">
+  <artifact type="jar" build-on-make="true" name="unnamed">
     <output-path>$PROJECT_DIR$/out/artifacts/unnamed</output-path>
     <root id="archive" name="unnamed.jar">
-      <element id="file-copy" path="$PROJECT_DIR$/src/com/susanacalvo/gestioncarreras/base/Juez.java" />
+      <element id="directory" name="com">
+        <element id="directory" name="susanacalvo">
+          <element id="directory" name="gestioncarreras">
+            <element id="directory" name="base">
+              <element id="file-copy" path="$PROJECT_DIR$/out/production/GestionCarreras/com/susanacalvo/gestioncarreras/base/Juez.class" />
+              <element id="file-copy" path="$PROJECT_DIR$/out/production/GestionCarreras/com/susanacalvo/gestioncarreras/base/Carrera.class" />
+              <element id="file-copy" path="$PROJECT_DIR$/out/production/GestionCarreras/com/susanacalvo/gestioncarreras/base/Competidor.class" />
+            </element>
+          </element>
+        </element>
+      </element>
     </root>
   </artifact>
 </component>

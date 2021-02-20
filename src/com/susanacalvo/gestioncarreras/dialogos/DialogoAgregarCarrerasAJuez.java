@@ -34,7 +34,7 @@ public class DialogoAgregarCarrerasAJuez extends JDialog {
      * @param juez Objeto Juez
      * @param carreras Lista de carreras
      */
-    public DialogoAgregarCarrerasAJuez(Juez juez, LinkedList<Carrera>carreras) {
+    public DialogoAgregarCarrerasAJuez(Juez juez, List<Carrera>carreras) {
         this.juez=juez;
 
         //Creo dos listas temporales. Si finalmente acepto los cambios, se hacen efectivas

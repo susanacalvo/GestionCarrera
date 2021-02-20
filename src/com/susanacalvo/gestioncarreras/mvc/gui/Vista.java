@@ -5,6 +5,8 @@ import com.susanacalvo.gestioncarreras.base.Carrera;
 import com.susanacalvo.gestioncarreras.base.Competidor;
 import com.susanacalvo.gestioncarreras.base.Juez;
 import com.susanacalvo.gestioncarreras.base.Usuario;
+import com.susanacalvo.gestioncarreras.mvc.componentes.CompetidorRenderer;
+
 import javax.swing.*;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
@@ -150,6 +152,7 @@ public class Vista {
 
         dlmCompetidor = new DefaultListModel<>();
         listCompetidores.setModel(dlmCompetidor);
+        //listCompetidores.setCellRenderer(new CompetidorRenderer());
 
         dlmCarrera = new DefaultListModel<>();
         listCarrera.setModel(dlmCarrera);

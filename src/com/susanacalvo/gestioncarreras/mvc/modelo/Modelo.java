@@ -19,7 +19,7 @@ public class Modelo {
      * Atributos de la clase
      */
     private List<Competidor> listaCompetidores;
-    private LinkedList<Carrera> listaCarreras;
+    private List<Carrera> listaCarreras;
     private ArrayList<Juez> listaJueces;
     private ResourceBundle resourceBundle;
 
@@ -29,7 +29,7 @@ public class Modelo {
     public Modelo(){
         resourceBundle=ResourceBundle.getBundle("idiomaResourceBundle");
         listaCompetidores = new ArrayList<>();
-        listaCarreras = new LinkedList<>();
+        listaCarreras = new ArrayList<>();
         listaJueces = new ArrayList<>();
     }
 
@@ -95,7 +95,7 @@ public class Modelo {
      * Método que devuelve una lista de las carreras
      * @return listaCarreras lista con todas las carreras
      */
-    public LinkedList<Carrera>getCarreras(){return listaCarreras;}
+    public List<Carrera>getCarreras(){return listaCarreras;}
 
     /**
      * Método que comprueba que el Competidor ya existe
