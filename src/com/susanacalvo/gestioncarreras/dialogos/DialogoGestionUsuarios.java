@@ -26,7 +26,7 @@ public class DialogoGestionUsuarios extends JDialog {
     private JButton buttonCancel;
     private JTextField txtUser;
     private JPasswordField txtpass;
-    private JCheckBox mostrarContraseñaCheckBox;
+    private JCheckBox mostrarContrasenaCheckBox;
     private JComboBox cbTipoUser;
     private JButton anadirUsuarioButton;
     private JButton eliminarUsuarioButton;
@@ -71,7 +71,7 @@ public class DialogoGestionUsuarios extends JDialog {
      * Método que muestra la contraseña
      */
     private void mostrarContrasena() {
-        if(mostrarContraseñaCheckBox.isSelected()){
+        if(mostrarContrasenaCheckBox.isSelected()){
             txtpass.setEchoChar((char)0);
         } else {
             txtpass.setEchoChar('*');
@@ -130,7 +130,7 @@ public class DialogoGestionUsuarios extends JDialog {
             public void actionPerformed(ActionEvent actionEvent) { nuevoUsuario(); }
         });
 
-        mostrarContraseñaCheckBox.addActionListener(new ActionListener() {
+        mostrarContrasenaCheckBox.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) { mostrarContrasena(); }
         });

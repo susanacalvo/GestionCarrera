@@ -77,7 +77,7 @@ public class DialogoInformes extends JDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    JasperReport informe = (JasperReport) JRLoader.loadObject((new File("Informes/Informe.jasper")));
+                    JasperReport informe = (JasperReport) JRLoader.loadObject(getClass().getResource("/Informe.jasper"));
                     JRBeanCollectionDataSource coleccion = new JRBeanCollectionDataSource(modelo.getCompetidores());
                     JasperPrint printer = JasperFillManager.fillReport(informe, null, coleccion);
                     JRViewer visor = new JRViewer(printer);
@@ -94,7 +94,7 @@ public class DialogoInformes extends JDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    JasperReport informe = (JasperReport) JRLoader.loadObject((new File("Informes/InformeCarreras.jasper")));
+                    JasperReport informe = (JasperReport) JRLoader.loadObject(getClass().getResource("/InformeCarreras.jasper"));
                     JRBeanCollectionDataSource coleccion = new JRBeanCollectionDataSource(modelo.getCarreras());
                     JasperPrint printer = JasperFillManager.fillReport(informe, null, coleccion);
                     JRViewer visor = new JRViewer(printer);
